@@ -11,6 +11,8 @@ AltaRawTotals = []
 ski_area = 'Alta'
 
 
+
+
 # Make average of yearly snowfall for all areas in PNW/Utah/Jackson
 # Take stan dev of yearly snowfall and determine the swing in each year 
 
@@ -46,7 +48,5 @@ def snowfall_std(array):
 	# Eventually make a dictionary that has year and snowfall, then sort through those years and match up years that are outside of 1 std of the mean and above 1 std of the mean
 
 	print("The snowfall years that are outside 1 STD of mean are greater than or less than: " + str(snow_std) + "in more or less than " + str(snow_mean) + "in.")
-
-csv_snow_reader('altasnow70s.csv')
 
 snow_averager(Altasnow70s, Altasnow80s, Altasnow90s, Altasnow20s, Altasnow21s)
