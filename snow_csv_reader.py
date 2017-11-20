@@ -18,11 +18,13 @@ def snow_csv_stats_to_array(snow_csv_file):
 	snow_inches_int = [ int(x) for x in snow_inches ]
 
 	return snow_years_int, snow_inches_int
-	
+
 
 snow_years, snow_inches = snow_csv_stats_to_array(raw_snow_file)
 
 print(snow_years)
 print(snow_inches)
+
+# either add in a class next or another function that takes csv lists from above, calcualtes mean, std of snowfall stats, then graphs out data
 
 
