@@ -1,7 +1,5 @@
 import csv
 
-raw_snow_file = 'altasnow70s.csv'
-
 def snow_csv_stats_to_array(snow_csv_file):
 	snow_years = []
 	snow_inches = []
@@ -20,11 +18,9 @@ def snow_csv_stats_to_array(snow_csv_file):
 	return snow_years_int, snow_inches_int
 
 
-snow_years, snow_inches = snow_csv_stats_to_array(raw_snow_file)
-
-print(snow_years)
-print(snow_inches)
 
 # either add in a class next or another function that takes csv lists from above, calcualtes mean, std of snowfall stats, then graphs out data
+#make this a module that is part of a class for calculating snowfall statistics
+# calculate mean/ standard deviation of snow inches
 
 
