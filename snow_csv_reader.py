@@ -22,5 +22,11 @@ def snow_csv_stats_to_array(snow_csv_file):
 # either add in a class next or another function that takes csv lists from above, calcualtes mean, std of snowfall stats, then graphs out data
 #make this a module that is part of a class for calculating snowfall statistics
 # calculate mean/ standard deviation of snow inches
+# use scrapy to crawl a bunch of different ski areas i am intersted in, turn their base into a graph that shows which one has the most
+# save the totals to a db each day
+# have spiders crawl daily
+# have another graph taht calculates 24 hr snow based on daily totals - yesterdays totals
+# add the difference to a total snowfall for each year db
+# display data source information of where snow is measured
 
 
