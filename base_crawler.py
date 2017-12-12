@@ -5,7 +5,7 @@ import scrapy
 
 class BaseSnowCrawler(scrapy.Spider):
 
-name = 'BaseAreaSnowCrawler'
+	name = 'BaseAreaSnowCrawler'
 
 # areas I would like to ski in someday, can add more later, as interests change
 # Eventually add these to crawl
@@ -13,10 +13,20 @@ name = 'BaseAreaSnowCrawler'
 					'www.snowbird.com', 'www.grandtarghee.com',
 					'www.wolfcreekski.com', 'www.brightonresort.com', 'www.solitudemountain.com',
 					'www.squawalpine.com', 'www.steamboat.com'"""
-allowed_domains= [
+	allowed_domains= [
 					'www.alta.com', 
-				  ]
+				  	]
 
-start_urls = 	[ 'https://www.alta.com/conditions/daily-mountain-report/snow-report'  
+	start_urls = 	[ 'https://www.alta.com/conditions/daily-mountain-report/snow-report'  
 
-				]
+					]
+
+	def start_requests(self):
+		urls = start_urls
+
+		for url in urls:
+			yield scrapy.Request(url=url, callback=self.parse)
+
+
+	# design this method so the different areas can be crawled successfully, cannot be specific for only one area		
+	def parse(self, response):
