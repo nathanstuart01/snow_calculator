@@ -14,3 +14,8 @@ base_values[2]
 base_values[3]
 
 class BaseScraperLib():
+
+area_1 = { 'name' : 'alta', 'base_selector' : '"value"', 'twenty_four_hr_selector' : 'tbd' }
+area_2 = { 'name' : 'snowbird', 'base_selector' : 'tbd', 'twenty_four_hr_selector' : 'tbd' }
+
+area_selector_library = [area_1, area_2]
