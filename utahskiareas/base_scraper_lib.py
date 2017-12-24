@@ -6,6 +6,8 @@
 
 #class BaseScraperLib():
 
+area_selector_library = [alta, snowbird]
+
 area_dict_template = {
 	'name': '',
 	'url': '',
@@ -25,21 +27,22 @@ alta = {
 			}
 
 snowbird = { 
+
 			'name' : 'snowbird', 
 			'url': 'https://www.snowbird.com/', 
-			'base_selector' : "sb-condition_value", 
+			'base_selector' : 'find_all(class_="sb-condition_value")', 
 			'base_selector_index' : '[4].text',
-			'twenty_four_hr_selector': 'sb-condition_value',
+			'twenty_four_hr_selector': 'find_all(class_="sb-condition_value")',
 			'twenty_four_hr_index' : '[2].text', 
 			}
 
 brighton = {
-	'name': '',
-	'url': '',
-	'base_selector': '',
-	'base_selector_index': '',
-	'twenty_four_hr_selector': '',
-	'twenty_four_hr_index': '',
+			'name': '',
+			'url': '',
+			'base_selector': '',
+			'base_selector_index': '',
+			'twenty_four_hr_selector': 'find_all("p")',
+			'twenty_four_hr_index': "[3].contents[0].replace('\r\n\t\t\t\t\t\tLast 24hr: ', '').replace('"', '')",
 	}
 
 solitude = {
@@ -141,9 +144,9 @@ nordic_valley = {
 	'twenty_four_hr_index': '',
 	}
 
-area_selector_library = [alta, snowbird]
 
 def process_area_to_scrape(dict):
+	print(dict[1])
 	#call the area in its index from the area selector library
 	# define the values of each areas dict to scrape
 	# THis is to prepare the varaiables to then call in the gather_snow_Stats_script 
