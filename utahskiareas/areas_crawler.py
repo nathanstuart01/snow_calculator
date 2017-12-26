@@ -10,12 +10,11 @@ class AreasCrawler():
 		self.twenty_four_hour_total = twenty_four_hour_total
 
 	def get_base_total(self, area_url):
-		#area_base_selectors = "sb-condition_value"
 		area_to_scrape = requests.get(area_url)
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
 		#base_values = souped_area.find_all(class_=area_base_selectors)
-		base_values = souped_area.find_all('p')
-		base_selector = base_values[3].contents[0].replace('\r\n\t\t\t\t\t\tLast 24hr: ', '').replace('"', '')
+		base_values = souped_area.find_all(class_="type")
+		base_selector = base_values[0].text.replace('24 Hrs ', '').replace('"', '')
 		base_total = base_selector
 		return base_total
 

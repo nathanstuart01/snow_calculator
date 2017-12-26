@@ -20,9 +20,9 @@ area_dict_template = {
 alta = { 
 			'name' : 'alta', 
 			'url': 'https://www.alta.com/', 
-			'base_selector' : 'value',
+			'base_selector' : '(class_="value")',
 			'base_selector_index' : '[3].contents',
-			'twenty_four_hr_selector': 'value',
+			'twenty_four_hr_selector': '(class_="value")',
 			'twenty_four_hr_index' : '[2].contents',
 			}
 
@@ -30,28 +30,28 @@ snowbird = {
 
 			'name' : 'snowbird', 
 			'url': 'https://www.snowbird.com/', 
-			'base_selector' : 'find_all(class_="sb-condition_value")', 
+			'base_selector' : '(class_="sb-condition_value")', 
 			'base_selector_index' : '[4].text',
-			'twenty_four_hr_selector': 'find_all(class_="sb-condition_value")',
+			'twenty_four_hr_selector': '(class_="sb-condition_value")',
 			'twenty_four_hr_index' : '[2].text', 
 			}
 
 brighton = {
-			'name': '',
-			'url': '',
-			'base_selector': '',
-			'base_selector_index': '',
+			'name': 'brighton',
+			'url': 'http://www.brightonresort.com/mountain/snow-report/',
+			'base_selector': 'find_all("h2")',
+			'base_selector_index': '[3].contents[0].replace('"', '')',
 			'twenty_four_hr_selector': 'find_all("p")',
 			'twenty_four_hr_index': "[3].contents[0].replace('\r\n\t\t\t\t\t\tLast 24hr: ', '').replace('"', '')",
 	}
 
 solitude = {
-	'name': '',
-	'url': '',
-	'base_selector': '',
-	'base_selector_index': '',
-	'twenty_four_hr_selector': '',
-	'twenty_four_hr_index': '',
+			'name': 'solitude',
+			'url': 'https://solitudemountain.com/',
+			'base_selector': 'find_all(class_="type")',
+			'base_selector_index': '[2].text.replace('Base ', '').replace('"', '')',
+			'twenty_four_hr_selector': 'find_all(class_="type")',
+			'twenty_four_hr_index': '[0].text.replace('24 Hrs ', '').replace('"', '')',
 	}
 
 park_city = {
