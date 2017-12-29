@@ -55,11 +55,11 @@ solitude = {
 	}
 
 park_city = {
-	'name': '',
+	'name': 'park city',
 	'url': '',
-	'base_selector': '',
+	'base_selector': "soup.find_all('script', type='text/javascript')[1]",
 	'base_selector_index': '',
-	'twenty_four_hr_selector': '',
+	'twenty_four_hr_selector': "soup.find_all('script', type='text/javascript')[1]",
 	'twenty_four_hr_index': '',
 	}
 

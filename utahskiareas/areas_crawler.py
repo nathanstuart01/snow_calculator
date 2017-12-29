@@ -18,4 +18,14 @@ class AreasCrawler():
 		base_total = base_selector
 		return base_total
 
+		# not finished 
+	def scrape_park_city(area_url):
+    	park_city_scraped = requests.get(area_url)
+	    park_city_souped = BeautifulSoup(park_city_scraped.content, 'html.parser')
+	    park_city_values = park_city_souped.find_all('script', type='text/javascript')[1]
+	    park_city_string = park_city_souped.contents[0]
+	    park_city_base = re.search('"BaseDepth":{"Inches":"21"', park_city_string).group()[23:25]
+	    park_city_24hr = re.search('TwentyFourHourSnowfall":{"Inches":"0",', park_city_string).group()[35:36]
+	    return park_city_base, park_city_24hr
+
 	# write another function that returns 24 hr total
