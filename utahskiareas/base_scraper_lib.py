@@ -56,7 +56,7 @@ solitude = {
 
 park_city = {
 	'name': 'park city',
-	'url': '',
+	'url': 'https://www.parkcitymountain.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx',
 	'base_selector': "soup.find_all('script', type='text/javascript')[1]",
 	'base_selector_index': '',
 	'twenty_four_hr_selector': "soup.find_all('script', type='text/javascript')[1]",
