@@ -27,7 +27,11 @@ class AreasCrawler():
 		park_city_string = park_city_values.contents[0]
 		park_city_snow_data_searcher = re.compile(r'Inches\S\S\S\d+')
 		park_city_snow_data = park_city_snow_data_searcher.findall(park_city_string) 
-		park_city_base = park_city_snow_data[4]
-		park_city_24hr = park_city_snow_data[1]
+		park_city_base_raw = park_city_snow_data[4]
+		park_city_24hr_raw = park_city_snow_data[1]
+		park_city_base = park_city_base_raw.replace('Inches":"', '')
+		park_city_24hr = park_city_24hr_raw.replace('Inches":"', '')
 		return park_city_base, park_city_24hr
+		# Determine how to call this function and function above from one single funciton call, to make one job only to be run for all values, perhaps
+		# consider adding this funciton in as a call back function 
 	

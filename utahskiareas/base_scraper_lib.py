@@ -54,6 +54,7 @@ solitude = {
 			'twenty_four_hr_index': '[0].text.replace('24 Hrs ', '').replace('"', '')',
 	}
 
+	# after gathering all other ski areas, will come back to this one and figure out how to incorpoarte its special method in one single job/call
 park_city = {
 	'name': 'park city',
 	'url': 'https://www.parkcitymountain.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx',
@@ -64,12 +65,12 @@ park_city = {
 	}
 
 deer_valley = {
-	'name': '',
-	'url': '',
-	'base_selector': '',
-	'base_selector_index': '',
-	'twenty_four_hr_selector': '',
-	'twenty_four_hr_index': '',
+	'name': 'deer valley',
+	'url': 'http://www.deervalley.com/',
+	'base_selector': "find(id='home-mountain-info')",
+	'base_selector_index': ,
+	'twenty_four_hr_selector': "find(id='home-mountain-info')",
+	'twenty_four_hr_index': 'findChildren()[2].contents[0].replace('"', '')',
 	}
 
 snowbasin = {
