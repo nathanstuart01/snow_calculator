@@ -13,9 +13,8 @@ class AreasCrawler():
 	def get_base_total(self, area_url):
 		area_to_scrape = requests.get(area_url)
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
-		#base_values = souped_area.find_all(class_=area_base_selectors)
-		base_values = souped_area.find_all(class_="type")
-		base_selector = base_values[0].text.replace('24 Hrs ', '').replace('"', '')
+		base_values = souped_area.find_all(base_values_selector)
+		base_selector = base_values + base_data_selector
 		base_total = base_selector
 		return base_total
 
@@ -34,4 +33,6 @@ class AreasCrawler():
 		return park_city_base, park_city_24hr
 		# Determine how to call this function and function above from one single funciton call, to make one job only to be run for all values, perhaps
 		# consider adding this funciton in as a call back function 
+
+
 	

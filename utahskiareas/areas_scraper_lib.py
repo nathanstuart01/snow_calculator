@@ -68,63 +68,63 @@ deer_valley = {
 	'name': 'deer valley',
 	'url': 'http://www.deervalley.com/',
 	'base_selector': "find(id='home-mountain-info')",
-	'base_selector_index': ,
+	'base_selector_index': 'findChildren()[8].contents[0].replace('"', '')',
 	'twenty_four_hr_selector': "find(id='home-mountain-info')",
 	'twenty_four_hr_index': 'findChildren()[2].contents[0].replace('"', '')',
 	}
 
 snowbasin = {
-	'name': '',
-	'url': '',
-	'base_selector': '',
-	'base_selector_index': '',
-	'twenty_four_hr_selector': '',
-	'twenty_four_hr_index': '',
+	'name': 'snow basin',
+	'url': 'https://www.snowbasin.com/',
+	'base_selector': '.find(class_='snow-report-grid')',
+	'base_selector_index': '.find_all(class_='right')[2].contents[0].replace('"', '')',
+	'twenty_four_hr_selector': '.find(class_='snow-report-grid')',
+	'twenty_four_hr_index': '.find_all(class_='right')[0].contents[0].replace('"', '')',
 	}
 
 powder_mountain = {
-	'name': '',
-	'url': '',
-	'base_selector': '',
-	'base_selector_index': '',
-	'twenty_four_hr_selector': '',
-	'twenty_four_hr_index': '',
+	'name': 'powder mountain',
+	'url': 'http://www.powdermountain.com/en/',
+	'base_selector': '.find_all(class_='gmad-third-col')',
+	'base_selector_index': '[0].findChildren()[2].text.replace('”', '')',
+	'twenty_four_hr_selector': '.find_all(class_='gmad-third-col')',
+	'twenty_four_hr_index': '[2].findChildren()[2].text.replace('”', '')',
 	}
 
 beaver = {
-	'name': '',
+	'name': 'beaver mountain',
 	'url': '',
-	'base_selector': '',
-	'base_selector_index': '',
-	'twenty_four_hr_selector': '',
-	'twenty_four_hr_index': '',
+	'base_selector': '.find_all('table')[0]',
+	'base_selector_index': '.findChildren()[7].text.replace('"', '')',
+	'twenty_four_hr_selector': '.find_all('table')[0]',
+	'twenty_four_hr_index': '.findChildren()[3].text.replace('"', '')',
 	}
 
 cherry_peak = {
-	'name': '',
-	'url': '',
-	'base_selector': '',
-	'base_selector_index': '',
+	'name': 'cherry peak',
+	'url': 'http://skicherrypeak.com/',
+	'base_selector': '.find_all(class_='xr_tl xr_kern Normal_text')',
+	'base_selector_index': '[2].contents[1]',
 	'twenty_four_hr_selector': '',
-	'twenty_four_hr_index': '',
+	'twenty_four_hr_index': '[5].contents[1]',
 	}
 
 brianhead = {
-	'name': '',
-	'url': '',
-	'base_selector': '',
-	'base_selector_index': '',
-	'twenty_four_hr_selector': '',
-	'twenty_four_hr_index': '',
+	'name': 'brian head',
+	'url': 'http://www.brianhead.com/Current-Weather',
+	'base_selector': '.find_all(class_='text-left')',
+	'base_selector_index': '[7].text.replace('”', '')',
+	'twenty_four_hr_selector': '.find_all(class_='text-left')',
+	'twenty_four_hr_index': '[3].text.replace('"', '')',
 	}
 
 eagle_point = {
-	'name': '',
-	'url': '',
-	'base_selector': '',
-	'base_selector_index': '',
-	'twenty_four_hr_selector': '',
-	'twenty_four_hr_index': '',
+	'name': 'eagle point',
+	'url': 'http://www.eaglepointresort.com/winter',
+	'base_selector': '.find_all(class_='stat winter')',
+	'base_selector_index': '[1].contents[1].text.replace('"', '')',
+	'twenty_four_hr_selector': '.find_all(class_='stat winter')',
+	'twenty_four_hr_index': '[0].contents[1].text.replace('"', '')',
 	}
 
 sundance = {
