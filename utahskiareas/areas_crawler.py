@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 class AreasCrawler():
 	"""A base crawler for all ski areas"""
-	def __init__(self, area_name, base_total, twenty_four_hour_total):
+	def __init__(self, area_name):
 		self.area_name = area_name
 		self.base_total = base_total
 		self.twenty_four_hour_total = twenty_four_hour_total
@@ -31,8 +31,14 @@ class AreasCrawler():
 		park_city_base = park_city_base_raw.replace('Inches":"', '')
 		park_city_24hr = park_city_24hr_raw.replace('Inches":"', '')
 		return park_city_base, park_city_24hr
-		# Determine how to call this function and function above from one single funciton call, to make one job only to be run for all values, perhaps
-		# consider adding this funciton in as a call back function 
+
+
+	def scrape_sundance(self, stats_api):
+		sundance_api = requests.get(stats_api)
+		sundance_data = sundance_api.json()
+		sundance_base = sundance_data[0]['base']
+		sundance_24_hr = sundance_data[0]['24_hour']
+		return sundance_base, sundance_24_hr
 
 
 	
