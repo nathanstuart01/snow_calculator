@@ -37,8 +37,20 @@ from scraper_lib import ScraperLib
 	#take the totals I crawled from the above function, save them to a database
 	# the entry will correspond to the ski areas unique id
 	# the entry will up made as a new one each day
-alta = AreasCrawler('alta', 'https://alta.com')
-print(alta.area_selector_library[2])
+alta = AreasCrawler('alta')
+#TypeError: can only concatenate list (not "str") to listprint(alta.area_selector_library[0]['url'])
+#print(alta.area_selector_library[0]['base_selector'])
+#print(alta.area_selector_library[0]['base_selector_index'])
+
+#print(alta.get_base_selectors())
+#print(alta.get_24_hr_total('https://www.alta.com/'))
+#print(alta.twenty_four_hour_total)
+print(alta.get_base_total('https://wwww.alta.com', 'value', 3))
+
+
+#= AreasCrawler('snowbird')
+#print(snowbird.twenty_four_hour_total)
+#print(snowbird.get_24_hr_total('https://www.snowbird.com/', "sb-condition_value"))
 
 
 

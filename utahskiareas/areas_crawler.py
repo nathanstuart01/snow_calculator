@@ -6,27 +6,31 @@ from scraper_lib import ScraperLib
 class AreasCrawler(ScraperLib):
 
 	"""A base crawler class for all ski areas"""
-	def __init__(self, area_name, area_url):
+	def __init__(self, area_name):
 		super().__init__()
 		self.area_name = area_name
-		self.area_url = area_url
 		self.base_total = 0
 		self.twenty_four_hour_total = 0
 
 	# do this as a for loop and each time craete a new variable, could it be a new class instance variable?
 		
 	# for example in the area, make self.base_total_alta a variable to be used as a class property
-	def get_base_total(self):
-		area_to_scrape = requests.get(self.area_url)
+	def get_base_total(self, area_url, base_selector, base_selector_index):
+		area_to_scrape = requests.get(area_url)
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
-		base_values = souped_area.find_all(base_values_selector)
-		base_selector = base_values + base_data_selector
-		base_total = base_selector
-		return self.alta_base_total
+		base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text.encode('utf-8')
+		return base_values.decode("ascii", "ignore")
 
 
 		#use if/else logic to determine what area to select
-	def get_24_hr_total(self, area_url):
+	def get_24_hr_total(self, area_url, twenty_four_hour_selector):
+		area_to_scrape = requests.get(area_url)
+		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
+		base_values = souped_area.find_all(class_=twenty_four_hour_selector)[2].text.encode('utf-8')
+		twenty_four_hour_total = base_values.decode("ascii", "ignore").replace('"', '')
+		twenty_four_hour_total_to_int = int(twenty_four_hour_total)
+		self.twenty_four_hour_total = twenty_four_hour_total_to_int
+		return self.twenty_four_hour_total
 
 
 		 # incorporate this into one function above, using if

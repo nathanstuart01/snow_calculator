@@ -15,10 +15,10 @@ class ScraperLib():
 			{ 
 			'name' : 'alta', 
 			'url': 'https://www.alta.com/', 
-			'base_selector' : '(class_="value")',
-			'base_selector_index' : '[3].contents',
-			'twenty_four_hr_selector': '(class_="value")',
-			'twenty_four_hr_index' : '[2].contents',
+			'base_selector' : 'class_="value"',
+			'base_selector_index' : '[3].contents[0].text',
+			'twenty_four_hr_selector': 'class_="value"',
+			'twenty_four_hr_index' : '[2].contents.text',
 			},
 
 			{ 
