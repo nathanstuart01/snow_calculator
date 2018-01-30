@@ -9,15 +9,20 @@ class AreasCrawler(ScraperLib):
 	def __init__(self, area_name):
 		super().__init__()
 		self.area_name = area_name
+		self.base_total = 0
+		self.twenty_four_hour_total = 0
 
-	def get_base_total(self, area_url, base_selector, base_selector_index):
+
+		"""Areas this works on, Alta, Snowbird, Solitude"""
+	def alta_bird_get_base_total(self, area_url, base_selector, base_selector_index):
 		area_to_scrape = requests.get(area_url)
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
 		base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text.encode('utf-8')
 		base_total = base_values.decode("ascii", "ignore").replace('"', '')
 		self.base_total = int(base_total)
+		return self.base_total
 	
-	def get_24_hr_total(self, area_url, twenty_four_hour_selector, twenty_four_hour_index):
+	def alta_bird_get_24_hr_total(self, area_url, twenty_four_hour_selector, twenty_four_hour_index):
 		area_to_scrape = requests.get(area_url)
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
 		twenty_four_values = souped_area.find_all(class_=twenty_four_hour_selector)[twenty_four_hour_index].text.encode('utf-8')
@@ -27,6 +32,20 @@ class AreasCrawler(ScraperLib):
 		else:
 			self.twenty_four_hour_total = int(twenty_four_total) 
 		return self.twenty_four_hour_total
+
+	def solitude_get_base_total(self, area_url, base_selector, base_selector_index):
+		area_to_scrape = requests.get(area_url)
+		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
+		base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text
+		base_total = base_values.replace('Base ', '').replace('"', '')
+		self.base_total = int(base_total)
+		return self.base_total
+
+		#to still make one base scraper total, do a if self.area_name == 'Alta'
+			#do this
+		# if self.area_name == 'Solitude'
+			# do this
+		#include the different selector and decoder methods associated with each area
 
 	def scrape_sundance(self, stats_api):
 		sundance_api = requests.get(stats_api)
