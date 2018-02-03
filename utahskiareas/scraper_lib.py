@@ -96,7 +96,7 @@ class ScraperLib():
 
 			{
 			'name': 'cherry peak',
-			'url': 'http://skicherrypeak.com/',
+			'url': 'http://skicherrypeak.com/rpt/?snow-report',
 			'base_selector': '.find_all(class_="xr_tl xr_kern Normal_text")',
 			'base_selector_index': '[2].contents[1]',
 			'twenty_four_hr_selector': '',
@@ -106,7 +106,7 @@ class ScraperLib():
 			{
 			'name': 'brian head',
 			'url': 'http://www.brianhead.com/Current-Weather',
-			'base_selector': '.find_all(class_="text-left")',
+			'base_selector': '"text-left"',
 			'base_selector_index': '[7].text.replace(""", '')',
 			'twenty_four_hr_selector': '.find_all(class_="text-left")',
 			'twenty_four_hr_index': '[3].text.replace(""", '')',

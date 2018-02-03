@@ -6,21 +6,50 @@ from scraper_lib import ScraperLib
 class AreasCrawler(ScraperLib):
 
 	"""A base crawler class for all ski areas"""
-	def __init__(self, area_name):
+	def __init__(self, area_name, area_url):
 		super().__init__()
 		self.area_name = area_name
+		self.area_url = area_url
 		self.base_total = 0
 		self.twenty_four_hour_total = 0
 
 
-		"""Areas this works on, Alta, Snowbird, Solitude"""
-	def alta_bird_get_base_total(self, area_url, base_selector, base_selector_index):
+		"""Areas this works on, Alta, Snowbird, Solitude, snowbasin, poweder_mountain, beaver_mountain, cherry_peak
+		"""
+	def get_base_total(self, area_url, base_selector, base_selector_index):
 		area_to_scrape = requests.get(area_url)
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
-		base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text.encode('utf-8')
-		base_total = base_values.decode("ascii", "ignore").replace('"', '')
-		self.base_total = int(base_total)
-		return self.base_total
+		if self.area_name == 'solitude':
+			base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text
+			base_total = base_values.replace('Base ', '').replace('"', '')
+			self.base_total = int(base_total)
+			return self.base_total
+		elif self.area_name == 'snowbasin':
+			base_values = souped_area.find(class_=base_selector)
+			base_total = base_values.find_all(class_=base_selector_index)[2].contents[0].replace('"', '')
+			self.base_total = int(base_total)
+			return self.base_total
+		elif self.area_name == 'powder_mountain':
+			base_values = souped_area.find_all(class_=base_selector)[base_selector_index].find_all('div')[base_selector_index - 1].text.encode('utf-8')
+			base_total = base_values.decode('ascii', 'ignore').replace('BASE', '')
+			self.base_total = int(base_total)
+			return self.base_total
+		elif self.area_name == 'beaver_mountain':
+			base_values = souped_area.find_all(base_selector)[base_selector_index].text.encode('utf-8')
+			base_total = base_values.decode('ascii', 'ignore').replace('"', '')
+			self.base_total = int(base_total)
+			return self.base_total
+		elif self.area_name == 'cherry_peak':
+			base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text.encode('utf-8')
+			base_total = base_values.decode('ascii', 'ignore').replace('Snow Base: ', '')
+			self.base_total = int(base_total)
+			return self.base_total
+		else:
+			#So far works on snowbird, alta, brianhead
+			base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text.encode('utf-8')
+			base_total = base_values.decode("ascii", "ignore").replace('"', '')
+			self.base_total = int(base_total)
+			return self.base_total
 	
 	def alta_bird_get_24_hr_total(self, area_url, twenty_four_hour_selector, twenty_four_hour_index):
 		area_to_scrape = requests.get(area_url)
@@ -33,14 +62,14 @@ class AreasCrawler(ScraperLib):
 			self.twenty_four_hour_total = int(twenty_four_total) 
 		return self.twenty_four_hour_total
 
-	def solitude_get_base_total(self, area_url, base_selector, base_selector_index):
+	def test_get_base_total(self, area_url, base_selector):
 		area_to_scrape = requests.get(area_url)
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
-		base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text
-		base_total = base_values.replace('Base ', '').replace('"', '')
+		base_values = souped_area.find_all(class_=base_selector)[7].text.encode('utf-8')
+		base_total = base_values.decode('ascii', 'ignore')
 		self.base_total = int(base_total)
 		return self.base_total
-
+		#return base_total
 		#to still make one base scraper total, do a if self.area_name == 'Alta'
 			#do this
 		# if self.area_name == 'Solitude'
