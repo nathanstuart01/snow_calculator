@@ -34,7 +34,7 @@ class ScraperLib():
 			{
 			'name': 'brighton',
 			'url': 'http://www.brightonresort.com/mountain/snow-report/',
-			'base_selector': 'find_all("h2")',
+			'base_selector': 'h2',
 			'base_selector_index': '[3].contents[0].replace(""", "")',
 			'twenty_four_hr_selector': 'find_all("p")',
 			'twenty_four_hr_index': '[3].contents[0].replace("\r\n\t\t\t\t\t\tLast 24hr: ", " "").replace(""", " ")',
@@ -61,7 +61,7 @@ class ScraperLib():
 			{
 			'name': 'deer valley',
 			'url': 'http://www.deervalley.com/',
-			'base_selector': "find(id='home-mountain-info')",
+			'base_selector': 'conditions',
 			'base_selector_index': 'findChildren()[8].contents[0].replace(""", " ")',
 			'twenty_four_hr_selector': "find(id='home-mountain-info')",
 			'twenty_four_hr_index': 'findChildren()[2].contents[0].replace(""", " ")',
@@ -106,7 +106,7 @@ class ScraperLib():
 			{
 			'name': 'brian head',
 			'url': 'http://www.brianhead.com/Current-Weather',
-			'base_selector': '"text-left"',
+			'base_selector': 'text-left',
 			'base_selector_index': '[7].text.replace(""", '')',
 			'twenty_four_hr_selector': '.find_all(class_="text-left")',
 			'twenty_four_hr_index': '[3].text.replace(""", '')',
@@ -115,7 +115,7 @@ class ScraperLib():
 			{
 			'name': 'eagle point',
 			'url': 'http://www.eaglepointresort.com/winter',
-			'base_selector': '.find_all(class_="stat winter")',
+			'base_selector': 'stat winter',
 			'base_selector_index': '[1].contents[1].text.replace(""", '')',
 			'twenty_four_hr_selector': '.find_all(class_="stat winter")',
 			'twenty_four_hr_index': '[0].contents[1].text.replace(""", '')',
@@ -133,7 +133,7 @@ class ScraperLib():
 			{
 			'name': 'nordic valley',
 			'url': 'https://nordicvalley.com/',
-			'base_selector': '.find_all("td")',
+			'base_selector': 'td',
 			'base_selector_index': '[6].text.replace(""", '')',
 			'twenty_four_hr_selector': '.find_all("td")',
 			'twenty_four_hr_index': '[4].text.replace(""", '')',
