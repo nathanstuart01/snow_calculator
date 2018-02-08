@@ -41,12 +41,24 @@ from scraper_lib import ScraperLib
 
 #nordic_valley = ScraperLib()
 
-#print(nordic_valley.area_selector_library[13]['name'])
-#nordic_valley_crawl = AreasCrawler(nordic_valley.area_selector_library[13]['name'], nordic_valley.area_selector_library[13]['url'])
+print(nordic_valley.area_selector_library[13]['name'])
+nordic_valley_crawl = AreasCrawler(nordic_valley.area_selector_library[13]['name'], nordic_valley.area_selector_library[13]['url'])
 
-#print(nordic_valley_crawl.get_base_total(nordic_valley_crawl.area_url, nordic_valley.area_selector_library[13]['base_selector'], 6))
+print(nordic_valley_crawl.get_base_total(nordic_valley_crawl.area_url, nordic_valley.area_selector_library[13]['base_selector'], 6))
 
 #eagle_point = ScraperLib()
 #eagle_point_crawl = AreasCrawler(eagle_point.area_selector_library[11]['name'], eagle_point.area_selector_library[11]['url'])
 #print(eagle_point_crawl.get_base_total(eagle_point_crawl.area_url, eagle_point.area_selector_library[11]['base_selector'], 1))
+
+
+#sundance = AreasCrawler('sundance', 'https://sheetsu.com/apis/v1.0/5603400dbbf4?limit=1')
+
+#print(sundance.get_base_total(sundance.area_url, 0, 'base'))
+
+
+
+
+
+
+
 

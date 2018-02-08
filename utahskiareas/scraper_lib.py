@@ -52,8 +52,8 @@ class ScraperLib():
 			{
 			'name': 'park city',
 			'url': 'https://www.parkcitymountain.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx',
-			'base_selector': "soup.find_all('script', type='text/javascript')[1]",
-			'base_selector_index': '',
+			'base_selector': "script",
+			'base_selector_index': '1',
 			'twenty_four_hr_selector': "soup.find_all('script', type='text/javascript')[1]",
 			'twenty_four_hr_index': '',
 			},
@@ -124,8 +124,8 @@ class ScraperLib():
 			{
 			'name': 'sundance',
 			'url': 'https://sheetsu.com/apis/v1.0/5603400dbbf4?limit=1',
-			'base_selector': 'sundance_data[0]',
-			'base_selector_index': "['base']",
+			'base_selector': '0',
+			'base_selector_index': "base",
 			'twenty_four_hr_selector': 'sundance_data[0]',
 			'twenty_four_hr_index': "['24_hour']",
 			},

@@ -1,7 +1,9 @@
 import requests 
 import re
+import json
 from bs4 import BeautifulSoup
 from scraper_lib import ScraperLib
+
 
 class AreasCrawler(ScraperLib):
 
@@ -14,10 +16,14 @@ class AreasCrawler(ScraperLib):
 		self.twenty_four_hour_total = 0
 
 
-		"""Areas remaining park city, eagle point, sundance
-		"""
+		"""One base cralwer function to rule them all!!!!"""
 	def get_base_total(self, area_url, base_selector, base_selector_index):
 		area_to_scrape = requests.get(area_url)
+		if self.area_name == 'sundance':
+			json_data = json.loads(area_to_scrape.content)
+			base_values = json_data[base_selector][base_selector_index]
+			self.base_total = int(base_values)
+			return self.base_total 
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
 		if self.area_name == 'solitude':
 			base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text
@@ -54,8 +60,13 @@ class AreasCrawler(ScraperLib):
 			base_total = base_values.decode('ascii', 'ignore').replace('"', '')
 			self.base_total = int(base_total)
 			return self.base_total
+		elif self.area_name == 'park city':
+			base_values = souped_area.find_all(base_selector, type='text/javascript')[base_selector_index]
+			base_string = str(base_values)
+			base_total = re.search('BaseDepth":{"Inches":"\d+\"', base_string)
+			self.base_total = int(base_total.group().replace('BaseDepth":{"Inches":"','').replace('"', ''))
+			return self.base_total 
 		else:
-			#Crawls snowbird, alta, brianhead 
 			base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text.encode('utf-8')
 			base_total = base_values.decode("ascii", "ignore").replace('"', '')
 			self.base_total = int(base_total)
@@ -72,13 +83,14 @@ class AreasCrawler(ScraperLib):
 			self.twenty_four_hour_total = int(twenty_four_total) 
 		return self.twenty_four_hour_total
 
-	def test_get_base_total(self, area_url, base_selector):
+	def test_get_base_total(self, area_url):
 		area_to_scrape = requests.get(area_url)
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
-		base_values = souped_area.find_all(base_selector)[3].text.encode('utf-8')
-		base_total = base_values.decode('ascii', 'ignore').replace('"', '')
-		self.base_total = int(base_total)
-		return self.base_total
+		base_values = souped_area.find_all('script', type='text/javascript')[1]
+		base_string = str(base_values)
+		base_total = re.search('BaseDepth":{"Inches":"\d+\"', base_string)
+		self.base_total = int(base_total.group().replace('BaseDepth":{"Inches":"','').replace('"', ''))
+		return self.base_total 
 		#to still make one base scraper total, do a if self.area_name == 'Alta'
 			#do this
 		# if self.area_name == 'Solitude'
