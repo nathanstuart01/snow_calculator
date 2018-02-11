@@ -45,8 +45,8 @@ class ScraperLib():
 			'url': 'https://solitudemountain.com/',
 			'base_selector': 'find_all(class_="type")',
 			'base_selector_index': '[2].text.replace("Base ", '').replace(""", '')',
-			'twenty_four_hr_selector': 'find_all(class_="type")',
-			'twenty_four_hr_index': '[0].text.replace("24 Hrs ", '').replace(""", '')',
+			'twenty_four_hr_selector': "type",
+			'twenty_four_hr_index': '0',
 			},
 
 			{
@@ -68,12 +68,12 @@ class ScraperLib():
 			},
 
 			{
-			'name': 'snow basin',
+			'name': 'snowbasin',
 			'url': 'https://www.snowbasin.com/',
-			'base_selector': '.find(class_="snow-report-grid")',
-			'base_selector_index': '.find_all(class_="right")[2].contents[0].replace(""", '')',
-			'twenty_four_hr_selector': '.find(class_="snow-report-grid")',
-			'twenty_four_hr_index': '.find_all(class_="right")[0].contents[0].replace(""", '')',
+			'base_selector': "snow-report-grid",
+			'base_selector_index': '3',
+			'twenty_four_hr_selector': "snow-report-grid",
+			'twenty_four_hr_index': '1',
 			},
 
 			{
@@ -126,8 +126,8 @@ class ScraperLib():
 			'url': 'https://sheetsu.com/apis/v1.0/5603400dbbf4?limit=1',
 			'base_selector': '0',
 			'base_selector_index': "base",
-			'twenty_four_hr_selector': 'sundance_data[0]',
-			'twenty_four_hr_index': "['24_hour']",
+			'twenty_four_hr_selector': '0',
+			'twenty_four_hr_index': "24_hour",
 			},
 
 			{

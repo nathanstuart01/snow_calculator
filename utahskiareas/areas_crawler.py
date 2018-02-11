@@ -31,8 +31,8 @@ class AreasCrawler(ScraperLib):
 			self.base_total = int(base_total)
 			return self.base_total
 		elif self.area_name == 'snowbasin':
-			base_values = souped_area.find(class_=base_selector)
-			base_total = base_values.find_all(class_=base_selector_index)[2].contents[0].replace('"', '')
+			base_values = souped_area.find_all(class_=base_selector)[0].contents[base_selector_index].text
+			base_total = base_values.replace('Base', '').replace('"', '')
 			self.base_total = int(base_total)
 			return self.base_total
 		elif self.area_name == 'powder_mountain' or self.area_name == 'deer_valley':
@@ -72,16 +72,34 @@ class AreasCrawler(ScraperLib):
 			self.base_total = int(base_total)
 			return self.base_total
 	
-	def alta_bird_get_24_hr_total(self, area_url, twenty_four_hour_selector, twenty_four_hour_index):
+	def get_24_hr_total(self, area_url, twenty_four_hour_selector, twenty_four_hour_index):
 		area_to_scrape = requests.get(area_url)
+		if self.area_name == 'sundance':
+			json_data = json.loads(area_to_scrape.content)
+			twenty_four_hr_values = json_data[twenty_four_hour_selector][twenty_four_hour_index]
+			if 'tr' in twenty_four_hr_values:
+				self.twenty_four_hour_total = 0
+			else:
+				self.twenty_four_hour_total = int(twenty_four_hr_values)
+			return self.twenty_four_hour_total
+
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
-		twenty_four_values = souped_area.find_all(class_=twenty_four_hour_selector)[twenty_four_hour_index].text.encode('utf-8')
-		twenty_four_total = twenty_four_values.decode("ascii", "ignore").replace('"', '').lower()
-		if 'tr' in twenty_four_total:
-			self.twenty_four_hour_total = 0
-		else:
-			self.twenty_four_hour_total = int(twenty_four_total) 
-		return self.twenty_four_hour_total
+		if self.area_name == 'solitude':
+			twenty_four_hr_values = souped_area.find_all(class_=twenty_four_hour_selector)[twenty_four_hour_index].text
+			twenty_four_hr_total = twenty_four_hr_values.replace("24 Hrs ", '').replace('"', '')
+			if 'tr' in twenty_four_hr_total:
+				self.twenty_four_hour_total = 0
+			else:
+				self.twenty_four_hour_total = int(twenty_four_hr_total) 
+				return self.twenty_four_hour_total
+		elif self.area_name == 'snowbasin':
+			twenty_four_hr_values = souped_area.find_all(class_=twenty_four_hour_selector)[0].contents[twenty_four_hour_index].text
+			twenty_four_hr_total = twenty_four_hr_values.replace('24 hour ', '').replace('"', '')
+			if 'tr' in twenty_four_hr_total:
+				self.twenty_four_hour_total = 0
+			else:
+				self.twenty_four_hour_total = int(twenty_four_hr_total) 
+				return self.twenty_four_hour_total
 
 	def test_get_base_total(self, area_url):
 		area_to_scrape = requests.get(area_url)

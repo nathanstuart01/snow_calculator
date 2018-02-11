@@ -4,9 +4,10 @@ from scraper_lib import ScraperLib
 
 """Below are the areas I have already crawled using the get base total class method"""
 
-#snowbasin = AreasCrawler('snowbasin')
+snowbasin = AreasCrawler('snowbasin', 'https://www.snowbasin.com/')
 
-#print(snowbasin.get_base_total('https://www.snowbasin.com/', "snow-report-grid", "right"))
+print(snowbasin.get_base_total(snowbasin.area_url, "snow-report-grid", 3))
+print(snowbasin.get_24_hr_total(snowbasin.area_url, "snow-report-grid", 1))
 
 #powder_mountain = AreasCrawler('powder_mountain', 'http://www.powdermountain.com/en/')
 #print(powder_mountain.get_base_total(powder_mountain.area_url, "gmad-third-col", 2))
@@ -41,10 +42,10 @@ from scraper_lib import ScraperLib
 
 #nordic_valley = ScraperLib()
 
-print(nordic_valley.area_selector_library[13]['name'])
-nordic_valley_crawl = AreasCrawler(nordic_valley.area_selector_library[13]['name'], nordic_valley.area_selector_library[13]['url'])
+#print(nordic_valley.area_selector_library[13]['name'])
+#nordic_valley_crawl = AreasCrawler(nordic_valley.area_selector_library[13]['name'], nordic_valley.area_selector_library[13]['url'])
 
-print(nordic_valley_crawl.get_base_total(nordic_valley_crawl.area_url, nordic_valley.area_selector_library[13]['base_selector'], 6))
+#print(nordic_valley_crawl.get_base_total(nordic_valley_crawl.area_url, nordic_valley.area_selector_library[13]['base_selector'], 6))
 
 #eagle_point = ScraperLib()
 #eagle_point_crawl = AreasCrawler(eagle_point.area_selector_library[11]['name'], eagle_point.area_selector_library[11]['url'])
@@ -52,9 +53,10 @@ print(nordic_valley_crawl.get_base_total(nordic_valley_crawl.area_url, nordic_va
 
 
 #sundance = AreasCrawler('sundance', 'https://sheetsu.com/apis/v1.0/5603400dbbf4?limit=1')
+#print(sundance.get_24_hr_total(sundance.area_url, 0, '24_hour'))
 
-#print(sundance.get_base_total(sundance.area_url, 0, 'base'))
-
+#solitude = AreasCrawler('solitude', 'https://solitudemountain.com/')
+#print(solitude.get_24_hr_total(solitude.area_url, 'type', 0))
 
 
 
