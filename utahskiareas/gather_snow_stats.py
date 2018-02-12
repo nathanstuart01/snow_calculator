@@ -4,13 +4,13 @@ from scraper_lib import ScraperLib
 
 """Below are the areas I have already crawled using the get base total class method"""
 
-snowbasin = AreasCrawler('snowbasin', 'https://www.snowbasin.com/')
+#snowbasin = AreasCrawler('snowbasin', 'https://www.snowbasin.com/')
 
-print(snowbasin.get_base_total(snowbasin.area_url, "snow-report-grid", 3))
-print(snowbasin.get_24_hr_total(snowbasin.area_url, "snow-report-grid", 1))
+#print(snowbasin.get_base_total(snowbasin.area_url, "snow-report-grid", 3))
+#print(snowbasin.get_24_hr_total(snowbasin.area_url, "snow-report-grid", 1))
 
-#powder_mountain = AreasCrawler('powder_mountain', 'http://www.powdermountain.com/en/')
-#print(powder_mountain.get_base_total(powder_mountain.area_url, "gmad-third-col", 2))
+powder_mountain = AreasCrawler('powder_mountain', 'http://www.powdermountain.com/en/')
+print(powder_mountain.get_24_hr_total(powder_mountain.area_url, "gmad-third-col", 0))
 
 #beaver_mountain = AreasCrawler('beaver_mountain', 'http://www.skithebeav.com/')
 #print(beaver_mountain.get_base_total(beaver_mountain.area_url, 'td', 3))

@@ -15,8 +15,7 @@ class AreasCrawler(ScraperLib):
 		self.base_total = 0
 		self.twenty_four_hour_total = 0
 
-
-		"""One base cralwer function to rule them all!!!!"""
+	"""One base cralwer function to rule them all!!!!"""
 	def get_base_total(self, area_url, base_selector, base_selector_index):
 		area_to_scrape = requests.get(area_url)
 		if self.area_name == 'sundance':
@@ -39,12 +38,14 @@ class AreasCrawler(ScraperLib):
 			base_values = souped_area.find_all(class_=base_selector)[base_selector_index]
 			if self.area_name == 'powder_mountain':
 				base_values_specific = base_values.find_all('div')[base_selector_index - 1].text.encode('utf-8')
-				base_total = base_values_specific.decode('ascii', 'ignore').replace('BASE', '')
+				base_total = base_values_specific.decode('ascii', 'ignore').replace('"', '')
+				self.base_total = int(base_total)
+				return self.base_total 
 			else:
 				base_values_specific = base_values.find_all('div')[base_selector_index + 3].text.encode('utf-8')
 				base_total = base_values_specific.decode('ascii', 'ignore').replace('"', '')
-			self.base_total = int(base_total)
-			return self.base_total
+				self.base_total = int(base_total)
+				return self.base_total
 		elif self.area_name == 'beaver_mountain' or self.area_name == 'brighton' or self.area_name == 'nordic valley':
 			base_values = souped_area.find_all(base_selector)[base_selector_index].text.encode('utf-8')
 			base_total = base_values.decode('ascii', 'ignore').replace('"', '')
@@ -82,7 +83,6 @@ class AreasCrawler(ScraperLib):
 			else:
 				self.twenty_four_hour_total = int(twenty_four_hr_values)
 			return self.twenty_four_hour_total
-
 		souped_area = BeautifulSoup(area_to_scrape.content, 'html.parser')
 		if self.area_name == 'solitude':
 			twenty_four_hr_values = souped_area.find_all(class_=twenty_four_hour_selector)[twenty_four_hour_index].text
@@ -100,6 +100,21 @@ class AreasCrawler(ScraperLib):
 			else:
 				self.twenty_four_hour_total = int(twenty_four_hr_total) 
 				return self.twenty_four_hour_total
+		elif self.area_name == 'powder_mountain' or self.area_name == 'deer_valley':
+			twenty_four_hr_values = souped_area.find_all(class_=twenty_four_hour_selector)[twenty_four_hour_index]
+			if self.area_name == 'powder_mountain':
+				twenty_four_hour_values_specific = twenty_four_hr_values.find_all('div')[twenty_four_hour_index + 1].text.encode('utf-8')
+				twenty_four_hour_total = twenty_four_hour_values_specific.decode('ascii', 'ignore').replace('"', '')
+				if 'tr' in twenty_four_hour_total:
+					self.twenty_four_hour_total = 0
+					return self.twenty_four_hour_total
+				else:
+					self.twenty_four_hour_total = int(twenty_four_hour_total)
+					return self.twenty_four_hour_total	
+			else:
+				twenty_four_hour_values_specific = twenty_four_hr_values.find_all('div')[twenty_four_hour_index + 3].text.encode('utf-8')
+				twenty_four_hour_total = twenty_four_hour_values_specific.decode('ascii', 'ignore').replace('"', '')
+				return twenty_four_hour_total
 
 	def test_get_base_total(self, area_url):
 		area_to_scrape = requests.get(area_url)

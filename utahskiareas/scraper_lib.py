@@ -79,10 +79,10 @@ class ScraperLib():
 			{
 			'name': 'powder mountain',
 			'url': 'http://www.powdermountain.com/en/',
-			'base_selector': '.find_all(class_="gmad-third-col")',
-			'base_selector_index': '[0].findChildren()[2].text.replace("", '')',
-			'twenty_four_hr_selector': '.find_all(class_="gmad-third-col")',
-			'twenty_four_hr_index': '[2].findChildren()[2].text.replace(""", '')',
+			'base_selector': "gmad-third-col",
+			'base_selector_index': "2",
+			'twenty_four_hr_selector': "gmad-third-col",
+			'twenty_four_hr_index': "0",
 			},
 
 			{
