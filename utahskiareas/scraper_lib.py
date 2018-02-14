@@ -25,26 +25,26 @@ class ScraperLib():
 
 			'name' : 'snowbird', 
 			'url': 'https://www.snowbird.com/', 
-			'base_selector' : '(class_="sb-condition_value")', 
-			'base_selector_index' : '[4].text',
-			'twenty_four_hr_selector': '(class_="sb-condition_value")',
-			'twenty_four_hr_index' : '[2].text', 
+			'base_selector' : "sb-condition_value", 
+			'base_selector_index' : '4',
+			'twenty_four_hr_selector': "sb-condition_value",
+			'twenty_four_hr_index' : '2', 
 			},
 
 			{
 			'name': 'brighton',
 			'url': 'http://www.brightonresort.com/mountain/snow-report/',
 			'base_selector': 'h2',
-			'base_selector_index': '[3].contents[0].replace(""", "")',
-			'twenty_four_hr_selector': 'find_all("p")',
-			'twenty_four_hr_index': '[3].contents[0].replace("\r\n\t\t\t\t\t\tLast 24hr: ", " "").replace(""", " ")',
+			'base_selector_index': '3',
+			'twenty_four_hr_selector': 'h2',
+			'twenty_four_hr_index': '2',
 			},
 
 			{
 			'name': 'solitude',
 			'url': 'https://solitudemountain.com/',
-			'base_selector': 'find_all(class_="type")',
-			'base_selector_index': '[2].text.replace("Base ", '').replace(""", '')',
+			'base_selector': "type",
+			'base_selector_index': '2',
 			'twenty_four_hr_selector': "type",
 			'twenty_four_hr_index': '0',
 			},
@@ -63,8 +63,8 @@ class ScraperLib():
 			'url': 'http://www.deervalley.com/',
 			'base_selector': 'conditions',
 			'base_selector_index': 'findChildren()[8].contents[0].replace(""", " ")',
-			'twenty_four_hr_selector': "find(id='home-mountain-info')",
-			'twenty_four_hr_index': 'findChildren()[2].contents[0].replace(""", " ")',
+			'twenty_four_hr_selector': 'conditions',
+			'twenty_four_hr_index': '0',
 			},
 
 			{
@@ -87,20 +87,20 @@ class ScraperLib():
 
 			{
 			'name': 'beaver mountain',
-			'url': 'http://www.skithebeav.com/',
-			'base_selector': '.find_all("table")[0]',
-			'base_selector_index': '.findChildren()[7].text.replace(""", '')',
-			'twenty_four_hr_selector': '.find_all("table")[0]',
-			'twenty_four_hr_index': '.findChildren()[3].text.replace(""", '')',
+			'url': 'http://www.skithebeav.com',
+			'base_selector': 'td',
+			'base_selector_index': '3',
+			'twenty_four_hr_selector': 'td',
+			'twenty_four_hr_index': '1',
 			},
 
 			{
 			'name': 'cherry peak',
 			'url': 'http://skicherrypeak.com/rpt/?snow-report',
-			'base_selector': '.find_all(class_="xr_tl xr_kern Normal_text")',
+			'base_selector': 'xr_tl xr_kern Normal_text',
 			'base_selector_index': '[2].contents[1]',
-			'twenty_four_hr_selector': '',
-			'twenty_four_hr_index': '[5].contents[1]',
+			'twenty_four_hr_selector': 'xr_tl xr_kern Normal_text',
+			'twenty_four_hr_index': '5',
 			},
 
 			{
@@ -134,9 +134,9 @@ class ScraperLib():
 			'name': 'nordic valley',
 			'url': 'https://nordicvalley.com/',
 			'base_selector': 'td',
-			'base_selector_index': '[6].text.replace(""", '')',
-			'twenty_four_hr_selector': '.find_all("td")',
-			'twenty_four_hr_index': '[4].text.replace(""", '')',
+			'base_selector_index': '6',
+			'twenty_four_hr_selector': 'td',
+			'twenty_four_hr_index': '4',
 			},
 
 			]
