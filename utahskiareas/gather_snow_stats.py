@@ -15,14 +15,14 @@ from scraper_lib import ScraperLib
 #beaver_mountain = AreasCrawler('beaver mountain', 'http://www.skithebeav.com')
 #print(beaver_mountain.get_24_hr_total(beaver_mountain.area_url, 'td', 1))
 
-cherry_peak = AreasCrawler('cherry peak', 'http://skicherrypeak.com/rpt/?snow-report')
-print(cherry_peak.get_24_hr_total(cherry_peak.area_url, 'xr_tl xr_kern Normal_text', 5))
+#cherry_peak = AreasCrawler('cherry peak', 'http://skicherrypeak.com/rpt/?snow-report')
+#print(cherry_peak.get_24_hr_total(cherry_peak.area_url, 'xr_tl xr_kern Normal_text', 5))
 
 #brian_head = ScraperLib()
  
-#brian_head_crawl = AreasCrawler('brian_head', brian_head.area_selector_library[10]['url'])
+#brian_head_crawl = AreasCrawler('brian head', brian_head.area_selector_library[10]['url'])
 
-#print(brian_head_crawl.get_base_total(brian_head_crawl.area_url, brian_head.area_selector_library[10]['base_selector'], 0))
+#print(brian_head_crawl.get_24_hr_total(brian_head_crawl.area_url, brian_head.area_selector_library[10]['twenty_four_hr_selector'], 3))
 
 #print(brian_head.area_selector_library[10]['base_selector'])
 
@@ -36,7 +36,7 @@ print(cherry_peak.get_24_hr_total(cherry_peak.area_url, 'xr_tl xr_kern Normal_te
 
 #deer_valley = ScraperLib()
 
-#deer_valley = AreasCrawler('deer valley', 'http://www.deervalley.com/')
+#deer_vallearey = AreasCrawler('deer valley', 'http://www.deervalley.com/')
 
 #print(deer_valley.get_24_hr_total(deer_valley.area_url, 'conditions', 0))
 
@@ -48,9 +48,9 @@ print(cherry_peak.get_24_hr_total(cherry_peak.area_url, 'xr_tl xr_kern Normal_te
 
 #print(nordic_valley_crawl.get_24_hr_total(nordic_valley_crawl.area_url, nordic_valley.area_selector_library[13]['twenty_four_hr_selector'], 4))
 
-#eagle_point = ScraperLib()
+#eagle_point = ScraperLib()#
 #eagle_point_crawl = AreasCrawler(eagle_point.area_selector_library[11]['name'], eagle_point.area_selector_library[11]['url'])
-#print(eagle_point_crawl.get_base_total(eagle_point_crawl.area_url, eagle_point.area_selector_library[11]['base_selector'], 1))
+#print(eagle_point_crawl.get_24_hr_total(eagle_point_crawl.area_url, eagle_point.area_selector_library[11]['twenty_four_hr_selector'], 0))
 
 
 #sundance = AreasCrawler('sundance', 'https://sheetsu.com/apis/v1.0/5603400dbbf4?limit=1')
@@ -59,6 +59,8 @@ print(cherry_peak.get_24_hr_total(cherry_peak.area_url, 'xr_tl xr_kern Normal_te
 #solitude = AreasCrawler('solitude', 'https://solitudemountain.com/')
 #print(solitude.get_24_hr_total(solitude.area_url, 'type', 0))
 
+#park_city = AreasCrawler('park city', 'https://www.parkcitymountain.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx')
+#print(park_city.get_24_hr_total(park_city.area_url, 'script', 1))
 
 
 

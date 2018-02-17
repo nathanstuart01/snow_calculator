@@ -52,10 +52,10 @@ class ScraperLib():
 			{
 			'name': 'park city',
 			'url': 'https://www.parkcitymountain.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx',
-			'base_selector': "script",
+			'base_selector': 'script',
 			'base_selector_index': '1',
-			'twenty_four_hr_selector': "soup.find_all('script', type='text/javascript')[1]",
-			'twenty_four_hr_index': '',
+			'twenty_four_hr_selector': 'script',
+			'twenty_four_hr_index': '1',
 			},
 
 			{
@@ -107,18 +107,18 @@ class ScraperLib():
 			'name': 'brian head',
 			'url': 'http://www.brianhead.com/Current-Weather',
 			'base_selector': 'text-left',
-			'base_selector_index': '[7].text.replace(""", '')',
-			'twenty_four_hr_selector': '.find_all(class_="text-left")',
-			'twenty_four_hr_index': '[3].text.replace(""", '')',
+			'base_selector_index': '7',
+			'twenty_four_hr_selector': 'text-left',
+			'twenty_four_hr_index': '3',
 			},
 
 			{
 			'name': 'eagle point',
 			'url': 'http://www.eaglepointresort.com/winter',
 			'base_selector': 'stat winter',
-			'base_selector_index': '[1].contents[1].text.replace(""", '')',
-			'twenty_four_hr_selector': '.find_all(class_="stat winter")',
-			'twenty_four_hr_index': '[0].contents[1].text.replace(""", '')',
+			'base_selector_index': '1',
+			'twenty_four_hr_selector': 'stat winter',
+			'twenty_four_hr_index': '0',
 			},
 
 			{

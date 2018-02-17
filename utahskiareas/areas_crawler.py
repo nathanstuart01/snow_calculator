@@ -67,6 +67,7 @@ class AreasCrawler(ScraperLib):
 			base_total = re.search('BaseDepth":{"Inches":"\d+\"', base_string)
 			self.base_total = int(base_total.group().replace('BaseDepth":{"Inches":"','').replace('"', ''))
 			return self.base_total 
+			# this last one covers Alta, Snowbird, and Brianhaead	
 		else:
 			base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text.encode('utf-8')
 			base_total = base_values.decode("ascii", "ignore").replace('"', '')
@@ -138,7 +139,35 @@ class AreasCrawler(ScraperLib):
 			else:
 				self.twenty_four_hour_total = int(twenty_four_hour_total)
 				return self.twenty_four_hour_total	
-
-
+		elif self.area_name == 'eagle point':
+			twenty_four_hr_values = souped_area.find_all(class_=twenty_four_hour_selector)[twenty_four_hour_index].find_all('span')[twenty_four_hour_index].text.encode('utf-8')
+			twenty_four_hour_total = twenty_four_hr_values.decode('ascii', 'ignore').replace('""', '')
+			if 'tr' in twenty_four_hour_total:
+				self.twenty_four_hour_total = 0
+				return self.twenty_four_hour_total
+			else:
+				self.twenty_four_hour_total = int(twenty_four_hour_total)
+				return self.twenty_four_hour_total
+		elif self.area_name == 'park city':
+			twenty_four_hr_values = souped_area.find_all(twenty_four_hour_selector, type='text/javascript')[twenty_four_hour_index]
+			twenty_four_hr_string = str(twenty_four_hr_values)
+			twenty_four_hour_total = re.search('TwentyFourHourSnowfall":{"Inches":"\d+\"', twenty_four_hr_string)
+			twenty_four_hour_total_clean = twenty_four_hour_total.group().replace('TwentyFourHourSnowfall":{"Inches":"','').replace('"', '')
+			if 'tr' in twenty_four_hour_total_clean:
+				self.twenty_four_hour_total = 0
+				return self.twenty_four_hour_total
+			else:
+				self.twenty_four_hour_total = int(twenty_four_hour_total_clean)
+				return self.twenty_four_hour_total
+		# this last one covers Alta, Snowbird, and Brianhaead		
+		else:
+			twenty_four_hr_values = souped_area.find_all(class_=twenty_four_hour_selector)[twenty_four_hour_index].text.encode('utf-8')
+			twenty_four_hr_total = twenty_four_hr_values.decode("ascii", "ignore").replace('"', '')
+			if 'tr' in twenty_four_hr_total:
+				self.twenty_four_hour_total = 0
+				return self.twenty_four_hour_total
+			else:
+				self.twenty_four_hour_total = int(twenty_four_hr_total)
+				return self.twenty_four_hour_total
 
 	
