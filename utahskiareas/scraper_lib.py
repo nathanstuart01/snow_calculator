@@ -15,19 +15,19 @@ class ScraperLib():
 			{ 
 			'name' : 'alta', 
 			'url': 'https://www.alta.com/', 
-			'base_selector' : 'class_="value"',
-			'base_selector_index' : '[3].contents[0].text',
-			'twenty_four_hr_selector': 'class_="value"',
-			'twenty_four_hr_index' : '[2].contents.text',
+			'base_selector' : 'value',
+			'base_selector_index' : '3',
+			'twenty_four_hr_selector': 'value',
+			'twenty_four_hr_index' : '2',
 			},
 
 			{ 
 
 			'name' : 'snowbird', 
 			'url': 'https://www.snowbird.com/', 
-			'base_selector' : "sb-condition_value", 
+			'base_selector' : 'sb-condition_value', 
 			'base_selector_index' : '4',
-			'twenty_four_hr_selector': "sb-condition_value",
+			'twenty_four_hr_selector': 'sb-condition_value',
 			'twenty_four_hr_index' : '2', 
 			},
 
@@ -43,9 +43,9 @@ class ScraperLib():
 			{
 			'name': 'solitude',
 			'url': 'https://solitudemountain.com/',
-			'base_selector': "type",
+			'base_selector': 'type',
 			'base_selector_index': '2',
-			'twenty_four_hr_selector': "type",
+			'twenty_four_hr_selector': 'type',
 			'twenty_four_hr_index': '0',
 			},
 
@@ -62,7 +62,7 @@ class ScraperLib():
 			'name': 'deer valley',
 			'url': 'http://www.deervalley.com/',
 			'base_selector': 'conditions',
-			'base_selector_index': 'findChildren()[8].contents[0].replace(""", " ")',
+			'base_selector_index': '0',
 			'twenty_four_hr_selector': 'conditions',
 			'twenty_four_hr_index': '0',
 			},
@@ -70,19 +70,19 @@ class ScraperLib():
 			{
 			'name': 'snowbasin',
 			'url': 'https://www.snowbasin.com/',
-			'base_selector': "snow-report-grid",
+			'base_selector': 'snow-report-grid',
 			'base_selector_index': '3',
-			'twenty_four_hr_selector': "snow-report-grid",
+			'twenty_four_hr_selector': 'snow-report-grid',
 			'twenty_four_hr_index': '1',
 			},
 
 			{
 			'name': 'powder mountain',
 			'url': 'http://www.powdermountain.com/en/',
-			'base_selector': "gmad-third-col",
-			'base_selector_index': "2",
-			'twenty_four_hr_selector': "gmad-third-col",
-			'twenty_four_hr_index': "0",
+			'base_selector': 'gmad-third-col',
+			'base_selector_index': '2',
+			'twenty_four_hr_selector': 'gmad-third-col',
+			'twenty_four_hr_index': '0',
 			},
 
 			{
@@ -98,7 +98,7 @@ class ScraperLib():
 			'name': 'cherry peak',
 			'url': 'http://skicherrypeak.com/rpt/?snow-report',
 			'base_selector': 'xr_tl xr_kern Normal_text',
-			'base_selector_index': '[2].contents[1]',
+			'base_selector_index': '2',
 			'twenty_four_hr_selector': 'xr_tl xr_kern Normal_text',
 			'twenty_four_hr_index': '5',
 			},
@@ -125,9 +125,9 @@ class ScraperLib():
 			'name': 'sundance',
 			'url': 'https://sheetsu.com/apis/v1.0/5603400dbbf4?limit=1',
 			'base_selector': '0',
-			'base_selector_index': "base",
+			'base_selector_index': 'base',
 			'twenty_four_hr_selector': '0',
-			'twenty_four_hr_index': "24_hour",
+			'twenty_four_hr_index': '24_hour',
 			},
 
 			{

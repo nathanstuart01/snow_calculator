@@ -34,9 +34,9 @@ class AreasCrawler(ScraperLib):
 			base_total = base_values.replace('Base', '').replace('"', '')
 			self.base_total = int(base_total)
 			return self.base_total
-		elif self.area_name == 'powder_mountain' or self.area_name == 'deer_valley':
+		elif self.area_name == 'powder mountain' or self.area_name == 'deer valley':
 			base_values = souped_area.find_all(class_=base_selector)[base_selector_index]
-			if self.area_name == 'powder_mountain':
+			if self.area_name == 'powder mountain':
 				base_values_specific = base_values.find_all('div')[base_selector_index - 1].text.encode('utf-8')
 				base_total = base_values_specific.decode('ascii', 'ignore').replace('"', '')
 				self.base_total = int(base_total)
