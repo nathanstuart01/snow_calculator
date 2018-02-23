@@ -5,11 +5,10 @@ from bs4 import BeautifulSoup
 from scraper_lib import ScraperLib
 
 
-class AreasCrawler(ScraperLib):
+class AreasCrawler():
 
 	"""A base crawler class for all ski areas"""
 	def __init__(self, area_name, area_url):
-		super().__init__()
 		self.area_name = area_name
 		self.area_url = area_url
 		self.base_total = 0
