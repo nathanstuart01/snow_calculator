@@ -47,9 +47,14 @@ class AreasCrawler():
 				return self.base_total
 		elif self.area_name == 'beaver mountain' or self.area_name == 'brighton' or self.area_name == 'nordic valley':
 			base_values = souped_area.find_all(base_selector)[base_selector_index].text.encode('utf-8')
-			base_total = base_values.decode('ascii', 'ignore').replace('"', '')
-			self.base_total = int(base_total)
-			return self.base_total
+			if self.area_name == 'brighton':
+				base_total = base_values.decode('ascii', 'ignore').replace('\r\n\t\t\t\t\t\tBase: ', '').replace('"\n', '')
+				self.base_total = int(base_total)
+				return self.base_total
+			else:
+				base_total = base_values.decode('ascii', 'ignore').replace('"', '')
+				self.base_total = int(base_total)
+				return self.base_total
 		elif self.area_name == 'cherry peak':
 			base_values = souped_area.find_all(class_=base_selector)[base_selector_index].text.encode('utf-8')
 			base_total = base_values.decode('ascii', 'ignore').replace('Snow Base: ', '')
