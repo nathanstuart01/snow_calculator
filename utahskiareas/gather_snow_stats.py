@@ -9,7 +9,7 @@ class GatherSnowStats():
 
 	def crawl_data(self, data_to_gather):
 		base_names = []	
-		base_data = []
+		base_totals = []
 		data_to_gather = self.stat_type
 		if data_to_gather == 'base':
 			areas = ScraperLib('all areas')
@@ -18,12 +18,14 @@ class GatherSnowStats():
 			while i < 14:
 				ski_area = AreasCrawler(area_info[i]['name'], area_info[i]['url'])
 				ski_area_base = ski_area.get_base_total(ski_area.area_url, area_info[i]['base_selector'], area_info[i]['base_selector_index'])
-				base_data.append(ski_area_base)
-				base_names.append(ski_area.area_name)
+				base_names.append(ski_area.area_name)	
+				base_totals.append(ski_area_base)
 				i = i + 1
 		else:
 			print('No data yet to gather besides base data')
-		return base_data, base_names
+
+		base_data = dict(zip(base_names, base_totals))
+		return base_data
 
 
 base_data_gatherer = GatherSnowStats('base')
