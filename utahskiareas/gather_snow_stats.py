@@ -2,6 +2,7 @@ from areas_crawler import AreasCrawler
 from scraper_lib import ScraperLib
 import csv
 import datetime
+import psycopg2
 
 class GatherSnowStats():
 
@@ -38,29 +39,34 @@ class GatherSnowStats():
 		twenty_four_hr_data = dict(zip(twenty_four_hr_names, twenty_four_hr_totals))
 		return twenty_four_hr_data
 
-	def save_data_to_db(self, data_to_save):
-		current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+	def save_data_to_file(self, data_to_save):
+		current_time = datetime.datetime.now().strftime("%Y-%m-%d")
 		if data_to_save == 'base':
 			base_data = self.crawl_base_data()
 			base_file = csv.writer(open("bases.csv", "w+"))
 			for key, value in base_data.items():
 				base_file.writerow([key, value, current_time])
+		#save_data_to_file("bases.csv")
 		elif data_to_save == '24hr':
 			twenty_four_hr_data = self.crawl_24_hr_data()
 			twenty_four_hour_file = csv.writer(open("24hrtotals.csv", "w+"))
 			for key, value in twenty_four_hr_data.items():
-				twenty_four_hour_file.writerow([key, value, datetime.datetime.now().strftime("%Y-%m-%d %H:%M")])
+				twenty_four_hour_file.writerow([key, value, current_time])
+		#save_data_to_file("24hrtotals.csv")
 		else:
 			print("No other data type to save yet")
+		#save_data_to_file()
 
+	#def save_data_to_file(self, file):
+	#	conn = psycopg2.connect("host=localhost dbname=postgres user=postgres")
 
 
 
 
 base_data = GatherSnowStats('base')
-#twenty_four_hour_data = GatherSnowStats('24hr')
-#twenty_four_hour_data.save_data_to_db(twenty_four_hour_data.stat_type)
-base_data.save_data_to_db(base_data.stat_type)
+twenty_four_hour_data = GatherSnowStats('24hr')
+twenty_four_hour_data.save_data_to_file(twenty_four_hour_data.stat_type)
+base_data.save_data_to_file(base_data.stat_type)
 print("Data saved to file, check the appropriate directory for data")
 
 #twenty_four_hr_data = GatherSnowStats('twenty_four_hr')
