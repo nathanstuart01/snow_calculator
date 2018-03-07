@@ -44,34 +44,33 @@ class GatherSnowStats():
 		if data_to_save == 'base':
 			base_data = self.crawl_base_data()
 			base_file = csv.writer(open("bases.csv", "w+"))
-			for key, value in base_data.items():
-				base_file.writerow([key, value, current_time])
-		#save_data_to_file("bases.csv")
+			for i, (key, value) in enumerate(base_data.items()):
+				base_file.writerow([i +1, key, value, current_time])	
+			self.save_data_to_db("bases.csv")
 		elif data_to_save == '24hr':
 			twenty_four_hr_data = self.crawl_24_hr_data()
 			twenty_four_hour_file = csv.writer(open("24hrtotals.csv", "w+"))
-			for key, value in twenty_four_hr_data.items():
-				twenty_four_hour_file.writerow([key, value, current_time])
-		#save_data_to_file("24hrtotals.csv")
+			for i, (key, value) in enumerate(twenty_four_hr_data.items()):
+				twenty_four_hour_file.writerow([i +1, key, value, current_time])	
+			self.save_data_to_db("24hrtotals.csv")
 		else:
 			print("No other data type to save yet")
-		#save_data_to_file()
 
-	#def save_data_to_file(self, file):
-	#	conn = psycopg2.connect("host=localhost dbname=postgres user=postgres")
+	def save_data_to_db(self, file):
+		conn = psycopg2.connect("host=localhost dbname=utahskiareas user=postgres")
+		cur = conn.cursor()
+		f = open(file, 'r')
+		cur.copy_from(f, 'twenty_four_hour_totals', columns=('area_id', 'area_name', 'twenty_four_hour_total', 'crawled_at'), sep=',')
+		conn.commit()
+		conn.close()
 
-
-
-
-base_data = GatherSnowStats('base')
+#base_data = GatherSnowStats('base')
 twenty_four_hour_data = GatherSnowStats('24hr')
-twenty_four_hour_data.save_data_to_file(twenty_four_hour_data.stat_type)
-base_data.save_data_to_file(base_data.stat_type)
-print("Data saved to file, check the appropriate directory for data")
+#base_data.save_data_to_file(base_data.stat_type)
+twenty_four_hour_data.save_data_to_db('24hrtotals.csv')
+#base_data.save_data_to_db('bases.csv')
+print("Data saved to db, check the appropriate db for data")
 
-#twenty_four_hr_data = GatherSnowStats('twenty_four_hr')
-#twenty_four_hr_data.crawl_24_hr_data(twenty_four_hr_data.stat_type)
-#print("24 hr data saved to file")
 
 
 

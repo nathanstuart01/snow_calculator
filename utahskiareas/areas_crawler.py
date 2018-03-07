@@ -145,7 +145,7 @@ class AreasCrawler():
 				return self.twenty_four_hour_total	
 		elif self.area_name == 'eagle point':
 			twenty_four_hr_values = souped_area.find_all(class_=twenty_four_hour_selector)[twenty_four_hour_index].find_all('span')[twenty_four_hour_index].text.encode('utf-8')
-			twenty_four_hour_total = twenty_four_hr_values.decode('ascii', 'ignore').replace('""', '')
+			twenty_four_hour_total = twenty_four_hr_values.decode('ascii', 'ignore').replace('"', '')
 			if 'tr' in twenty_four_hour_total:
 				self.twenty_four_hour_total = 0
 				return self.twenty_four_hour_total
