@@ -51,6 +51,15 @@ class AreasCrawler():
 				base_total = base_values.decode('ascii', 'ignore').replace('\r\n\t\t\t\t\t\tBase: ', '').replace('"\n', '')
 				self.base_total = int(base_total)
 				return self.base_total
+			elif self.area_name == 'nordic valley':
+				base_total = base_values.decode('ascii', 'ignore')
+				if 'Spring' in base_total:
+					self.base_total = 0
+					return self.base_total
+				else:
+					base_total_clean = base_total.replace('"', '')
+					self.base_total = int(base_total)
+					return self.base_total
 			else:
 				base_total = base_values.decode('ascii', 'ignore').replace('"', '')
 				self.base_total = int(base_total)
