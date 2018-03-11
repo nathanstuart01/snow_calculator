@@ -44,47 +44,40 @@ class GatherSnowStats():
 		current_time = datetime.datetime.now().strftime("%Y-%m-%d")
 		if data_to_save == 'base':
 			base_data = self.crawl_base_data()
-			with open('base.csv', 'w+') as f:
-				for i, (key, value) in enumerate(base_data.items()):
-					base_file = csv.writer(f)
-					base_file.writerow([i +1, key, value, current_time])
-			print('data has been crawled and is saved to a file')	
-			self.test_function()
+			base_file = open('bases.csv', 'w+')
+			base_file_writer = csv.writer(base_file)
+			for i, (key, value) in enumerate(base_data.items()):
+				base_file_writer.writerow([i +1, key, value, current_time])	
+			base_file.close()
+			self.save_data_to_db('bases.csv')	
+			print('data has been crawled and is saved to a file')
 		elif data_to_save == '24hr':
 			twenty_four_hr_data = self.crawl_24_hr_data()
-			twenty_four_hour_file = csv.writer(open("24hrtotals.csv", "w+"))
+			twenty_four_hour_file = open("24hrtotals.csv", "w+")
+			twenty_four_hour_file_writer = csv.writer(twenty_four_hour_file)
 			for i, (key, value) in enumerate(twenty_four_hr_data.items()):
-				twenty_four_hour_file.writerow([i +1, key, value, current_time])	
-				twenty_four_hour_file.close()
+				twenty_four_hour_file_writer.writerow([i +1, key, value, current_time])				
+			twenty_four_hour_file.close()
 			self.save_data_to_db('24hrtotals.csv')
+			print('data has been crawled and is saved to a file')
 		else:
-			print("No other data type to save yet")
-
-	def test_function(self):
-		print('File was saved to disk')
-		print('Check to see if file is ready to save to db')
-		count = len(open('/Users/jessicastuart/Desktop/nathan-code/python_work/snow_calculator/utahskiareas/bases.csv').readlines())
-		print(count)
-		if count == 1:
-			self.save_data_to_db('/Users/jessicastuart/Desktop/nathan-code/python_work/snow_calculator/utahskiareas/bases.csv')
-			print('file counts look good, saving file to db')
-		else:
-			print('File not saved to disk, waiting until file is saved to disk')
-			time.sleep(10)
-			self.test_function()		
+			print("No other data type to save yet")	
 
 	def save_data_to_db(self, file):
 		conn = psycopg2.connect("host=localhost dbname=utahskiareas user=postgres")
 		cur = conn.cursor()
 		with open(file, 'r') as f:
-			cur.copy_from(f, 'base_totals', columns=('area_id', 'area_name', 'base_total', 'crawled_at'), sep=',')
+			if self.stat_type == 'base':
+				cur.copy_from(f, 'base_totals', columns=('area_id', 'area_name', 'base_total', 'crawled_at'), sep=',')
+			else:				
+				cur.copy_from(f, 'twenty_four_hour_totals', columns=('area_id', 'area_name', 'twenty_four_hour_total', 'crawled_at'), sep=',')
 		conn.commit()
 		conn.close()
 
 base_data = GatherSnowStats('base')
 twenty_four_hour_data = GatherSnowStats('24hr')
 base_data.save_data_to_file(base_data.stat_type)
-#twenty_four_hour_data.save_data_to_file(twenty_four_hour_data.stat_type)
+twenty_four_hour_data.save_data_to_file(twenty_four_hour_data.stat_type)
 #twenty_four_hour_data.save_data_to_db('24hrtotals.csv')
 #base_data.save_data_to_db('bases.csv')
 print("Data saved to db, check the appropriate db for data")
