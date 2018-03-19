@@ -50,7 +50,7 @@ class GatherSnowStats():
 				base_file_writer.writerow([i +1, key, value, current_time])	
 			base_file.close()
 			self.save_data_to_db('bases.csv')	
-			print('data has been crawled and is saved to a file')
+			print('base data has been crawled and is saved to a file')
 		elif data_to_save == '24hr':
 			twenty_four_hr_data = self.crawl_24_hr_data()
 			twenty_four_hour_file = open("24hrtotals.csv", "w+")
@@ -59,7 +59,7 @@ class GatherSnowStats():
 				twenty_four_hour_file_writer.writerow([i +1, key, value, current_time])				
 			twenty_four_hour_file.close()
 			self.save_data_to_db('24hrtotals.csv')
-			print('data has been crawled and is saved to a file')
+			print('24 hr data has been crawled and is saved to a file')
 		else:
 			print("No other data type to save yet")	
 
@@ -69,8 +69,10 @@ class GatherSnowStats():
 		with open(file, 'r') as f:
 			if self.stat_type == 'base':
 				cur.copy_from(f, 'base_totals', columns=('area_id', 'area_name', 'base_total', 'crawled_at'), sep=',')
+				print('base data has been saved to db')
 			else:				
 				cur.copy_from(f, 'twenty_four_hour_totals', columns=('area_id', 'area_name', 'twenty_four_hour_total', 'crawled_at'), sep=',')
+				print('24hr data has been saved to db')
 		conn.commit()
 		conn.close()
 
@@ -78,9 +80,7 @@ base_data = GatherSnowStats('base')
 twenty_four_hour_data = GatherSnowStats('24hr')
 base_data.save_data_to_file(base_data.stat_type)
 twenty_four_hour_data.save_data_to_file(twenty_four_hour_data.stat_type)
-#twenty_four_hour_data.save_data_to_db('24hrtotals.csv')
-#base_data.save_data_to_db('bases.csv')
-print("Data saved to db, check the appropriate db for data")
+print("Data for bases and 24hrs saved to db, check the appropriate db for data")
 
 
 

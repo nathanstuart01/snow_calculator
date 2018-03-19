@@ -56,6 +56,9 @@ class AreasCrawler():
 				if 'Spring' in base_total:
 					self.base_total = 0
 					return self.base_total
+				if 'SEASON' in base_total:
+					self.base_total = 0
+					return self.base_total
 				else:
 					base_total_clean = base_total.replace('"', '')
 					self.base_total = int(base_total)
@@ -138,6 +141,9 @@ class AreasCrawler():
 			twenty_four_hr_values = souped_area.find_all(twenty_four_hour_selector)[twenty_four_hour_index].text.encode('utf-8')
 			twenty_four_hr_total = twenty_four_hr_values.decode('ascii', 'ignore').replace('"', '')
 			if 'tr' in twenty_four_hr_total:
+				self.twenty_four_hour_total = 0
+				return self.twenty_four_hour_total
+			elif 'CLOSED' in twenty_four_hr_total:
 				self.twenty_four_hour_total = 0
 				return self.twenty_four_hour_total
 			else:
