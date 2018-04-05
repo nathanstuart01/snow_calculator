@@ -46,9 +46,9 @@ class ScraperLib():
 			'name': 'solitude',
 			'url': 'https://solitudemountain.com/',
 			'base_selector': 'type',
-			'base_selector_index': 2,
+			'base_selector_index': 3,
 			'twenty_four_hr_selector': 'type',
-			'twenty_four_hr_index': 0,
+			'twenty_four_hr_index': 1,
 			},
 
 			{
