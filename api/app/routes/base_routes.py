@@ -1,11 +1,13 @@
 from flask import jsonify, request
 from app import app
 from app.models import UtahBaseTotals
+from sqlalchemy import asc
 
 @app.route('/api/v1/basedata/')
 def get_base_totals():
 	if request.method == 'GET':
-		bases_data = UtahBaseTotals.query.all()
+		#create a query within in here that gets the current date of base data only, makes each area clickable to go to history of all base data totals for that area
+		bases_data = UtahBaseTotals.query.filter_by(crawled_at='2018-03-05').order_by(asc(UtahBaseTotals.area_name)).all()
 		base_totals_data = []
 
 		for base_data in bases_data:
