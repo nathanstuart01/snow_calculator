@@ -1,11 +1,13 @@
 from flask import jsonify, request
 from app import app
-from app.models import UtahTwentyFourHourTotals
+from app.models.twenty_four_hour_data_model import UtahTwentyFourHourTotals
+from sqlalchemy import asc
 
 @app.route('/api/v1/twentyfourhourdata/')
 def get_twenty_four_hour_totals():
 	if request.method == 'GET':
-		twenty_fours_data = UtahTwentyFourHourTotals.query.all()
+		#create a query within in here that gets the current date of twenty four hour data only, makes each area clickable to go to history of all twenty four hour data totals for that area
+		twenty_fours_data = UtahTwentyFourHourTotals.query.filter_by(crawled_at='2018-03-05').order_by(asc(UtahTwentyFourHourTotals.area_name)).all()
 		twenty_four_totals_data = []
 
 		for twenty_four_data in twenty_fours_data:

@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from app import app
-from app.models import UtahBaseTotals
+from app.models.base_data_model import UtahBaseTotals 
 from sqlalchemy import asc
 
 @app.route('/api/v1/basedata/')

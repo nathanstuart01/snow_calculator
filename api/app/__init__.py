@@ -11,6 +11,5 @@ db.app = app
 db.init_app(app)
 
 
-from app.routes import home_route, base_routes, twenty_four_hour_routes
-from app import models
-
+from app.routes import home_route, base_routes, twenty_four_hour_routes, area_info_routes
+from app.models import base_data_model, twenty_four_hour_data_model, area_name_data_model
