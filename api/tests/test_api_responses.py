@@ -1,7 +1,10 @@
 import unittest
 import requests
+from app.routes import *
 
 class APITests(unittest.TestCase):
+
+	test_data = 
 
 	def test_base_data_response(self):
 		response = requests.get('http://localhost:5000/api/v1/basedata/')
@@ -53,6 +56,11 @@ class APITests(unittest.TestCase):
 		for name in area_names:
 			response = requests.get("http://localhost:5000/api/v1/twentyfourhourdata/"+name)
 			self.assertEqual(response.status_code, 200)
+
+	def test_base_data_response(self):
+		# want to write a test to make sure that the return response of this function is equal to a jsonify object
+		self.assertEqual(get_base_totals(), test_data):
+
 
 
 if __name__=='__main__':

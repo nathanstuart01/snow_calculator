@@ -43,6 +43,9 @@ export VIRTUAL_ENV
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/bin:$PATH"
 export PATH
+export FLASK_APP='run.py'
+export FLASK_ENV='development'
+export DATABASE_URL='postgresql://localhost/utahskiareas'
 
 # unset PYTHONHOME if set
 # this will fail if PYTHONHOME is set to the empty string (which is bad anyway)
