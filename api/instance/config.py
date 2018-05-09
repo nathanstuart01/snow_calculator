@@ -16,3 +16,5 @@ class DevelopmentConfig(Config):
 	"""Configuration for development"""
 	DEBUG = True
 
+
+
