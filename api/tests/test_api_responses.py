@@ -91,6 +91,78 @@ class APITests(unittest.TestCase):
 				}
 		]
 
+		self.twenty_four_hour_data = [		
+				{
+				"area_name": "alta",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 20
+				},
+				{
+				"area_name": "beaver mountain",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 3
+				},
+				{
+				"area_name": "brian head",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 4
+				},
+				{
+				"area_name": "brighton",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 5
+				},
+				{
+				"area_name": "cherry peak",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 5
+				},
+				{
+				"area_name": "deer valley",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 5
+				},
+				{
+				"area_name": "eagle point",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 4
+				},
+				{
+				"area_name": "nordic valley",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 2
+				},
+				{
+				"area_name": "park city",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 7
+				},
+				{
+				"area_name": "powder mountain",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 10
+				},
+				{
+				"area_name": "snowbasin",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 7
+				},
+				{
+				"area_name": "snowbird",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 18
+				},
+				{
+				"area_name": "solitude",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 7
+				},
+				{
+				"area_name": "sundance",
+				"crawled_at": "2018-03-05",
+				"twenty_four_hour_total": 4
+				}
+		]
 
 	def test_home_page_message(self):
 		result = self.app.get('/')
@@ -107,6 +179,10 @@ class APITests(unittest.TestCase):
 	def test_twenty_four_hour_data_response(self):
 		response = requests.get('http://localhost:5000/api/v1/twentyfourhourdata/')
 		self.assertEqual(response.status_code, 200)
+
+	def test_twenty_four_hour_data_get_request(self):
+		response = requests.get('http://localhost:5000/api/v1/twentyfourhourdata/')
+		self.assertEqual(json.loads(response.content), self.twenty_four_hour_data)
 
 
 	def test_base_area_data_response(self):
@@ -127,8 +203,30 @@ class APITests(unittest.TestCase):
 			'nordic valley',
 			]
 		for name in area_names:
-			response = requests.get('http://localhost:5000/api/v1/basedata/name'+name)
+			response = requests.get('http://localhost:5000/api/v1/basedata/'+name)
 			self.assertEqual(response.status_code, 200)
+
+	def test_base_area_data_get_request(self):
+		area_names = [
+			'alta',
+			'snowbird',
+			'brighton',
+			'solitude',
+			'park city',
+			'deer valley',
+			'snowbasin',
+			'powder mountain',
+			'beaver mountain',
+			'cherry peak',
+			'brian head',
+			'eagle point',
+			'sundance',
+			'nordic valley',
+			]
+		for name in area_names:
+			response = requests.get('http://localhost:5000/api/v1/basedata/'+name)
+			area_data = json.loads(response.content)[0]
+			self.assertEqual(area_data, {'area_name': name, 'base_total': area_data['base_total'], 'crawled_at': '2018-03-04'} )
 
 	def test_twenty_four_hour_area_data_response(self):
 		area_names = [
@@ -151,12 +249,29 @@ class APITests(unittest.TestCase):
 			response = requests.get("http://localhost:5000/api/v1/twentyfourhourdata/"+name)
 			self.assertEqual(response.status_code, 200)
 
-	"""def test_base_data_response(self):
-		# want to write a test to make sure that the return response of this function is equal to a jsonify object
-		test_data = 
-		self.assertEqual(get_base_totals(), test_data):
+	def test_twenty_four_hour_data_get_request(self):
+		area_names = [
+			'alta',
+			'snowbird',
+			'brighton',
+			'solitude',
+			'park city',
+			'deer valley',
+			'snowbasin',
+			'powder mountain',
+			'beaver mountain',
+			'cherry peak',
+			'brian head',
+			'eagle point',
+			'sundance',
+			'nordic valley',
+			]
+		for name in area_names:
+			response = requests.get('http://localhost:5000/api/v1/twentyfourhourdata/'+name)
+			area_data = json.loads(response.content)[0]
+			self.assertEqual(area_data, {'area_name': name, 'twenty_four_hour_total': area_data['twenty_four_hour_total'], 'crawled_at': '2018-03-05'} )
 
-"""
+
 
 if __name__=='__main__':
 	unittest.main()

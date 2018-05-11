@@ -10,6 +10,7 @@ class Config(object):
 	SECRET = os.getenv('SECRET') or 'ilovelewis'
 	SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL') or 'postgresql://localhost/utahskiareas'
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
+	
 
 
 class DevelopmentConfig(Config):

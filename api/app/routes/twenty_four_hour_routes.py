@@ -26,12 +26,12 @@ def get_twenty_four_hour_totals():
 def get_area_twenty_four_hour_total(area_twenty_four_hour_totals):
 	#Gets specific areas base totals
 	if request.method == 'GET':
-		area_twenty_four_hour_data = UtahTwentyFourHourTotals.query.filter_by(area_name=area_twenty_four_hour_totals).all()
+		area_twenty_four_hour_data = UtahTwentyFourHourTotals.query.filter_by(crawled_at='2018-03-05').filter_by(area_name=area_twenty_four_hour_totals).all()
 		area_data = []
 		for data in area_twenty_four_hour_data:
 			area_data_obj = {
 							'area_name': data.area_name,
-							'base_total': data.twenty_four_hour_total,
+							'twenty_four_hour_total': data.twenty_four_hour_total,
 							'crawled_at': data.crawled_at.strftime("%Y-%m-%d")
 						}
 			area_data.append(area_data_obj)
