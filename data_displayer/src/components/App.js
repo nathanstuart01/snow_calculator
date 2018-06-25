@@ -8,9 +8,9 @@ import BarGraph from './bar_graph';
 class App extends React.Component {
 
 	state = {
-		baseData: {},
-		twentyFourHourData: {},
-		forecastedSnowData: {},
+		baseData: [],
+		twentyFourHourData: [],
+		forecastedSnowData: [],
 	};
 
 	render() {
