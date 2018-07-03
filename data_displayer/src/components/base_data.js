@@ -1,16 +1,26 @@
 import React from 'react';
+import {XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries} from 'react-vis';
 
-class BaseData extends React.Component {
+const BaseData = (props) => {
 
-	baseDataApi = "http://127.0.0.1:5000/api/v1/basedata/";
+		return (
+			<div>
+			<h2>Base Data</h2>
+            <XYPlot
+                width={300}
+                height={300}>
+                <VerticalGridLines />
+                <HorizontalGridLines />
+                <XAxis />
+                <YAxis />
+                <LineSeries data={[
+                				{x: 1, y: 2},
+                				{x: 2, y: 3}
+                				]}/>
+            </XYPlot>
+            </div>
+        );
 
-	render() {
-    	return (
-      		<div>
-      		<p>All the great base data!!!</p>
-      		</div>
-    	);
-  	}
 }
 
 export default BaseData;

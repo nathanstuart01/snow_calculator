@@ -1,13 +1,28 @@
 import React from 'react';
+import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
+import {curveCatmullRom} from 'd3-shape';
 
-class ForecastedSnowData extends React.Component {
-  render() {
-    return (
-      <div>
-      <p>All the great twenty four hour data!!!</p>
+
+const ForecastedSnowData = (props) => {
+	return(
+		<div>
+		<h2>Forecasted Snow Data</h2>
+		<XYPlot
+        width={300}
+        height={300}>
+        <HorizontalGridLines />
+        <VerticalGridLines />
+        <XAxis />
+        <YAxis />
+        <LineSeries
+          className="first-series"
+          data={[
+            {x: 1, y: 3},
+            {x: 3, y: 5}
+          ]}/>
+      </XYPlot>
       </div>
-    );
-  }
+      );
 }
 
 export default ForecastedSnowData;
