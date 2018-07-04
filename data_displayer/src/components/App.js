@@ -57,7 +57,7 @@ class App extends React.Component {
     	return (
       		<div>
       			<ForecastedSnowData />
-      			<BaseData />
+      			<BaseData baseData={this.state.baseData} />
       			<TwentyFourHourData />
       		</div>
     	);
