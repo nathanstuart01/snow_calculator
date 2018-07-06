@@ -21,6 +21,7 @@ class App extends React.Component {
     const twentyFourHourTotalUrl = 'http://127.0.0.1:5000/api/v1/twentyfourhourdata/';
     const baseTotalUrl = 'http://localhost:5000/api/v1/basedata/';
 
+    
     fetch(twentyFourHourTotalUrl)
       .then(res => res.json())
       .then(
@@ -50,8 +51,7 @@ class App extends React.Component {
           });
         }
       )
-  }
-
+    }
 
 	render() {
     	return (

@@ -3,12 +3,16 @@ import {XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries
 
 const BaseData = (props) => {
 
-	const baseData = props.baseData.map((area) => <li>area.area_name</li>);
+      const altaDataUpdate = props.baseData[0];
+      if (altaDataUpdate) {
+        console.log(altaDataUpdate['area_name']);
+      } else {
+        console.log('no alta data mounted yet in did update');
+      }
 
 		return (
 			<div>
 			<h2>Base Data</h2>
-			<h2>{baseData}</h2>
             <XYPlot
                 width={300}
                 height={300}>
@@ -17,8 +21,7 @@ const BaseData = (props) => {
                 <XAxis />
                 <YAxis />
                 <LineSeries data={[
-                				{x: 1, y: 2},
-                				{x: 2, y: 3}
+                				{x:3, y:2}
                 				]}/>
                 <LineSeries data={[
                 				{x: 4, y: 5},
