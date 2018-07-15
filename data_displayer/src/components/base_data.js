@@ -1,33 +1,40 @@
 import React from 'react';
-import {XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries} from 'react-vis';
+import { VictoryChart, VictoryLine } from 'victory';
 
 const BaseData = (props) => {
 
-      const altaDataUpdate = props.baseData[0];
-      if (altaDataUpdate) {
-        console.log(altaDataUpdate['area_name']);
-      } else {
-        console.log('no alta data mounted yet in did update');
-      }
+    const baseData = props.baseData;
+
+    if (baseData[0]) {
+        console.log(baseData[0]['base_total']);
+    } else {
+        console.log('no base data for alta yet');
+    }
 
 		return (
 			<div>
-			<h2>Base Data</h2>
-            <XYPlot
-                width={300}
-                height={300}>
-                <VerticalGridLines />
-                <HorizontalGridLines />
-                <XAxis />
-                <YAxis />
-                <LineSeries data={[
-                				{x:3, y:2}
-                				]}/>
-                <LineSeries data={[
-                				{x: 4, y: 5},
-                				{x: 5, y: 6}
-                				]}/>
-            </XYPlot>
+                <VictoryChart domainPadding={20} >
+                    <VictoryLine 
+                        style={{
+                            data: { stroke: "5510F6"}
+                        }}
+                        data={[
+                            {x: new Date(2018,11,24), y: 30 },
+                            {x: new Date(2018,11,25), y: 35 },
+                            {x: new Date(2018,11,26), y: 45 },
+                            ]}
+                    />
+                    <VictoryLine 
+                        style={{
+                            data: { stroke: "E92027"}
+                        }}
+                        data={[
+                            {x: new Date(2018,11,24), y: 27 },
+                            {x: new Date(2018,11,25), y: 33 },
+                            {x: new Date(2018,11,26), y: 42 },
+                            ]}
+                    />
+                </VictoryChart>
             </div>
         );
 
