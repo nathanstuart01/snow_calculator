@@ -16,26 +16,10 @@ class App extends React.Component {
     forecastedSnowData: []
   }
 
-  componentDidMount() {
-    // set these as consts because they will not change in the future 
-    const twentyFourHourTotalUrl = 'http://127.0.0.1:5000/api/v1/twentyfourhourdata/';
-    const baseTotalUrl = 'http://localhost:5000/api/v1/basedata/';
+  loadData = () => {
 
-    
-    fetch(twentyFourHourTotalUrl)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            twentyFourHourData: result
-          });
-        },
-        (error) => {
-          this.setState({
-            error
-          });
-        }
-      )
+    const baseTotalUrl = 'http://localhost:5000/api/v1/basedata/';
+    const twentyFourHourTotalUrl = 'http://127.0.0.1:5000/api/v1/twentyfourhourdata/';
 
     fetch(baseTotalUrl)
       .then(res => res.json())
@@ -51,15 +35,35 @@ class App extends React.Component {
           });
         }
       )
+
+    fetch(twentyFourHourTotalUrl)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            twentyFourHourData: result
+          });
+        },
+        (error) => {
+          this.setState({
+            error
+          });
+        }
+      )
+  }
+
+  componentDidMount() {
+      this.loadData();
     }
+ 
 
 	render() {
 
     	return (
       		<div>
       			<ForecastedSnowData />
-      			<BaseData baseData={this.state.baseData}/>
       			<TwentyFourHourData />
+            { this.state.baseData.length > 0 ? <BaseData data={this.state.baseData} /> : null }
       		</div>
     	);
   	}

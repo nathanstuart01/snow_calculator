@@ -1,15 +1,15 @@
 import React from 'react';
 import { VictoryChart, VictoryLine } from 'victory';
 
-const BaseData = (props) => {
+const BaseData = props => {
 
-    const baseData = props.baseData;
-
-    if (baseData[0]) {
-        console.log(baseData[0]['base_total']);
-    } else {
-        console.log('no base data for alta yet');
-    }
+    // need to find a way to make the graph wait to display data once it is available 
+    // want a graph that displays each areas base data, adds the new data each day when it comes in
+    //to do this loop through all areas and after each day of data, create a new graph point 
+    // for each area create a new line as well
+    //displays data as a line graph, with a tag for each area or a legend 
+    // displays date on the x axis, base total in inches on the y axis 
+    console.log(props.data[0]['base_total']);
 
 		return (
 			<div>
@@ -37,7 +37,6 @@ const BaseData = (props) => {
                 </VictoryChart>
             </div>
         );
-
 }
 
 export default BaseData;
