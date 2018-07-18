@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryChart, VictoryLine } from 'victory';
+import { VictoryChart, VictoryLine, VictoryAxis } from 'victory';
 
 const BaseData = props => {
 
@@ -13,15 +13,21 @@ const BaseData = props => {
 
 		return (
 			<div>
-                <VictoryChart domainPadding={20} >
+                <VictoryChart domainPadding={20}>
+                    <VictoryAxis dependentAxis
+                     />
+                    <VictoryAxis  
+                        scale= {[new Date('December 01, 2018'), new Date('April 28, 2019')]}
+                        label='Date'
+                    />
                     <VictoryLine 
                         style={{
                             data: { stroke: "5510F6"}
                         }}
                         data={[
-                            {x: new Date(2018,11,24), y: 30 },
-                            {x: new Date(2018,11,25), y: 35 },
-                            {x: new Date(2018,11,26), y: 45 },
+                            {x: 1, y: 30 },
+                            {x: 2, y: 35 },
+                            {x: 3, y: 45 },
                             ]}
                     />
                     <VictoryLine 
@@ -29,9 +35,9 @@ const BaseData = props => {
                             data: { stroke: "E92027"}
                         }}
                         data={[
-                            {x: new Date(2018,11,24), y: 27 },
-                            {x: new Date(2018,11,25), y: 33 },
-                            {x: new Date(2018,11,26), y: 42 },
+                            {x: 1, y: 27 },
+                            {x: 2, y: 33 },
+                            {x: 3, y: 42 },
                             ]}
                     />
                 </VictoryChart>

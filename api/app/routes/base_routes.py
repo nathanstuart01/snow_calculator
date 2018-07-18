@@ -12,6 +12,7 @@ def get_base_totals():
 
 		for base_data in bases_data:
 			obj = {
+					'area_id': base_data.area_id,
 					'area_name': base_data.area_name,
 					'base_total': base_data.base_total,
 					'crawled_at': base_data.crawled_at.strftime("%Y-%m-%d")
@@ -30,6 +31,7 @@ def get_area_base_total(area_base_totals):
 		area_data = []
 		for data in area_base_data:
 			area_data_obj = {
+							'area_id': base_data.area_id,
 							'area_name': data.area_name,
 							'base_total': data.base_total,
 							'crawled_at': data.crawled_at.strftime("%Y-%m-%d")
