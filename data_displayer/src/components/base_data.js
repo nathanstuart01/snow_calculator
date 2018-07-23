@@ -9,16 +9,18 @@ const BaseData = props => {
     // for each area create a new line as well
     //displays data as a line graph, with a tag for each area or a legend 
     // displays date on the x axis, base total in inches on the y axis 
-    console.log(props.data[0]['base_total']);
+
 
 		return (
 			<div>
                 <VictoryChart domainPadding={20}>
                     <VictoryAxis dependentAxis
+                        domain={[0, 100]}
+                        tickValues={[0, 25, 50, 75, 100]}
                      />
                     <VictoryAxis  
-                        scale= {[new Date('December 01, 2018'), new Date('April 28, 2019')]}
-                        label='Date'
+                        tickValues={['2018-12-01','2018-12-02','2018-12-03']}
+                        //tickFormat={['alta', 'brighton']}
                     />
                     <VictoryLine 
                         style={{
