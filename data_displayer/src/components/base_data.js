@@ -1,49 +1,36 @@
 import React from 'react';
-import { VictoryChart, VictoryLine, VictoryAxis } from 'victory';
+import {VictoryLine, VictoryChart} from 'victory';
 
 const BaseData = props => {
 
-    // need to find a way to make the graph wait to display data once it is available 
-    // want a graph that displays each areas base data, adds the new data each day when it comes in
-    //to do this loop through all areas and after each day of data, create a new graph point 
-    // for each area create a new line as well
-    //displays data as a line graph, with a tag for each area or a legend 
-    // displays date on the x axis, base total in inches on the y axis 
+    const date1 = new Date('2018-11-25');
+    const date2 = new Date('2019-04-22');
+    const date3 = new Date('2018-11-25');
+    const date4 = new Date('2018-11-26');
+    const date5 = new Date('2018-11-27');
+    const date6 = new Date('2018-11-28');
+    const date7 = new Date('2018-11-29');
+    const date8 = new Date('2018-12-15');
 
 
-		return (
-			<div>
-                <VictoryChart domainPadding={20}>
-                    <VictoryAxis dependentAxis
-                        domain={[0, 100]}
-                        tickValues={[0, 25, 50, 75, 100]}
-                     />
-                    <VictoryAxis  
-                        tickValues={['2018-12-01','2018-12-02','2018-12-03']}
-                        //tickFormat={['alta', 'brighton']}
-                    />
-                    <VictoryLine 
-                        style={{
-                            data: { stroke: "5510F6"}
-                        }}
-                        data={[
-                            {x: 1, y: 30 },
-                            {x: 2, y: 35 },
-                            {x: 3, y: 45 },
-                            ]}
-                    />
-                    <VictoryLine 
-                        style={{
-                            data: { stroke: "E92027"}
-                        }}
-                        data={[
-                            {x: 1, y: 27 },
-                            {x: 2, y: 33 },
-                            {x: 3, y: 42 },
-                            ]}
-                    />
-                </VictoryChart>
-            </div>
+    return (
+        <div>
+        <VictoryChart
+            scale={{x: "time", y: "linear"}}
+            domain={{x:[date1, date2], y:[0,150]}}
+        >        
+            <VictoryLine 
+                data={[
+                    {x:date3, y:30},
+                    {x:date4, y:40},
+                    {x:date5, y:45},
+                    {x:date6, y:50},
+                    {x:date7, y:60},
+                    {x:date8, y:75}
+                ]}
+            />
+        </VictoryChart>
+        </div>
         );
 }
 

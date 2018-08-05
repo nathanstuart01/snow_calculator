@@ -61,7 +61,6 @@ class App extends React.Component {
 
     	return (
       		<div>
-      			<ForecastedSnowData />
       			<TwentyFourHourData />
             { this.state.baseData.length > 0 ? <BaseData data={this.state.baseData} /> : null }
       		</div>
