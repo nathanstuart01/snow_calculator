@@ -3,8 +3,8 @@ import {VictoryLine, VictoryChart} from 'victory';
 
 const BaseData = props => {
 
-    const date1 = new Date('2018-11-25');
-    const date2 = new Date('2019-04-22');
+    const date1 = new Date('2018-11-01');
+    const date2 = new Date('2019-05-01');
     const date3 = new Date('2018-11-25');
     const date4 = new Date('2018-11-26');
     const date5 = new Date('2018-11-27');
@@ -20,6 +20,9 @@ const BaseData = props => {
             domain={{x:[date1, date2], y:[0,150]}}
         >        
             <VictoryLine 
+                style={{
+                    data: { stroke: "#0000FF" }
+                    }}
                 data={[
                     {x:date3, y:30},
                     {x:date4, y:40},
