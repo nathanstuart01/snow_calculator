@@ -1,5 +1,5 @@
 import React from 'react';
-import {VictoryLine, VictoryChart} from 'victory';
+import {VictoryLine, VictoryChart, VictoryAxis } from 'victory';
 
 const BaseData = props => {
 
@@ -12,13 +12,28 @@ const BaseData = props => {
     const date7 = new Date('2018-11-29');
     const date8 = new Date('2018-12-15');
 
+    const tickValues = getTickValues();
+
+    function getTickValues() {
+        return [
+        new Date('2018-11-01'),
+        new Date('2018-11-15'),
+        new Date('2018-12-01'),
+        new Date('2018-12-15'),
+        new Date('2019-01-01')
+        ]
+    }
+
 
     return (
         <div>
         <VictoryChart
             scale={{x: "time", y: "linear"}}
             domain={{x:[date1, date2], y:[0,150]}}
-        >        
+        >     
+        <VictoryAxis dependentAxis label='Base Depth (in)' />
+        <VictoryAxis   scale="time" tickValues={tickValues} tickFormat={ (x) => { return x.getMonth(); }}
+                  />
             <VictoryLine 
                 style={{
                     data: { stroke: "#0000FF" }
@@ -36,5 +51,6 @@ const BaseData = props => {
         </div>
         );
 }
+
 
 export default BaseData;
