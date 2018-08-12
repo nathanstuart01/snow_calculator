@@ -11,29 +11,48 @@ const BaseData = props => {
     const date6 = new Date('2018-11-28');
     const date7 = new Date('2018-11-29');
     const date8 = new Date('2018-12-15');
+    const date9 = new Date('2019-02-15');
+    const date10 = new Date('2019-03-01');
 
     const tickValues = getTickValues();
 
     function getTickValues() {
-        return [
-        new Date('2018-11-01'),
-        new Date('2018-11-15'),
-        new Date('2018-12-01'),
-        new Date('2018-12-15'),
-        new Date('2019-01-01')
+        return [ 
+        new Date('2018-11-01'), 
+        new Date('2018-12-01'), 
+        new Date('2019-01-01'), 
+        new Date('2019-02-01'), 
+        new Date('2019-03-01'), 
+        new Date('2019-04-01'), 
+        new Date('2019-05-01') 
         ]
     }
-
 
     return (
         <div>
         <VictoryChart
             scale={{x: "time", y: "linear"}}
-            domain={{x:[date1, date2], y:[0,150]}}
+            domain={{y:[0,150]}}
         >     
         <VictoryAxis dependentAxis label='Base Depth (in)' />
-        <VictoryAxis   scale="time" tickValues={tickValues} tickFormat={ (x) => { return x.getMonth(); }}
-                  />
+        <VictoryAxis   scale="time" tickValues={tickValues} tickFormat={ (x) => { 
+                if (x.getMonth() === 9) {
+                    return '11-01-18';
+                } else if (x.getMonth() === 10) {
+                    return '12-01';
+                } else if (x.getMonth() === 11) {
+                    return '01-01-19';
+                } else if (x.getMonth() === 0) {
+                    return '02-01';
+                } else if (x.getMonth() === 1) {
+                    return '03-01';
+                } else if (x.getMonth() === 2) {
+                    return '04-01'; 
+                } else {
+                    return '05-01';
+                }
+        }}
+        />
             <VictoryLine 
                 style={{
                     data: { stroke: "#0000FF" }
@@ -44,7 +63,9 @@ const BaseData = props => {
                     {x:date5, y:45},
                     {x:date6, y:50},
                     {x:date7, y:60},
-                    {x:date8, y:75}
+                    {x:date8, y:75},
+                    {x:date9, y:100},
+                    {x:date10, y:0},
                 ]}
             />
         </VictoryChart>
@@ -54,3 +75,4 @@ const BaseData = props => {
 
 
 export default BaseData;
+
