@@ -63,7 +63,6 @@ class App extends React.Component {
       		<div>
       			<TwentyFourHourData />
             { this.state.baseData.length > 0 ? <BaseData data={this.state.baseData} /> : null }
-
           </div>
     	);
   	}

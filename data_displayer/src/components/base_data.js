@@ -1,5 +1,5 @@
 import React from 'react';
-import {VictoryLine, VictoryChart, VictoryAxis } from 'victory';
+import {VictoryLine, VictoryChart, VictoryAxis, VictoryLabel } from 'victory';
 
 const BaseData = props => {
 
@@ -33,23 +33,25 @@ const BaseData = props => {
         <VictoryChart
             scale={{x: "time", y: "linear"}}
             domain={{y:[0,150]}}
-        >     
+            domainPadding={{x: [0, 0], y: [100, 0]}}
+        >
+        <VictoryLabel text="Base Totals for Utah Ski Area's for 2018-2019" x={225} y={30} textAnchor="middle"/>     
         <VictoryAxis dependentAxis label='Base Depth (in)' />
-        <VictoryAxis   scale="time" tickValues={tickValues} tickFormat={ (x) => { 
+        <VictoryAxis   scale="time" style={{ tickLabels: { angle: -50 } }} label='Date' tickLabelComponent={<VictoryLabel />} tickValues={tickValues} tickFormat={ (x) => { 
                 if (x.getMonth() === 9) {
-                    return '11-01-18';
+                    return `11-01\n2018`;
                 } else if (x.getMonth() === 10) {
-                    return '12-01';
+                    return `12-01\n2018`;
                 } else if (x.getMonth() === 11) {
-                    return '01-01-19';
+                    return `01-01\n2019`;
                 } else if (x.getMonth() === 0) {
-                    return '02-01';
+                    return `02-01\n2019`;
                 } else if (x.getMonth() === 1) {
-                    return '03-01';
+                    return `03-01\n2019`;
                 } else if (x.getMonth() === 2) {
-                    return '04-01'; 
+                    return `04-01\n2019`; 
                 } else {
-                    return '05-01';
+                    return `05-01\n2019`;
                 }
         }}
         />
