@@ -1,7 +1,10 @@
 import React from 'react';
-import {VictoryLine, VictoryChart, VictoryAxis, VictoryLabel } from 'victory';
+import {VictoryLine, VictoryChart, VictoryAxis, VictoryLabel, VictoryLegend } from 'victory';
 
 const BaseData = props => {
+
+    const practiceBaseTotal = props.data[0]['base_total'];
+    console.log(props.data[0]['crawled_at']);
 
     const date1 = new Date('2018-11-01');
     const date2 = new Date('2019-05-01');
@@ -33,11 +36,24 @@ const BaseData = props => {
         <VictoryChart
             scale={{x: "time", y: "linear"}}
             domain={{y:[0,150]}}
-            domainPadding={{x: [0, 0], y: [100, 0]}}
         >
+    {/*Maybe make the victory legend its own element as a standalone div next to base totals line graph*/ }
+        <VictoryLegend x={125} y={50}
+        title="Ski Areas"
+        centerTitle
+        orientation="horizontal"
+        gutter={30}
+        style={{ border: { stroke: "black" }, title: {fontSize: 20 } }}
+        itemsPerRow={4}
+        data={[
+          { name: "Alta", symbol: { fill: "#0000FF"} },
+          { name: "Brighton", symbol: { fill: "orange" } },
+          { name: "Snowbird", symbol: { fill: "gold" } }
+        ]}
+        />
         <VictoryLabel text="Base Totals for Utah Ski Area's for 2018-2019" x={225} y={30} textAnchor="middle"/>     
-        <VictoryAxis dependentAxis label='Base Depth (in)' />
-        <VictoryAxis   scale="time" style={{ tickLabels: { angle: -50 } }} label='Date' tickLabelComponent={<VictoryLabel />} tickValues={tickValues} tickFormat={ (x) => { 
+        <VictoryAxis dependentAxis style={{ axisLabel: { padding: 35 }}} label='Base Depth (in)' />
+        <VictoryAxis   scale="time" style={{ tickLabels: { angle: -50 } }} tickLabelComponent={<VictoryLabel />} tickValues={tickValues} tickFormat={ (x) => { 
                 if (x.getMonth() === 9) {
                     return `11-01\n2018`;
                 } else if (x.getMonth() === 10) {
