@@ -3,12 +3,13 @@ import {VictoryLine, VictoryChart, VictoryAxis, VictoryLabel, VictoryLegend } fr
 
 const BaseData = props => {
 
-    console.log(props.data);
+    const allBaseData = props.data;
     const practiceBaseTotal = props.data[0]['base_total'];
     const practiceCrawledAltaDate = props.data[0]['crawled_at'];
     const practiceBaseTotal2 = props.data[1]['base_total'];
     const practiceCrawledAltaDate2 = props.data[1]['crawled_at'];
 
+    const alta = [];
 
     const date1 = new Date(practiceCrawledAltaDate);
     const date2 = new Date(practiceCrawledAltaDate2);
@@ -24,8 +25,25 @@ const BaseData = props => {
         ]
     }
 
+    function sortBaseData() {
+        for (let i = 0; i < allBaseData.length; i ++) {
+            if (allBaseData[i]['area_name'] === 'alta') {
+                alta.push(allBaseData[i])
+            }
+        }
+    }
+
+    console.log(alta);
+
+    // create a function that loops through all the base data
+    // sort base data by area name
+    // add the data of each base area into its own respective array
+    // add each object into the array for each base area 
+
+
     return (
         <div>
+        { allBaseData.length > 0 ? sortBaseData() : console.log('data not ready to sort') }
         <VictoryChart
             scale={{x: "time", y: "linear"}}
             domain={{y:[0,150]}}

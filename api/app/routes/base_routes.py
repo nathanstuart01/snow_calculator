@@ -7,7 +7,7 @@ from sqlalchemy import asc
 def get_base_totals():
 	if request.method == 'GET':
 		#create a query within in here that gets the current date of base data only, makes each area clickable to go to history of all base data totals for that area
-		bases_data = UtahBaseTotals.query.order_by(asc(UtahBaseTotals.area_name)).all()
+		bases_data = UtahBaseTotals.query.order_by(asc(UtahBaseTotals.crawled_at)).all()
 		base_totals_data = []
 
 		for base_data in bases_data:
