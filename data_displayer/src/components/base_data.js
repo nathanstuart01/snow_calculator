@@ -10,6 +10,19 @@ const BaseData = props => {
     const practiceCrawledAltaDate2 = props.data[1]['crawled_at'];
 
     const alta = [];
+    const snowbird = [];
+    const brighton = [];
+    const solitude = [];
+    const parkCity = [];
+    const deerValley = [];
+    const snowBasin = [];
+    const powderMountain = [];
+    const beaverMountain = [];
+    const cherryPeak = [];
+    const brianHead = [];
+    const eaglePoint = [];
+    const sundance = [];
+    const nordicValley = [];
 
     const date1 = new Date(practiceCrawledAltaDate);
     const date2 = new Date(practiceCrawledAltaDate2);
@@ -25,25 +38,59 @@ const BaseData = props => {
         ]
     }
 
-    function sortBaseData() {
+   function sortBaseData() {
         for (let i = 0; i < allBaseData.length; i ++) {
             if (allBaseData[i]['area_name'] === 'alta') {
                 alta.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'snowbird') {
+                snowbird.push(allBaseData[i])
+            } else if  (allBaseData[i]['area_name'] === 'brighton') {
+                brighton.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'solitude') {
+                solitude.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'park city') {
+                parkCity.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'deer valley') {
+                deerValley.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'snow basin') {
+                snowBasin.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'powder mountain') {
+                powderMountain.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'beaver mountain') {
+                beaverMountain.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'cherry peak') {
+                cherryPeak.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'brian head') {
+                brianHead.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'eagle point') {
+                eaglePoint.push(allBaseData[i])
+            } else if (allBaseData[i]['area_name'] === 'sundance') {
+                sundance.push(allBaseData[i])
+            } else {
+                nordicValley.push(allBaseData[i])
             }
         }
     }
 
     console.log(alta);
-
-    // create a function that loops through all the base data
-    // sort base data by area name
-    // add the data of each base area into its own respective array
-    // add each object into the array for each base area 
-
+    console.log(snowbird);
+    console.log(brighton);
+    console.log(solitude);
+    console.log(parkCity);
+    console.log(deerValley);
+    console.log(snowBasin);
+    console.log(powderMountain);
+    console.log(beaverMountain);
+    console.log(cherryPeak);
+    console.log(brianHead);
+    console.log(eaglePoint);
+    console.log(sundance);
+    console.log(nordicValley);
 
     return (
+
         <div>
-        { allBaseData.length > 0 ? sortBaseData() : console.log('data not ready to sort') }
+        { allBaseData.length > 0 ? sortBaseData() : console.log('base data not ready do something for sorting of base data to wait longer') }
         <VictoryChart
             scale={{x: "time", y: "linear"}}
             domain={{y:[0,150]}}

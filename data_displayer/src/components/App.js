@@ -11,22 +11,45 @@ class App extends React.Component {
   // can only change this through setState()
   state = {
     error: null,
-    baseData: [],
     twentyFourHourData: [],
-    forecastedSnowData: []
+    forecastedSnowData: [],
+    alta: [],
+    snowbird: [],
+    solitude: [],
+    brighton: [],
+    'park city': [],
+    'deer valley': [],
+    'snowbasin': [],
+    'powder mountain': [],
+    'beaver mountain': [],
+    'cherry peak': [],
+    'brian head': [],
+    'eagle point': [],
+    'sundance': [],
+    'nordic valley': [],
   }
 
-  loadData = () => {
+  getDataToFetch = (urlsToFetch) => {
+    for (let i = 0; i < urlsToFetch.length; i ++) {
+          this.loadData(urlsToFetch[i])
+    }
+
+  }
+
+  loadData = (urlToLoad) => {
 
     const baseTotalUrl = 'http://localhost:5000/api/v1/basedata/';
     const twentyFourHourTotalUrl = 'http://127.0.0.1:5000/api/v1/twentyfourhourdata/';
+    const altaBaseData = 'http://localhost:5000/api/v1/basedata/alta';
 
-    fetch(baseTotalUrl)
+    fetch(urlToLoad)
       .then(res => res.json())
       .then(
         (result) => {
+          let area = result[0]['area_name']
+          console.log(area)
           this.setState({
-            baseData: result
+              [area]: result
           });
         },
         (error) => {
@@ -53,7 +76,23 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-      this.loadData();
+      const baseDataUrls = [
+        'http://localhost:5000/api/v1/basedata/alta',
+        'http://localhost:5000/api/v1/basedata/snowbird',
+        'http://localhost:5000/api/v1/basedata/solitude',
+        'http://localhost:5000/api/v1/basedata/brighton',
+        'http://localhost:5000/api/v1/basedata/park city',
+        'http://localhost:5000/api/v1/basedata/deer valley',
+        'http://localhost:5000/api/v1/basedata/powder mountain',
+        'http://localhost:5000/api/v1/basedata/snowbasin',
+        'http://localhost:5000/api/v1/basedata/beaver mountain',
+        'http://localhost:5000/api/v1/basedata/cherry peak',
+        'http://localhost:5000/api/v1/basedata/eagle point',
+        'http://localhost:5000/api/v1/basedata/brian head',
+        'http://localhost:5000/api/v1/basedata/sundance',
+        'http://localhost:5000/api/v1/basedata/nordic valley',
+      ]
+      this.getDataToFetch(baseDataUrls);
     }
  
 
@@ -62,7 +101,7 @@ class App extends React.Component {
     	return (
       		<div>
       			<TwentyFourHourData />
-            { this.state.baseData.length > 0 ? <BaseData data={this.state.baseData} /> : null }
+            {/* this.state.baseData.length > 0 ? <BaseData data={this.state.baseData} /> : null */}
           </div>
     	);
   	}
