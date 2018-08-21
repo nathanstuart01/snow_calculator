@@ -90,7 +90,6 @@ const BaseData = props => {
     return (
 
         <div>
-        { allBaseData.length > 0 ? sortBaseData() : console.log('base data not ready do something for sorting of base data to wait longer') }
         <VictoryChart
             scale={{x: "time", y: "linear"}}
             domain={{y:[0,150]}}

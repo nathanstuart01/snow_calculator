@@ -11,6 +11,8 @@ class App extends React.Component {
   // can only change this through setState()
   state = {
     error: null,
+    isLoadingBaseData: false,
+    isLoadingTwentyFourData: false,
     twentyFourHourData: [],
     forecastedSnowData: [],
     alta: [],
@@ -26,28 +28,23 @@ class App extends React.Component {
     'brian head': [],
     'eagle point': [],
     'sundance': [],
-    'nordic valley': [],
+    'nordic valley': []
   }
 
   getDataToFetch = (urlsToFetch) => {
     for (let i = 0; i < urlsToFetch.length; i ++) {
-          this.loadData(urlsToFetch[i])
+          this.loadBaseData(urlsToFetch[i])
     }
 
   }
 
-  loadData = (urlToLoad) => {
-
-    const baseTotalUrl = 'http://localhost:5000/api/v1/basedata/';
-    const twentyFourHourTotalUrl = 'http://127.0.0.1:5000/api/v1/twentyfourhourdata/';
-    const altaBaseData = 'http://localhost:5000/api/v1/basedata/alta';
+  loadBaseData = (urlToLoad) => {
 
     fetch(urlToLoad)
       .then(res => res.json())
       .then(
         (result) => {
           let area = result[0]['area_name']
-          console.log(area)
           this.setState({
               [area]: result
           });
@@ -58,13 +55,23 @@ class App extends React.Component {
           });
         }
       )
+      .then(
+         () => {
+          this.setState({
+            isLoadingBaseData: false
+          }) 
+         } 
+        )
+    }
 
-    fetch(twentyFourHourTotalUrl)
+    getTwentyFourHourdata = (urlToLoad) => {
+
+    fetch(urlToLoad)
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
-            twentyFourHourData: result
+            twentyFourHourData: result, isLoadingTwentyFourData: false
           });
         },
         (error) => {
@@ -76,6 +83,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+
       const baseDataUrls = [
         'http://localhost:5000/api/v1/basedata/alta',
         'http://localhost:5000/api/v1/basedata/snowbird',
@@ -91,17 +99,30 @@ class App extends React.Component {
         'http://localhost:5000/api/v1/basedata/brian head',
         'http://localhost:5000/api/v1/basedata/sundance',
         'http://localhost:5000/api/v1/basedata/nordic valley',
-      ]
+      ];
+
+      const twentyFourHourTotalUrl = 'http://127.0.0.1:5000/api/v1/twentyfourhourdata/';
+
+      this.setState({ isLoadingBaseData: true, isLoadingTwentyFourData: true });
+
       this.getDataToFetch(baseDataUrls);
+
+      this.getTwentyFourHourdata(twentyFourHourTotalUrl);
     }
  
 
 	render() {
 
+    const { isLoadingBaseData, isLoadingTwentyFourData } = this.state;
+
+    if (isLoadingBaseData || isLoadingTwentyFourData) {
+      return <p>Loading Area Data....</p>;
+    }
+
     	return (
       		<div>
       			<TwentyFourHourData />
-            {/* this.state.baseData.length > 0 ? <BaseData data={this.state.baseData} /> : null */}
+             { this.state['nordic valley'].length > 0 ? <BaseData data={this.state.alta} /> : null }
           </div>
     	);
   	}
