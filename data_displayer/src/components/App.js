@@ -122,7 +122,15 @@ class App extends React.Component {
     	return (
       		<div>
       			<TwentyFourHourData />
-             { this.state['nordic valley'].length > 0 ? <BaseData data={this.state.alta} /> : null }
+             { this.state['nordic valley'].length > 0 ? <BaseData 
+             alta={this.state.alta} snowbird={this.state.snowbird} 
+             solitude={this.state.solitude} brighton={this.state.brighton}
+             deerValley={this.state['deer valley']} parkCity={this.state['park city']}
+             snowBasin={this.state.snowbasin} powderMountain={this.state['powder mountain']}
+             beaverMountain={this.state['beaver mountain']} cherryPeak={this.state['cherry peak']}
+             eaglePoint={this.state['eagle point']} brianHead={this.state['brian head']}
+             nordicValley={this.state['nordic valley']} sundance={this.state.sundance}
+             /> : null }
           </div>
     	);
   	}

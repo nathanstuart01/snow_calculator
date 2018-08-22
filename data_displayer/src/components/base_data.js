@@ -3,29 +3,20 @@ import {VictoryLine, VictoryChart, VictoryAxis, VictoryLabel, VictoryLegend } fr
 
 const BaseData = props => {
 
-    const allBaseData = props.data;
-    const practiceBaseTotal = props.data[0]['base_total'];
-    const practiceCrawledAltaDate = props.data[0]['crawled_at'];
-    const practiceBaseTotal2 = props.data[1]['base_total'];
-    const practiceCrawledAltaDate2 = props.data[1]['crawled_at'];
-
-    const alta = [];
-    const snowbird = [];
-    const brighton = [];
-    const solitude = [];
-    const parkCity = [];
-    const deerValley = [];
-    const snowBasin = [];
-    const powderMountain = [];
-    const beaverMountain = [];
-    const cherryPeak = [];
-    const brianHead = [];
-    const eaglePoint = [];
-    const sundance = [];
-    const nordicValley = [];
-
-    const date1 = new Date(practiceCrawledAltaDate);
-    const date2 = new Date(practiceCrawledAltaDate2);
+    const alta = props.alta;
+    const snowbird = props.snowbird;
+    const brighton = props.brighton;
+    const solitude = props.solitude;
+    const parkCity = props.parkCity;
+    const deerValley = props.deerValley;
+    const snowBasin = props.snowBasin;
+    const powderMountain = props.powderMountain;
+    const beaverMountain = props.beaverMountain;
+    const cherryPeak = props.cherryPeak;
+    const brianHead = props.brianHead;
+    const eaglePoint = props.eaglePoint;
+    const sundance = props.sundance;
+    const nordicValley = props.nordicValley;
 
     const tickValues = getTickValues();
 
@@ -34,62 +25,16 @@ const BaseData = props => {
         new Date('2018-03-01'), 
         new Date('2018-04-01'), 
         new Date('2018-05-01')
-
         ]
     }
 
-   function sortBaseData() {
-        for (let i = 0; i < allBaseData.length; i ++) {
-            if (allBaseData[i]['area_name'] === 'alta') {
-                alta.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'snowbird') {
-                snowbird.push(allBaseData[i])
-            } else if  (allBaseData[i]['area_name'] === 'brighton') {
-                brighton.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'solitude') {
-                solitude.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'park city') {
-                parkCity.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'deer valley') {
-                deerValley.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'snow basin') {
-                snowBasin.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'powder mountain') {
-                powderMountain.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'beaver mountain') {
-                beaverMountain.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'cherry peak') {
-                cherryPeak.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'brian head') {
-                brianHead.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'eagle point') {
-                eaglePoint.push(allBaseData[i])
-            } else if (allBaseData[i]['area_name'] === 'sundance') {
-                sundance.push(allBaseData[i])
-            } else {
-                nordicValley.push(allBaseData[i])
-            }
-        }
+   function sortBaseData(array) {  
+        console.log(array)
     }
-
-    console.log(alta);
-    console.log(snowbird);
-    console.log(brighton);
-    console.log(solitude);
-    console.log(parkCity);
-    console.log(deerValley);
-    console.log(snowBasin);
-    console.log(powderMountain);
-    console.log(beaverMountain);
-    console.log(cherryPeak);
-    console.log(brianHead);
-    console.log(eaglePoint);
-    console.log(sundance);
-    console.log(nordicValley);
 
     return (
 
-        <div>
+        <div onLoad={sortBaseData(alta)}>
         <VictoryChart
             scale={{x: "time", y: "linear"}}
             domain={{y:[0,150]}}
@@ -133,8 +78,26 @@ const BaseData = props => {
                     data: { stroke: "#0000FF" }
                     }}
                 data={[
-                    {x:date2, y:practiceBaseTotal2},
-                    {x:date1, y:practiceBaseTotal},
+                    {x:new Date(alta[0]['crawled_at']), y:alta[0]['base_total']},
+                    {x:new Date(alta[1]['crawled_at']), y:alta[1]['base_total']},
+                    {x:new Date(alta[2]['crawled_at']), y:alta[2]['base_total']},
+                    {x:new Date(alta[3]['crawled_at']), y:alta[3]['base_total']},
+                    {x:new Date(alta[4]['crawled_at']), y:alta[4]['base_total']},
+                    {x:new Date(alta[5]['crawled_at']), y:alta[5]['base_total']},
+                    {x:new Date(alta[6]['crawled_at']), y:alta[6]['base_total']},
+                    {x:new Date(alta[7]['crawled_at']), y:alta[7]['base_total']},
+                    {x:new Date(alta[8]['crawled_at']), y:alta[8]['base_total']},
+                    {x:new Date(alta[9]['crawled_at']), y:alta[9]['base_total']},
+                    {x:new Date(alta[10]['crawled_at']), y:alta[10]['base_total']},
+                    {x:new Date(alta[11]['crawled_at']), y:alta[11]['base_total']},
+                    {x:new Date(alta[12]['crawled_at']), y:alta[12]['base_total']},
+                    {x:new Date(alta[13]['crawled_at']), y:alta[13]['base_total']},
+                    {x:new Date(alta[14]['crawled_at']), y:alta[14]['base_total']},
+                    {x:new Date(alta[15]['crawled_at']), y:alta[15]['base_total']},
+                    {x:new Date(alta[16]['crawled_at']), y:alta[16]['base_total']},
+                    {x:new Date(alta[17]['crawled_at']), y:alta[17]['base_total']},
+                    {x:new Date(alta[18]['crawled_at']), y:alta[18]['base_total']},
+                    {x:new Date(alta[19]['crawled_at']), y:alta[19]['base_total']},
                 ]}
             />
         </VictoryChart>
