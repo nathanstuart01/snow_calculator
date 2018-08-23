@@ -28,11 +28,30 @@ const BaseData = props => {
         ]
     }
 
-   const prepBaseData = snowbird.map((val) => {
+    const prepAltaData = alta.map((val) => {
+    return {x: new Date(val.crawled_at), y: val.base_total }
+   });  
+
+    const prepSnowbirdData = snowbird.map((val) => {
+    return {x: new Date(val.crawled_at), y: val.base_total }
+   });    
+
+    const prepSolitudeData = solitude.map((val) => {
+    return {x: new Date(val.crawled_at), y: val.base_total }
+   });    
+
+    const prepBrightonData = brighton.map((val) => {
+    return {x: new Date(val.crawled_at), y: val.base_total }
+   });    
+
+    const prepParkCityData = parkCity.map((val) => {
+    return {x: new Date(val.crawled_at), y: val.base_total }
+   });    
+
+    const prepDeerValleyData = deerValley.map((val) => {
     return {x: new Date(val.crawled_at), y: val.base_total }
    });
 
-   console.log(prepBaseData)
 
     return (
 
@@ -75,12 +94,50 @@ const BaseData = props => {
                 }
         }}
         />
-            <VictoryLine 
+
+        <VictoryLine 
                 style={{
                     data: { stroke: "#0000FF" }
                     }}
-                data={prepBaseData}
-            />
+                data={prepAltaData}
+        /> 
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#00CD22" }
+                    }}
+                data={prepSnowbirdData}
+        />       
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#FFFF33" }
+                    }}
+                data={prepSolitudeData}
+        />        
+        
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#CC0000" }
+                    }}
+                data={prepBrightonData}
+        />        
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#990000" }
+                    }}
+                data={prepParkCityData}
+        />        
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#009900" }
+                    }}
+                data={prepDeerValleyData}
+        />
+
+
         </VictoryChart>
         </div>
         );
