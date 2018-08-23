@@ -28,13 +28,15 @@ const BaseData = props => {
         ]
     }
 
-   function sortBaseData(array) {  
-        console.log(array)
-    }
+   const prepBaseData = snowbird.map((val) => {
+    return {x: new Date(val.crawled_at), y: val.base_total }
+   });
+
+   console.log(prepBaseData)
 
     return (
 
-        <div onLoad={sortBaseData(alta)}>
+        <div>
         <VictoryChart
             scale={{x: "time", y: "linear"}}
             domain={{y:[0,150]}}
@@ -77,28 +79,7 @@ const BaseData = props => {
                 style={{
                     data: { stroke: "#0000FF" }
                     }}
-                data={[
-                    {x:new Date(alta[0]['crawled_at']), y:alta[0]['base_total']},
-                    {x:new Date(alta[1]['crawled_at']), y:alta[1]['base_total']},
-                    {x:new Date(alta[2]['crawled_at']), y:alta[2]['base_total']},
-                    {x:new Date(alta[3]['crawled_at']), y:alta[3]['base_total']},
-                    {x:new Date(alta[4]['crawled_at']), y:alta[4]['base_total']},
-                    {x:new Date(alta[5]['crawled_at']), y:alta[5]['base_total']},
-                    {x:new Date(alta[6]['crawled_at']), y:alta[6]['base_total']},
-                    {x:new Date(alta[7]['crawled_at']), y:alta[7]['base_total']},
-                    {x:new Date(alta[8]['crawled_at']), y:alta[8]['base_total']},
-                    {x:new Date(alta[9]['crawled_at']), y:alta[9]['base_total']},
-                    {x:new Date(alta[10]['crawled_at']), y:alta[10]['base_total']},
-                    {x:new Date(alta[11]['crawled_at']), y:alta[11]['base_total']},
-                    {x:new Date(alta[12]['crawled_at']), y:alta[12]['base_total']},
-                    {x:new Date(alta[13]['crawled_at']), y:alta[13]['base_total']},
-                    {x:new Date(alta[14]['crawled_at']), y:alta[14]['base_total']},
-                    {x:new Date(alta[15]['crawled_at']), y:alta[15]['base_total']},
-                    {x:new Date(alta[16]['crawled_at']), y:alta[16]['base_total']},
-                    {x:new Date(alta[17]['crawled_at']), y:alta[17]['base_total']},
-                    {x:new Date(alta[18]['crawled_at']), y:alta[18]['base_total']},
-                    {x:new Date(alta[19]['crawled_at']), y:alta[19]['base_total']},
-                ]}
+                data={prepBaseData}
             />
         </VictoryChart>
         </div>
