@@ -52,6 +52,35 @@ const BaseData = props => {
     return {x: new Date(val.crawled_at), y: val.base_total }
    });
 
+    function prepBaseData(array) {
+       return array.map((val) => {
+            return {x: new Date(val.crawled_at), y: val.base_total }
+        })
+    };
+
+    // northern utah ski areas
+
+    const prepSnowBasinData = prepBaseData(snowBasin);
+
+    const powderMountainBaseData = prepBaseData(powderMountain);
+
+    const beaverMountainBaseData = prepBaseData(beaverMountain);
+
+    const cherryPeakBaseData = prepBaseData(cherryPeak);
+
+    const nordicValleyBaseData = prepBaseData(nordicValley);
+
+    // cental utah ski areas
+
+    const sundanceBaseData = prepBaseData(sundance);
+
+    // southern utah ski areas
+
+    const brianHeadBaseData = prepBaseData(brianHead);
+
+    const eaglePointBaseData = prepBaseData(eaglePoint);
+
+
 
     return (
 
@@ -135,6 +164,62 @@ const BaseData = props => {
                     data: { stroke: "#009900" }
                     }}
                 data={prepDeerValleyData}
+        />        
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#ffcc00" }
+                    }}
+                data={prepSnowBasinData}
+        />        
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#6699ff" }
+                    }}
+                data={powderMountainBaseData}
+        />        
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#990033" }
+                    }}
+                data={cherryPeakBaseData}
+        />       
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#33334d" }
+                    }}
+                data={nordicValleyBaseData}
+        />         
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#cc3300" }
+                    }}
+                data={beaverMountainBaseData}
+        />  
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#993333" }
+                    }}
+                data={sundanceBaseData}
+        />        
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#006600" }
+                    }}
+                data={brianHeadBaseData}
+        />        
+
+        <VictoryLine 
+                style={{
+                    data: { stroke: "#336600" }
+                    }}
+                data={eaglePointBaseData}
         />
 
 
