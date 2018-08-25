@@ -22,35 +22,11 @@ const BaseData = props => {
 
     function getTickValues() {
         return [ 
-        new Date('2018-03-01'), 
-        new Date('2018-04-01'), 
-        new Date('2018-05-01')
+            new Date('2018-03-01'), 
+            new Date('2018-04-01'), 
+            new Date('2018-05-01')
         ]
-    }
-
-    const prepAltaData = alta.map((val) => {
-    return {x: new Date(val.crawled_at), y: val.base_total }
-   });  
-
-    const prepSnowbirdData = snowbird.map((val) => {
-    return {x: new Date(val.crawled_at), y: val.base_total }
-   });    
-
-    const prepSolitudeData = solitude.map((val) => {
-    return {x: new Date(val.crawled_at), y: val.base_total }
-   });    
-
-    const prepBrightonData = brighton.map((val) => {
-    return {x: new Date(val.crawled_at), y: val.base_total }
-   });    
-
-    const prepParkCityData = parkCity.map((val) => {
-    return {x: new Date(val.crawled_at), y: val.base_total }
-   });    
-
-    const prepDeerValleyData = deerValley.map((val) => {
-    return {x: new Date(val.crawled_at), y: val.base_total }
-   });
+    };
 
     function prepBaseData(array) {
        return array.map((val) => {
@@ -58,27 +34,48 @@ const BaseData = props => {
         })
     };
 
+    function returnBaseDataComponent(lineColor, data) {
+ 
+        return  <VictoryLine style={{ data: { stroke: lineColor } }} data={data} />        
+    };
+
     // northern utah ski areas
 
-    const prepSnowBasinData = prepBaseData(snowBasin);
+    const prepSnowBasinBaseData = prepBaseData(snowBasin);
 
-    const powderMountainBaseData = prepBaseData(powderMountain);
+    const prepPowderMountainBaseData = prepBaseData(powderMountain);
 
-    const beaverMountainBaseData = prepBaseData(beaverMountain);
+    const prepBeaverMountainBaseData = prepBaseData(beaverMountain);
 
-    const cherryPeakBaseData = prepBaseData(cherryPeak);
+    const prepCherryPeakBaseData = prepBaseData(cherryPeak);
 
-    const nordicValleyBaseData = prepBaseData(nordicValley);
+    const prepNordicValleyBaseData = prepBaseData(nordicValley);
+
+    // cottonwood ski areas
+
+    const prepAltaBaseData = prepBaseData(alta);
+
+    const prepSnowbirdBaseData = prepBaseData(snowbird);
+    
+    const prepSolitudeBaseData = prepBaseData(solitude);
+
+    const prepBrightonBaseData = prepBaseData(brighton);
+
+    // park city ski areas
+
+    const prepParkCityBaseData = prepBaseData(parkCity);
+
+    const prepDeerValleyBaseData = prepBaseData(deerValley);
 
     // cental utah ski areas
 
-    const sundanceBaseData = prepBaseData(sundance);
+    const prepSundanceBaseData = prepBaseData(sundance);
 
     // southern utah ski areas
 
-    const brianHeadBaseData = prepBaseData(brianHead);
+    const prepBrianHeadBaseData = prepBaseData(brianHead);
 
-    const eaglePointBaseData = prepBaseData(eaglePoint);
+    const prepEaglePointBaseData = prepBaseData(eaglePoint);
 
 
 
@@ -124,102 +121,98 @@ const BaseData = props => {
         }}
         />
 
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#0000FF" }
-                    }}
-                data={prepAltaData}
-        /> 
+        {returnBaseDataComponent('#000000',prepAltaBaseData)}
+
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#00CD22" }
                     }}
-                data={prepSnowbirdData}
+                data={prepSnowbirdBaseData}
         />       
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#FFFF33" }
                     }}
-                data={prepSolitudeData}
+                data={prepSolitudeBaseData}
         />        
         
         <VictoryLine 
                 style={{
                     data: { stroke: "#CC0000" }
                     }}
-                data={prepBrightonData}
+                data={prepBrightonBaseData}
         />        
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#990000" }
                     }}
-                data={prepParkCityData}
+                data={prepParkCityBaseData}
         />        
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#009900" }
                     }}
-                data={prepDeerValleyData}
+                data={prepDeerValleyBaseData}
         />        
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#ffcc00" }
                     }}
-                data={prepSnowBasinData}
+                data={prepSnowBasinBaseData}
         />        
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#6699ff" }
                     }}
-                data={powderMountainBaseData}
+                data={prepPowderMountainBaseData}
         />        
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#990033" }
                     }}
-                data={cherryPeakBaseData}
+                data={prepCherryPeakBaseData}
         />       
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#33334d" }
                     }}
-                data={nordicValleyBaseData}
+                data={prepNordicValleyBaseData}
         />         
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#cc3300" }
                     }}
-                data={beaverMountainBaseData}
+                data={prepBeaverMountainBaseData}
         />  
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#993333" }
                     }}
-                data={sundanceBaseData}
+                data={prepSundanceBaseData}
         />        
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#006600" }
                     }}
-                data={brianHeadBaseData}
+                data={prepBrianHeadBaseData}
         />        
 
         <VictoryLine 
                 style={{
                     data: { stroke: "#336600" }
                     }}
-                data={eaglePointBaseData}
+                data={prepEaglePointBaseData}
         />
 
 
