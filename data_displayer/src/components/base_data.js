@@ -18,28 +18,11 @@ const BaseData = props => {
     const sundance = props.sundance;
     const nordicValley = props.nordicValley;
 
+    const allAreasBaseDataprops = [];
+
     const tickValues = getTickValues();
 
-    function getTickValues() {
-        return [ 
-            new Date('2018-03-01'), 
-            new Date('2018-04-01'), 
-            new Date('2018-05-01')
-        ]
-    };
-
-    function prepBaseData(array) {
-       return array.map((val) => {
-            return {x: new Date(val.crawled_at), y: val.base_total }
-        })
-    };
-
-    function returnBaseDataComponent(lineColor, data) {
- 
-        return  <VictoryLine style={{ data: { stroke: lineColor } }} data={data} />        
-    };
-
-    // northern utah ski areas
+        // northern utah ski areas
 
     const prepSnowBasinBaseData = prepBaseData(snowBasin);
 
@@ -77,7 +60,40 @@ const BaseData = props => {
 
     const prepEaglePointBaseData = prepBaseData(eaglePoint);
 
+    function pushBaseDataIntoArray(array) {
+        array.push(alta, snowbird, brighton, solitude, parkCity, deerValley,
+                    snowBasin, powderMountain, beaverMountain, cherryPeak,
+                    nordicValley, sundance, brianHead, eaglePoint
+            )
+    }
 
+    function testPrepBaseData(array) {
+        for ( var i = 0; i < array.length; i ++ ) {
+            for ( var x = 0; x < array[i].length; x ++) {
+                return {x: new Date(array[i][x]['crawled_at']), y: array[i][x]['base_total']}
+                }
+            }
+        }
+
+
+    function getTickValues() {
+        return [ 
+            new Date('2018-03-01'), 
+            new Date('2018-04-01'), 
+            new Date('2018-05-01')
+        ]
+    };
+
+    function prepBaseData(array) {
+       return array.map((val) => {
+            return {x: new Date(val.crawled_at), y: val.base_total }
+        })
+    };
+
+    function returnBaseDataComponent(lineColor, data) {
+ 
+        return  <VictoryLine style={{ data: { stroke: lineColor } }} data={data} />        
+    };
 
     return (
 
@@ -122,98 +138,21 @@ const BaseData = props => {
         />
 
         {returnBaseDataComponent('#000000',prepAltaBaseData)}
-
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#00CD22" }
-                    }}
-                data={prepSnowbirdBaseData}
-        />       
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#FFFF33" }
-                    }}
-                data={prepSolitudeBaseData}
-        />        
-        
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#CC0000" }
-                    }}
-                data={prepBrightonBaseData}
-        />        
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#990000" }
-                    }}
-                data={prepParkCityBaseData}
-        />        
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#009900" }
-                    }}
-                data={prepDeerValleyBaseData}
-        />        
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#ffcc00" }
-                    }}
-                data={prepSnowBasinBaseData}
-        />        
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#6699ff" }
-                    }}
-                data={prepPowderMountainBaseData}
-        />        
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#990033" }
-                    }}
-                data={prepCherryPeakBaseData}
-        />       
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#33334d" }
-                    }}
-                data={prepNordicValleyBaseData}
-        />         
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#cc3300" }
-                    }}
-                data={prepBeaverMountainBaseData}
-        />  
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#993333" }
-                    }}
-                data={prepSundanceBaseData}
-        />        
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#006600" }
-                    }}
-                data={prepBrianHeadBaseData}
-        />        
-
-        <VictoryLine 
-                style={{
-                    data: { stroke: "#336600" }
-                    }}
-                data={prepEaglePointBaseData}
-        />
+        {returnBaseDataComponent('#00CD22',prepSnowbirdBaseData)}
+        {returnBaseDataComponent('#FFFF33',prepSolitudeBaseData)}
+        {returnBaseDataComponent('#CC0000',prepBrightonBaseData)}
+        {returnBaseDataComponent('#990000',prepParkCityBaseData)}
+        {returnBaseDataComponent('#009900',prepDeerValleyBaseData)}
+        {returnBaseDataComponent('#ffcc00',prepSnowBasinBaseData)}
+        {returnBaseDataComponent('#6699ff',prepPowderMountainBaseData)}
+        {returnBaseDataComponent('#990033',prepCherryPeakBaseData)}
+        {returnBaseDataComponent('#33334d',prepNordicValleyBaseData)}
+        {returnBaseDataComponent('#cc3300',prepBeaverMountainBaseData)}
+        {returnBaseDataComponent('#993333',prepSundanceBaseData)}
+        {returnBaseDataComponent('#006600',prepBrianHeadBaseData)}
+        {returnBaseDataComponent('#336600',prepEaglePointBaseData)}
+        {pushBaseDataIntoArray(allAreasBaseDataprops)}    
+        {testPrepBaseData(allAreasBaseDataprops)}        
 
 
         </VictoryChart>
