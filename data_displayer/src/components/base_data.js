@@ -22,6 +22,8 @@ const BaseData = props => {
 
     const tickValues = getTickValues();
 
+    const legendValues = getLegendValues();
+
         // northern utah ski areas
 
     const prepSnowBasinBaseData = prepBaseData(snowBasin);
@@ -67,21 +69,31 @@ const BaseData = props => {
             )
     }
 
-    function testPrepBaseData(array) {
-        for ( var i = 0; i < array.length; i ++ ) {
-            for ( var x = 0; x < array[i].length; x ++) {
-                return {x: new Date(array[i][x]['crawled_at']), y: array[i][x]['base_total']}
-                }
-            }
-        }
-
-
     function getTickValues() {
         return [ 
             new Date('2018-03-01'), 
             new Date('2018-04-01'), 
             new Date('2018-05-01')
         ]
+    };
+
+    function getLegendValues() {
+        return[
+            { name: "Alta", symbol: { fill: "#0000FF", type: 'minus'} },
+          { name: "Snowbird", symbol: { fill: "#00CD22", type: 'minus' } },
+          { name: "Brighton", symbol: { fill: "#CC0000", type: 'minus' } },
+          { name: "Solitude", symbol: { fill: "#FFFF33", type: 'minus' } },
+          { name: "Park City ", symbol: { fill: "#990000", type: 'minus' } },
+          { name: "Deer Valley", symbol: { fill: "#009900", type: 'minus' } },
+          { name: "Snowbasin", symbol: { fill: "#ffcc00", type: 'minus' } },
+          { name: "Powder Mtn.", symbol: { fill: "#6699ff", type: 'minus' } },
+          { name: "Beaver Mtn.", symbol: { fill: "#cc3300", type: 'minus' } },
+          { name: "Cherry Peak", symbol: { fill: "#990033", type: 'minus' } },
+          { name: "Nordic Valley", symbol: { fill: "#33334d", type: 'minus' } },
+          { name: "Sundance", symbol: { fill: "#993333", type: 'minus' } },
+          { name: "Brian Head", symbol: { fill: "#006600", type: 'minus' } },
+          { name: "Eagle Point", symbol: { fill: "#336600", type: 'minus' } },
+          ]
     };
 
     function prepBaseData(array) {
@@ -91,31 +103,21 @@ const BaseData = props => {
     };
 
     function returnBaseDataComponent(lineColor, data) {
- 
-        return  <VictoryLine style={{ data: { stroke: lineColor } }} data={data} />        
+          return <VictoryLine style={{ data: { stroke: lineColor } }} data={data} />
     };
+
 
     return (
 
         <div>
-        <VictoryChart
+        {pushBaseDataIntoArray(allAreasBaseDataprops)}
+        <div>
+       <VictoryChart
             scale={{x: "time", y: "linear"}}
             domain={{y:[0,150]}}
+            width={800}
+            padding={{top: 50, bottom:50, left:50 , right: 50}}
         >
-    {/*Maybe make the victory legend its own element as a standalone div next to base totals line graph*/ }
-     {/*   <VictoryLegend x={125} y={50}
-        title="Ski Areas"
-        centerTitle
-        orientation="horizontal"
-        gutter={30}
-        style={{ border: { stroke: "black" }, title: {fontSize: 20 } }}
-        itemsPerRow={4}
-        data={[
-          { name: "Alta", symbol: { fill: "#0000FF"} },
-          { name: "Brighton", symbol: { fill: "orange" } },
-          { name: "Snowbird", symbol: { fill: "gold" } }
-        ]}
-        />*/}
         <VictoryLabel text="Base Totals for Utah Ski Area's for 2018-2019" x={225} y={30} textAnchor="middle"/>     
         <VictoryAxis dependentAxis style={{ axisLabel: { padding: 35 }}} label='Base Depth (in)' />
         <VictoryAxis   scale="time" style={{ tickLabels: { angle: -50 } }} tickLabelComponent={<VictoryLabel />} tickValues={tickValues} tickFormat={ (x) => { 
@@ -136,8 +138,7 @@ const BaseData = props => {
                 }
         }}
         />
-
-        {returnBaseDataComponent('#000000',prepAltaBaseData)}
+        {returnBaseDataComponent('#0000FF',prepAltaBaseData)}
         {returnBaseDataComponent('#00CD22',prepSnowbirdBaseData)}
         {returnBaseDataComponent('#FFFF33',prepSolitudeBaseData)}
         {returnBaseDataComponent('#CC0000',prepBrightonBaseData)}
@@ -151,12 +152,21 @@ const BaseData = props => {
         {returnBaseDataComponent('#993333',prepSundanceBaseData)}
         {returnBaseDataComponent('#006600',prepBrianHeadBaseData)}
         {returnBaseDataComponent('#336600',prepEaglePointBaseData)}
-        {pushBaseDataIntoArray(allAreasBaseDataprops)}    
-        {testPrepBaseData(allAreasBaseDataprops)}        
-
-
         </VictoryChart>
         </div>
+        <div>
+        </div>
+                <VictoryLegend 
+        orientation="horizontal"
+        gutter={-1}
+        style={{ border: { stroke: "black" }, title: {fontSize: 20 } }}
+        borderPadding={{ top: 1, bottom: 1, left: 1, right: 1 }}
+        itemsPerRow={7}
+        data={legendValues}
+        symbolSpacer={8}
+        />
+        </div>
+
         );
 }
 
