@@ -158,12 +158,11 @@ const BaseData = props => {
         </div>
                 <VictoryLegend 
         orientation="horizontal"
-        gutter={-1}
-        style={{ border: { stroke: "black" }, title: {fontSize: 20 } }}
-        borderPadding={{ top: 1, bottom: 1, left: 1, right: 1 }}
-        itemsPerRow={7}
+        width={900}
+        style={{ border: { stroke: "black" }, labels: {fontSize: 8} }}
+        itemsPerRow={14}
         data={legendValues}
-        symbolSpacer={8}
+        symbolSpacer={10}
         />
         </div>
 
