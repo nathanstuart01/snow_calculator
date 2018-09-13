@@ -71,9 +71,11 @@ const BaseData = props => {
 
     function getTickValues() {
         return [ 
-            new Date('2018-03-01'), 
-            new Date('2018-04-01'), 
-            new Date('2018-05-01')
+            new Date('2018-03-01 GMT-0700'), 
+            new Date('2018-03-15 GMT-0700'), 
+            new Date('2018-04-01 GMT-0700'), 
+            new Date('2018-04-15 GMT-0700'), 
+            new Date('2018-05-01 GMT-0700')
         ]
     };
 
@@ -106,12 +108,10 @@ const BaseData = props => {
           return <VictoryLine style={{ data: { stroke: lineColor } }} data={data} />
     };
 
-
     return (
 
-        <div>
+        <div id='baseChart'>
         {pushBaseDataIntoArray(allAreasBaseDataprops)}
-        <div>
        <VictoryChart
             scale={{x: "time", y: "linear"}}
             domain={{y:[0,150]}}
@@ -119,24 +119,10 @@ const BaseData = props => {
             padding={{top: 50, bottom:50, left:50 , right: 50}}
         >
         <VictoryLabel text="Base Totals for Utah Ski Area's for 2018-2019" x={225} y={30} textAnchor="middle"/>     
-        <VictoryAxis dependentAxis style={{ axisLabel: { padding: 35 }}} label='Base Depth (in)' />
-        <VictoryAxis   scale="time" style={{ tickLabels: { angle: -50 } }} tickLabelComponent={<VictoryLabel />} tickValues={tickValues} tickFormat={ (x) => { 
-                if (x.getMonth() === 9) {
-                    return `11-01\n2018`;
-                } else if (x.getMonth() === 10) {
-                    return `12-01\n2018`;
-                } else if (x.getMonth() === 11) {
-                    return `01-01\n2019`;
-                } else if (x.getMonth() === 0) {
-                    return `02-01\n2019`;
-                } else if (x.getMonth() === 1) {
-                    return `03-01\n2018`;
-                } else if (x.getMonth() === 2) {
-                    return `04-01\n2018`; 
-                } else {
-                    return `05-01\n2018`;
-                }
-        }}
+        <VictoryAxis dependentAxis style={{ ticks: {stroke: "black", size: 3}, axisLabel: { padding: 38 }}} label='Base Depth (in)' />
+        <VictoryAxis   scale="time" style={{ tickLabels: { angle: 0 }, ticks: {stroke: "black", size: 3} }} tickLabelComponent={<VictoryLabel />} tickValues={tickValues} tickFormat={ (x) => { 
+                return x.toLocaleDateString();
+            }}
         />
         {returnBaseDataComponent('#0000FF',prepAltaBaseData)}
         {returnBaseDataComponent('#00CD22',prepSnowbirdBaseData)}
@@ -153,10 +139,8 @@ const BaseData = props => {
         {returnBaseDataComponent('#006600',prepBrianHeadBaseData)}
         {returnBaseDataComponent('#336600',prepEaglePointBaseData)}
         </VictoryChart>
-        </div>
-        <div>
-        </div>
-                <VictoryLegend 
+        <div id='baseLegend'>
+        <VictoryLegend 
         orientation="horizontal"
         width={900}
         style={{ border: { stroke: "black" }, labels: {fontSize: 8} }}
@@ -164,6 +148,7 @@ const BaseData = props => {
         data={legendValues}
         symbolSpacer={10}
         />
+        </div>
         </div>
 
         );
