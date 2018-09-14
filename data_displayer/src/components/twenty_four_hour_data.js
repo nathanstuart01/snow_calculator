@@ -3,7 +3,10 @@ import {VictoryBar, VictoryChart} from 'victory';
 
 
 const TwentyFourHourData = (props) => {
-	return(
+	 
+
+
+  return(
 		<div>
 		  <h2>24 Hr Data</h2>
         <VictoryChart domainPadding={50}>

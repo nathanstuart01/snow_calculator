@@ -118,9 +118,9 @@ const BaseData = props => {
             width={800}
             padding={{top: 50, bottom:50, left:50 , right: 50}}
         >
-        <VictoryLabel text="Base Totals for Utah Ski Area's for 2018-2019" x={225} y={30} textAnchor="middle"/>     
-        <VictoryAxis dependentAxis style={{ ticks: {stroke: "black", size: 3}, axisLabel: { padding: 38 }}} label='Base Depth (in)' />
-        <VictoryAxis   scale="time" style={{ tickLabels: { angle: 0 }, ticks: {stroke: "black", size: 3} }} tickLabelComponent={<VictoryLabel />} tickValues={tickValues} tickFormat={ (x) => { 
+        <VictoryLabel text="Base Totals for Utah Ski Area's for 2018-2019" x={375} y={35} textAnchor="middle"/>     
+        <VictoryAxis dependentAxis style={{ tickLabels: {fontSize: 10}, ticks: {stroke: "black", size: 3}, axisLabel: { fontSize: 12, padding: 38 }}} label='Base Depth (in)' />
+        <VictoryAxis   scale="time" style={{ tickLabels: { angle: 0, fontSize: 10}, ticks: {stroke: "black", size: 3} }} tickLabelComponent={<VictoryLabel />} tickValues={tickValues} tickFormat={ (x) => { 
                 return x.toLocaleDateString();
             }}
         />

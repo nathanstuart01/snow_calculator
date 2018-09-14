@@ -109,8 +109,8 @@ class App extends React.Component {
 
       this.getTwentyFourHourdata(twentyFourHourTotalUrl);
     }
- 
-
+    
+    
 	render() {
 
     const { isLoadingBaseData, isLoadingTwentyFourData } = this.state;
@@ -122,7 +122,7 @@ class App extends React.Component {
     	return (
       		<div>
               <div id='twentyFourHourDataDiv'>
-        			   <TwentyFourHourData />
+        			   {this.state.twentyFourHourData. length  > 0 ? <TwentyFourHourData data={this.state.twentyFourHourData} /> : null }
               </div>
               <div id='baseDataDiv'>
                  { this.state['nordic valley'].length > 0 ? <BaseData 
