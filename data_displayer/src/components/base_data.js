@@ -104,8 +104,8 @@ const BaseData = props => {
         })
     };
 
-    function returnBaseDataComponent(lineColor, data) {
-          return <VictoryLine style={{ data: { stroke: lineColor } }} data={data} />
+    function returnBaseDataComponent(lineColor, data, areaName) {
+          return <VictoryLine style={{ data: { stroke: lineColor } }} data={data} name={areaName} />
     };
 
     return (
@@ -113,6 +113,34 @@ const BaseData = props => {
         <div id='baseChart'>
         {pushBaseDataIntoArray(allAreasBaseDataprops)}
        <VictoryChart
+            events={[{
+                childName: 'all',
+                target: 'data',
+                eventHandlers: {
+                    onClick: () => {
+                        return [
+                            {
+                                childName: 'altaLine',
+                                target: 'data',
+                                mutation: (props) => ({ style: Object.assign({}, props.style, {
+                                    stroke: '#FFFFFF' }) })
+                            },                            {
+                                childName: 'snowbirdLine',
+                                target: 'data',
+                                mutation: (props) => ({ style: Object.assign({}, props.style, {
+                                    stroke: '#FFFFFF' }) })
+                            },
+                            {
+                                childName: 'brightonLine',
+                                target: 'data',
+                                mutation: (props) => ({ style: Object.assign({}, props.style, {
+                                    stroke: '#FFFFFF' }) })
+                            }, 
+
+                        ];
+                    }
+                }
+            }]}
             scale={{x: "time", y: "linear"}}
             domain={{y:[0,150]}}
             width={800}
@@ -124,20 +152,20 @@ const BaseData = props => {
                 return x.toLocaleDateString();
             }}
         />
-        {returnBaseDataComponent('#0000FF',prepAltaBaseData)}
-        {returnBaseDataComponent('#00CD22',prepSnowbirdBaseData)}
-        {returnBaseDataComponent('#FFFF33',prepSolitudeBaseData)}
-        {returnBaseDataComponent('#CC0000',prepBrightonBaseData)}
-        {returnBaseDataComponent('#990000',prepParkCityBaseData)}
-        {returnBaseDataComponent('#009900',prepDeerValleyBaseData)}
-        {returnBaseDataComponent('#ffcc00',prepSnowBasinBaseData)}
-        {returnBaseDataComponent('#6699ff',prepPowderMountainBaseData)}
-        {returnBaseDataComponent('#990033',prepCherryPeakBaseData)}
-        {returnBaseDataComponent('#33334d',prepNordicValleyBaseData)}
-        {returnBaseDataComponent('#cc3300',prepBeaverMountainBaseData)}
-        {returnBaseDataComponent('#993333',prepSundanceBaseData)}
-        {returnBaseDataComponent('#006600',prepBrianHeadBaseData)}
-        {returnBaseDataComponent('#336600',prepEaglePointBaseData)}
+        {returnBaseDataComponent('#0000FF',prepAltaBaseData, 'altaLine')}
+        {returnBaseDataComponent('#00CD22',prepSnowbirdBaseData, 'snowbirdLine')}
+        {returnBaseDataComponent('#FFFF33',prepSolitudeBaseData, 'solitudeLine')}
+        {returnBaseDataComponent('#CC0000',prepBrightonBaseData, 'brightonLine')}
+        {returnBaseDataComponent('#990000',prepParkCityBaseData, 'parkCityLine')}
+        {returnBaseDataComponent('#009900',prepDeerValleyBaseData, 'deerValleyLine')}
+        {returnBaseDataComponent('#ffcc00',prepSnowBasinBaseData, 'snowBasinLine')}
+        {returnBaseDataComponent('#6699ff',prepPowderMountainBaseData, 'powderMountainLine')}
+        {returnBaseDataComponent('#990033',prepCherryPeakBaseData, 'cherryPeakLine')}
+        {returnBaseDataComponent('#33334d',prepNordicValleyBaseData, 'nordicValleyLine')}
+        {returnBaseDataComponent('#cc3300',prepBeaverMountainBaseData, 'beaverMountainLine')}
+        {returnBaseDataComponent('#993333',prepSundanceBaseData, 'sundanceLine')}
+        {returnBaseDataComponent('#006600',prepBrianHeadBaseData, 'brianHeadLine')}
+        {returnBaseDataComponent('#336600',prepEaglePointBaseData, 'eaglePointLine')}
         </VictoryChart>
         <div id='baseLegend'>
         <VictoryLegend 
