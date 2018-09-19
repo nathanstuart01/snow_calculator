@@ -1,5 +1,6 @@
 import React from 'react';
-import {VictoryLine, VictoryChart, VictoryTooltip, VictoryGroup, VictoryAxis, VictoryLabel, VictoryLegend, VictoryVoronoiContainer, VictoryCursorContainer } from 'victory';
+import {VictoryLine, VictoryChart, VictoryGroup, 
+        VictoryAxis, VictoryLabel, VictoryLegend, VictoryCursorContainer} from 'victory';
 
 const BaseData = props => {
 
@@ -120,9 +121,8 @@ const BaseData = props => {
             padding={{top: 50, bottom:50, left:50 , right: 50}}
             containerComponent={
                 <VictoryCursorContainer
-                    cursorLabel={(d) => `${Math.round(d.y, 1)} inches`}
-                />
-            }
+                    cursorLabel={(d) => `${Math.round(d.y, 1)} in, ${d.x.toLocaleDateString()}`}
+                />}
         >
         <VictoryLabel text="Base Totals for Utah Ski Area's for 2018-2019" x={375} y={35} textAnchor="middle"/>     
         <VictoryAxis dependentAxis style={{ tickLabels: {fontSize: 10}, ticks: {stroke: "black", size: 3}, axisLabel: { fontSize: 12, padding: 38 }}} label='Base Depth (in)' />
@@ -130,15 +130,6 @@ const BaseData = props => {
                 return x.toLocaleDateString();
             }}
         />
-        <VictoryGroup
-            color="#c43a31"
-            labels={(d) => `y: ${d.y}`}
-            labelComponent={
-              <VictoryTooltip
-                style={{ fontSize: 10 }}
-              />}
-              >
-
         {returnBaseDataComponent('#0000FF',prepAltaBaseData, 'altaLine')}
         {returnBaseDataComponent('#00CD22',prepSnowbirdBaseData, 'snowbirdLine')}
         {returnBaseDataComponent('#FFFF33',prepSolitudeBaseData, 'solitudeLine')}
@@ -153,7 +144,6 @@ const BaseData = props => {
         {returnBaseDataComponent('#993333',prepSundanceBaseData, 'sundanceLine')}
         {returnBaseDataComponent('#006600',prepBrianHeadBaseData, 'brianHeadLine')}
         {returnBaseDataComponent('#336600',prepEaglePointBaseData, 'eaglePointLine')}
-        </VictoryGroup>
         </VictoryChart>
         <div id='baseLegend'>
         <VictoryLegend 
