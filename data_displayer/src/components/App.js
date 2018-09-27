@@ -1,6 +1,6 @@
 import React from 'react';
 import ForecastedSnowData from './forecasted_snow_data';
-import BaseData from './base_data';
+import BarBaseData from './bar_base_data';
 import TwentyFourHourData from './twenty_four_hour_data';
 
 
@@ -125,7 +125,7 @@ class App extends React.Component {
         			   {this.state.twentyFourHourData. length  > 0 ? <TwentyFourHourData data={this.state.twentyFourHourData} /> : null }
               </div>
               <div id='baseDataDiv'>
-                 { this.state['nordic valley'].length > 0 ? <BaseData 
+                 { this.state['nordic valley'].length > 0 ? <BarBaseData 
                  alta={this.state.alta} snowbird={this.state.snowbird} 
                  solitude={this.state.solitude} brighton={this.state.brighton}
                  deerValley={this.state['deer valley']} parkCity={this.state['park city']}

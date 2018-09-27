@@ -2,7 +2,7 @@ import React from 'react';
 import {VictoryLine, VictoryChart, VictoryGroup, VictorySharedEvents,
         VictoryAxis, VictoryLabel, VictoryLegend, VictoryCursorContainer} from 'victory';
 
-const BaseData = props => {
+const BarBaseData = props => {
 
     const alta = props.alta;
     const snowbird = props.snowbird;
@@ -19,9 +19,17 @@ const BaseData = props => {
     const sundance = props.sundance;
     const nordicValley = props.nordicValley;
 
-    const allAreasBaseDataprops = [];
+    // currrent data for display purposes
+    const todaysDate = new Date();
 
-    const tickValues = getTickValues();
+    // areas in an array for data display purposes
+
+    const tickValues = [
+    'Alta', 'Snowbird', 'Brighton', 'Solitude', `Park\nCity`, `Deer\nValley`, `Snow\nBasin`, `Powder\nMountain`, 
+    `Beaver\nMountain`, `Cherry\nPeak`, `Brian\nHead`, `Eagle\nPoint`, 'Sundance', `Nordic\nValley`
+    ]
+
+    const allAreasBaseDataprops = [];
 
     const legendValues = getLegendValues();
 
@@ -70,16 +78,6 @@ const BaseData = props => {
             )
     }
 
-    function getTickValues() {
-        return [ 
-            new Date('2018-03-01 GMT-0700'), 
-            new Date('2018-03-15 GMT-0700'), 
-            new Date('2018-04-01 GMT-0700'), 
-            new Date('2018-04-15 GMT-0700'), 
-            new Date('2018-05-01 GMT-0700')
-        ]
-    };
-
     function getLegendValues() {
         return[
             { name: "Alta", symbol: { fill: "#e6194B", type: 'minus'} },
@@ -119,33 +117,15 @@ const BaseData = props => {
             domain={{y:[0,150]}}
             width={800}
             padding={{top: 50, bottom:50, left:50 , right: 50}}
-            containerComponent={
-                <VictoryCursorContainer
-                    cursorDimension="x"
-                    cursorLabel={(d) => `${Math.round(d.y, 1)} in, ${d.x.toLocaleDateString()}  `}
-                />}
         >
-        <VictoryLabel text="Base Depths Utah Ski Area's 2018-2019" x={375} y={35} textAnchor="middle"/>     
-        <VictoryAxis dependentAxis style={{ tickLabels: {fontSize: 10}, ticks: {stroke: "black", size: 3}, axisLabel: { fontSize: 12, padding: 38 }}} label='Base Depth (in)' />
+        <VictoryLabel text="Current Base Depth Utah Ski Area's 2018-2019" x={375} y={35} textAnchor="middle"/>     
+        <VictoryAxis dependentAxis style={{ tickLabels: {fontSize: 10}, ticks: {stroke: "black", size: 3}, axisLabel: { fontSize: 12, padding: 38 }}} label='Depth in Inches' />
         <VictoryAxis   scale="time" style={{ tickLabels: { angle: 0, fontSize: 10}, ticks: {stroke: "black", size: 3} }} tickLabelComponent={<VictoryLabel />} tickValues={tickValues} tickFormat={ (x) => { 
-                return x.toLocaleDateString();
+                return x;
             }}
         />
 
-        {returnBaseDataComponent('#e6194B',prepAltaBaseData, 'altaLine')}
-        {returnBaseDataComponent('#3cb44b',prepSnowbirdBaseData, 'snowbirdLine')}
-        {returnBaseDataComponent('#4363d8',prepSolitudeBaseData, 'solitudeLine')}
-        {returnBaseDataComponent('#ffe119',prepBrightonBaseData, 'brightonLine')}
-        {returnBaseDataComponent('#f58231',prepParkCityBaseData, 'parkCityLine')}
-        {returnBaseDataComponent('#911eb4',prepDeerValleyBaseData, 'deerValleyLine')}
-        {returnBaseDataComponent('#42d4f4',prepSnowBasinBaseData, 'snowBasinLine')}
-        {returnBaseDataComponent('#6699ff',prepPowderMountainBaseData, 'powderMountainLine')}
-        {returnBaseDataComponent('#990033',prepCherryPeakBaseData, 'cherryPeakLine')}
-        {returnBaseDataComponent('#33334d',prepNordicValleyBaseData, 'nordicValleyLine')}
-        {returnBaseDataComponent('#cc3300',prepBeaverMountainBaseData, 'beaverMountainLine')}
-        {returnBaseDataComponent('#9A6324',prepSundanceBaseData, 'sundanceLine')}
-        {returnBaseDataComponent('#006600',prepBrianHeadBaseData, 'brianHeadLine')}
-        {returnBaseDataComponent('#336600',prepEaglePointBaseData, 'eaglePointLine')}
+
 
         </VictoryChart>
         <div id='baseLegend'>
@@ -163,5 +143,5 @@ const BaseData = props => {
 }
 
 
-export default BaseData;
+export default BarBaseData;
 
