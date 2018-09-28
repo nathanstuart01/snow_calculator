@@ -1,6 +1,6 @@
 import React from 'react';
 import {VictoryLine, VictoryChart, VictoryGroup, VictorySharedEvents,
-        VictoryAxis, VictoryLabel, VictoryLegend, VictoryCursorContainer} from 'victory';
+        VictoryAxis, VictoryLabel, VictoryLegend, VictoryCursorContainer, VictoryBar} from 'victory';
 
 const BarBaseData = props => {
 
@@ -27,6 +27,13 @@ const BarBaseData = props => {
     const tickValues = [
     'Alta', 'Snowbird', 'Brighton', 'Solitude', `Park\nCity`, `Deer\nValley`, `Snow\nBasin`, `Powder\nMountain`, 
     `Beaver\nMountain`, `Cherry\nPeak`, `Brian\nHead`, `Eagle\nPoint`, 'Sundance', `Nordic\nValley`
+    ]
+
+    const sampleData = [
+    {x: 'Alta', y:30},
+    {x: 'Snowbird', y:28},
+    {x: 'Solitude', y:20},
+    {x: 'Brighton', y:20},
     ]
 
     const allAreasBaseDataprops = [];
@@ -113,16 +120,16 @@ const BarBaseData = props => {
         {pushBaseDataIntoArray(allAreasBaseDataprops)}
 
        <VictoryChart
-            scale={{x: "time", y: "linear"}}
+            scale={{y: "linear"}}
             domain={{y:[0,150]}}
             width={800}
             padding={{top: 50, bottom:50, left:50 , right: 50}}
         >
         <VictoryLabel text="Current Base Depth Utah Ski Area's 2018-2019" x={375} y={35} textAnchor="middle"/>     
         <VictoryAxis dependentAxis style={{ tickLabels: {fontSize: 10}, ticks: {stroke: "black", size: 3}, axisLabel: { fontSize: 12, padding: 38 }}} label='Depth in Inches' />
-        <VictoryAxis   scale="time" style={{ tickLabels: { angle: 0, fontSize: 10}, ticks: {stroke: "black", size: 3} }} tickLabelComponent={<VictoryLabel />} tickValues={tickValues} tickFormat={ (x) => { 
-                return x;
-            }}
+        <VictoryAxis  /> 
+        <VictoryBar   
+        data={sampleData}
         />
 
 
