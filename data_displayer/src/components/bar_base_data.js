@@ -4,120 +4,25 @@ import {VictoryLine, VictoryChart, VictoryGroup, VictorySharedEvents,
 
 const BarBaseData = props => {
 
-    const alta = props.alta;
-    const snowbird = props.snowbird;
-    const brighton = props.brighton;
-    const solitude = props.solitude;
-    const parkCity = props.parkCity;
-    const deerValley = props.deerValley;
-    const snowBasin = props.snowBasin;
-    const powderMountain = props.powderMountain;
-    const beaverMountain = props.beaverMountain;
-    const cherryPeak = props.cherryPeak;
-    const brianHead = props.brianHead;
-    const eaglePoint = props.eaglePoint;
-    const sundance = props.sundance;
-    const nordicValley = props.nordicValley;
-
-    // currrent data for display purposes
-    const todaysDate = new Date();
-
-    // areas in an array for data display purposes
-
-    const tickValues = [
-    'Alta', 'Snowbird', 'Brighton', 'Solitude', `Park\nCity`, `Deer\nValley`, `Snow\nBasin`, `Powder\nMountain`, 
-    `Beaver\nMountain`, `Cherry\nPeak`, `Brian\nHead`, `Eagle\nPoint`, 'Sundance', `Nordic\nValley`
-    ]
-
-    const sampleData = [
-    {x: 'Alta', y:30},
-    {x: 'Snowbird', y:28},
-    {x: 'Solitude', y:20},
-    {x: 'Brighton', y:20},
-    ]
-
-    const allAreasBaseDataprops = [];
-
-    const legendValues = getLegendValues();
-
-        // northern utah ski areas
-
-    const prepSnowBasinBaseData = prepBaseData(snowBasin);
-
-    const prepPowderMountainBaseData = prepBaseData(powderMountain);
-
-    const prepBeaverMountainBaseData = prepBaseData(beaverMountain);
-
-    const prepCherryPeakBaseData = prepBaseData(cherryPeak);
-
-    const prepNordicValleyBaseData = prepBaseData(nordicValley);
-
-    // cottonwood ski areas
-
-    const prepAltaBaseData = prepBaseData(alta);
-
-    const prepSnowbirdBaseData = prepBaseData(snowbird);
-    
-    const prepSolitudeBaseData = prepBaseData(solitude);
-
-    const prepBrightonBaseData = prepBaseData(brighton);
-
-    // park city ski areas
-
-    const prepParkCityBaseData = prepBaseData(parkCity);
-
-    const prepDeerValleyBaseData = prepBaseData(deerValley);
-
-    // cental utah ski areas
-
-    const prepSundanceBaseData = prepBaseData(sundance);
-
-    // southern utah ski areas
-
-    const prepBrianHeadBaseData = prepBaseData(brianHead);
-
-    const prepEaglePointBaseData = prepBaseData(eaglePoint);
-
-    function pushBaseDataIntoArray(array) {
-        array.push(alta, snowbird, brighton, solitude, parkCity, deerValley,
-                    snowBasin, powderMountain, beaverMountain, cherryPeak,
-                    nordicValley, sundance, brianHead, eaglePoint
-            )
-    }
-
-    function getLegendValues() {
-        return[
-            { name: "Alta", symbol: { fill: "#e6194B", type: 'minus'} },
-          { name: "Snowbird", symbol: { fill: "#3cb44b", type: 'minus' } },
-          { name: "Brighton", symbol: { fill: "#ffe119", type: 'minus' } },
-          { name: "Solitude", symbol: { fill: "#4363d8", type: 'minus' } },
-          { name: "Park City ", symbol: { fill: "#f58231", type: 'minus' } },
-          { name: "Deer Valley", symbol: { fill: "#911eb4", type: 'minus' } },
-          { name: "Snowbasin", symbol: { fill: "#42d4f4", type: 'minus' } },
-          { name: "Powder Mtn.", symbol: { fill: "#6699ff", type: 'minus' } },
-          { name: "Beaver Mtn.", symbol: { fill: "#cc3300", type: 'minus' } },
-          { name: "Cherry Peak", symbol: { fill: "#990033", type: 'minus' } },
-          { name: "Nordic Valley", symbol: { fill: "#33334d", type: 'minus' } },
-          { name: "Sundance", symbol: { fill: "#9A6324", type: 'minus' } },
-          { name: "Brian Head", symbol: { fill: "#006600", type: 'minus' } },
-          { name: "Eagle Point", symbol: { fill: "#336600", type: 'minus' } },
-          ]
-    };
-
-    function prepBaseData(array) {
-       return array.map((val) => {
-            return {x: new Date(val.crawled_at), y: val.base_total }
-        })
-    };
-
-    function returnBaseDataComponent(lineColor, data, areaName) {
-        return <VictoryLine style={{ data: { stroke: lineColor } }} data={data} name={areaName} />
-    };
+    const alta = props.alta.slice(-1)[0];
+    const snowbird = props.snowbird.slice(-1)[0];
+    const brighton = props.brighton.slice(-1)[0];
+    const solitude = props.solitude.slice(-1)[0];
+    const parkCity = props.parkCity.slice(-1)[0];
+    const deerValley = props.deerValley.slice(-1)[0];
+    const snowBasin = props.snowBasin.slice(-1)[0];
+    const powderMountain = props.powderMountain.slice(-1)[0];
+    const beaverMountain = props.beaverMountain.slice(-1)[0];
+    const cherryPeak = props.cherryPeak.slice(-1)[0];
+    const brianHead = props.brianHead.slice(-1)[0];
+    const eaglePoint = props.eaglePoint.slice(-1)[0];
+    const sundance = props.sundance.slice(-1)[0];
+    const nordicValley = props.nordicValley.slice(-1)[0];
 
     return (
 
         <div id='baseChart'>
-        {pushBaseDataIntoArray(allAreasBaseDataprops)}
+    
 
        <VictoryChart
             scale={{y: "linear"}}
@@ -128,22 +33,105 @@ const BarBaseData = props => {
         <VictoryLabel text="Current Base Depth Utah Ski Area's 2018-2019" x={375} y={35} textAnchor="middle"/>     
         <VictoryAxis dependentAxis style={{ tickLabels: {fontSize: 10}, ticks: {stroke: "black", size: 3}, axisLabel: { fontSize: 12, padding: 38 }}} label='Depth in Inches' />
         <VictoryAxis  /> 
-        <VictoryBar   
-        data={sampleData}
-        />
-
-
-
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: alta['area_name'], y: alta['base_total']}]}
+        />       
+         <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: snowbird['area_name'], y: snowbird['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: solitude['area_name'], y: solitude['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: brighton['area_name'], y: brighton['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: parkCity['area_name'], y: parkCity['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: deerValley['area_name'], y: deerValley['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: snowBasin['area_name'], y: snowBasin['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: powderMountain['area_name'], y: powderMountain['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: beaverMountain['area_name'], y: beaverMountain['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: cherryPeak['area_name'], y: cherryPeak['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: nordicValley['area_name'], y: nordicValley['base_total']}]}
+        />       
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: sundance['area_name'], y: sundance['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: eaglePoint['area_name'], y: eaglePoint['base_total']}]}
+        />        
+        <VictoryBar
+        style={{
+            data: { fill: "#c43a31" }
+            }}   
+        data={[
+            {x: brianHead['area_name'], y: brianHead['base_total']}]}
+        />        
         </VictoryChart>
-        <div id='baseLegend'>
-        <VictoryLegend 
-        orientation="horizontal"
-        width={900}
-        style={{ border: { stroke: "black" }, labels: {fontSize: 16} }}
-        itemsPerRow={7}
-        data={legendValues}
-        />
-        </div>
         </div>
 
         );
