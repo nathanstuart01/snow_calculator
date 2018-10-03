@@ -15,20 +15,7 @@ class App extends React.Component {
     isLoadingTwentyFourData: false,
     twentyFourHourData: [],
     forecastedSnowData: [],
-    alta: [],
-    snowbird: [],
-    solitude: [],
-    brighton: [],
-    'park city': [],
-    'deer valley': [],
-    'snowbasin': [],
-    'powder mountain': [],
-    'beaver mountain': [],
-    'cherry peak': [],
-    'brian head': [],
-    'eagle point': [],
-    'sundance': [],
-    'nordic valley': []
+    baseData: []
   }
 
   getDataToFetch = (urlsToFetch) => {
@@ -38,15 +25,14 @@ class App extends React.Component {
 
   }
 
-  loadBaseData = (urlToLoad) => {
+  getBaseData = (urlToLoad) => {
 
     fetch(urlToLoad)
       .then(res => res.json())
       .then(
         (result) => {
-          let area = result[0]['area_name']
           this.setState({
-              [area]: result
+              baseData: result, isLoadingBaseData: false
           });
         },
         (error) => {
@@ -55,13 +41,6 @@ class App extends React.Component {
           });
         }
       )
-      .then(
-         () => {
-          this.setState({
-            isLoadingBaseData: false
-          }) 
-         } 
-        )
     }
 
     getTwentyFourHourdata = (urlToLoad) => {
@@ -84,28 +63,13 @@ class App extends React.Component {
 
   componentDidMount() {
 
-      const baseDataUrls = [
-        'http://localhost:5000/api/v1/basedata/alta',
-        'http://localhost:5000/api/v1/basedata/snowbird',
-        'http://localhost:5000/api/v1/basedata/solitude',
-        'http://localhost:5000/api/v1/basedata/brighton',
-        'http://localhost:5000/api/v1/basedata/park city',
-        'http://localhost:5000/api/v1/basedata/deer valley',
-        'http://localhost:5000/api/v1/basedata/powder mountain',
-        'http://localhost:5000/api/v1/basedata/snowbasin',
-        'http://localhost:5000/api/v1/basedata/beaver mountain',
-        'http://localhost:5000/api/v1/basedata/cherry peak',
-        'http://localhost:5000/api/v1/basedata/eagle point',
-        'http://localhost:5000/api/v1/basedata/brian head',
-        'http://localhost:5000/api/v1/basedata/sundance',
-        'http://localhost:5000/api/v1/basedata/nordic valley',
-      ];
+      const baseDataUrl = 'http://localhost:5000/api/v1/basedata/';
 
       const twentyFourHourTotalUrl = 'http://127.0.0.1:5000/api/v1/twentyfourhourdata/';
 
       this.setState({ isLoadingBaseData: true, isLoadingTwentyFourData: true });
 
-      this.getDataToFetch(baseDataUrls);
+      this.getBaseData(baseDataUrl);
 
       this.getTwentyFourHourdata(twentyFourHourTotalUrl);
     }
@@ -122,18 +86,10 @@ class App extends React.Component {
     	return (
       		<div>
               <div id='twentyFourHourDataDiv'>
-        			   {this.state.twentyFourHourData. length  > 0 ? <TwentyFourHourData data={this.state.twentyFourHourData} /> : null }
+        			   {this.state.twentyFourHourData.length  > 0 ? <TwentyFourHourData data={this.state.twentyFourHourData} /> : null }
               </div>
               <div id='baseDataDiv'>
-                 { this.state['nordic valley'].length > 0 ? <BarBaseData 
-                 alta={this.state.alta} snowbird={this.state.snowbird} 
-                 solitude={this.state.solitude} brighton={this.state.brighton}
-                 deerValley={this.state['deer valley']} parkCity={this.state['park city']}
-                 snowBasin={this.state.snowbasin} powderMountain={this.state['powder mountain']}
-                 beaverMountain={this.state['beaver mountain']} cherryPeak={this.state['cherry peak']}
-                 eaglePoint={this.state['eagle point']} brianHead={this.state['brian head']}
-                 nordicValley={this.state['nordic valley']} sundance={this.state.sundance}
-             /> : null }
+                 { this.state.baseData.length > 0 ? <BarBaseData data={this.state.baseData}/> : null }
              </div>
           </div>
     	);
