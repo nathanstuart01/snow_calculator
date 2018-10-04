@@ -1,6 +1,5 @@
 import React from 'react';
-import {VictoryLine, VictoryChart, VictoryGroup, VictorySharedEvents,
-        VictoryAxis, VictoryLabel, VictoryLegend, VictoryCursorContainer, VictoryBar} from 'victory';
+import {VictoryChart, VictoryAxis, VictoryLabel, VictoryBar, VictoryVoronoiContainer, VictoryTheme } from 'victory';
 
 const BarBaseData = props => {
 
@@ -18,15 +17,20 @@ const BarBaseData = props => {
             domain={{y:[0,150]}}
             width={800}
             padding={{top: 50, bottom:50, left:50 , right: 50}}
+              containerComponent={
+                    <VictoryVoronoiContainer
+                        labels={(d) => `${d.y} in`}
+                        radius={15}
+                    />
+                }
         >
         <VictoryLabel text="Current Base Depth Utah Ski Area's 2018-2019" x={375} y={35} textAnchor="middle"/>     
-        <VictoryAxis dependentAxis style={{ tickLabels: {fontSize: 10}, ticks: {stroke: "black", size: 3}, axisLabel: { fontSize: 12, padding: 38 }}} label='Depth in Inches' />
+        <VictoryAxis dependentAxis style={{ tickLabels: {fontSize: 10}, ticks: {stroke: "black", size: 3}, axisLabel: { fontSize: 12, padding: 38 }}} label='Depth in Inches (in)' />
         <VictoryAxis  /> 
-        <VictoryBar
-        style={{
-            data: { fill: "#c43a31" }
-            }}   
+        <VictoryBar 
         data={baseData}
+        style={{ data: { fill: "#c43a31" , stroke: "black", strokeWidth: 2} }}
+        labelComponent={<VictoryLabel dy={25}/>}
         />       
       
         </VictoryChart>
