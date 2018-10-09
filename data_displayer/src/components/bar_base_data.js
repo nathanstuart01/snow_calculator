@@ -4,7 +4,7 @@ import {VictoryChart, VictoryAxis, VictoryLabel, VictoryBar, VictoryVoronoiConta
 const BarBaseData = props => {
 
     const baseData = props.data.map((d) => {
-        return {y: d.base_total }
+        return {x: d.area_name, y: d.base_total }
     });
 
     const baseLabels = props.data.map((d) => {
@@ -18,7 +18,8 @@ const BarBaseData = props => {
 
        <VictoryChart
             scale={{y: "linear"}}
-            domain={{y:[0,150]}}
+            domain={{y:[0,140] }}
+            domainPadding={{x:[15, 0]}}
             width={800}
               containerComponent={
                     <VictoryVoronoiContainer
@@ -30,13 +31,14 @@ const BarBaseData = props => {
         <VictoryLabel text="Current Base Depth Utah Ski Area's 2018-2019" x={375} y={35} textAnchor="middle"/>     
         <VictoryAxis dependentAxis style={{ 
             tickLabels: {fontSize: 10}, 
-            grid: {stroke: "grey", size: 3}, 
-            axisLabel: { fontSize: 12 }
+            grid: {stroke: "grey", size: 5}, 
+            axisLabel: { fontSize: 11, padding:30 }
             }} 
             label='Depth in Inches (in)' />
-        <VictoryAxis  style={{ tickLabels: { angle: -30, fontSize: 10, padding: 20} }} tickFormat={baseLabels} /> 
-        <VictoryBar 
-        data={baseData}
+        <VictoryAxis style={{ tickLabels: { angle: -20, fontSize: 10, padding: 10 }}}  /> 
+        <VictoryBar
+        barWidth={10} 
+        data={baseData} 
         style={{ 
             data: { fill: "#c43a31" , stroke: "black", strokeWidth: 2},
             }}
