@@ -1,14 +1,12 @@
 import React from 'react';
 import ForecastedSnowData from './forecasted_snow_data';
 import BarBaseData from './bar_base_data';
-import TwentyFourHourData from './twenty_four_hour_data';
+import BarTwentyFourHourData from './bar_twenty_four_hour_data';
 
 
 
 class App extends React.Component {
 
-  // this is a local state object that can be accessed later with this
-  // can only change this through setState()
   state = {
     error: null,
     isLoadingBaseData: false,
@@ -80,16 +78,16 @@ class App extends React.Component {
     const { isLoadingBaseData, isLoadingTwentyFourData } = this.state;
 
     if (isLoadingBaseData || isLoadingTwentyFourData) {
-      return <p>Loading Area Data....</p>;
+      return <p id='loadingParagraph'>Loading Utah Snowfall Data....</p>;
     }
 
     	return (
       		<div>
-              <div id='twentyFourHourDataDiv'>
-        			   {this.state.twentyFourHourData.length  > 0 ? <TwentyFourHourData data={this.state.twentyFourHourData} /> : null }
+              <div>
+                {this.state.baseData.length > 0 ? <BarBaseData data={this.state.baseData}/> : null }
               </div>
-              <div id='baseDataDiv'>
-                 { this.state.baseData.length > 0 ? <BarBaseData data={this.state.baseData}/> : null }
+              <div>
+                {this.state.twentyFourHourData.length  > 0 ? <BarTwentyFourHourData data={this.state.twentyFourHourData} /> : null }
              </div>
           </div>
     	);

@@ -2,12 +2,10 @@ div {
 	display: block;
 }
 
-#baseChart {
-	margin-left: 35px;
+#loadingParagraph {
+	font: 50px arial, sans-serif;
+	text-align: center;
 }
 
-#baseLegend {
-	margin-left: 25px;
-}
 
 
