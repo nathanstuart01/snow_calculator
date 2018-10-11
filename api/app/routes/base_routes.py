@@ -7,13 +7,13 @@ from sqlalchemy import asc
 def get_base_totals():
 	if request.method == 'GET':
 		#create a query within in here that gets the current date of base data only, makes each area clickable to go to history of all base data totals for that area
-		bases_data = UtahBaseTotals.query.filter_by(crawled_at='2018-03-05').order_by(asc(UtahBaseTotals.crawled_at)).all()
+		bases_data = UtahBaseTotals.query.filter_by(crawled_at='2018-03-05').order_by(asc(UtahBaseTotals.area_name)).all()
 		base_totals_data = []
 
 		for base_data in bases_data:
 			obj = {
 					'area_id': base_data.area_id,
-					'area_name': base_data.area_name,
+					'area_name': base_data.area_name.title(),
 					'base_total': base_data.base_total,
 					'crawled_at': base_data.crawled_at.strftime("%Y-%m-%d")
 			}
@@ -32,7 +32,7 @@ def get_area_base_total(area_base_totals):
 		for data in area_base_data:
 			area_data_obj = {
 							'area_id': data.area_id,
-							'area_name': data.area_name,
+							'area_name': data.area_name.title(),
 							'base_total': data.base_total,
 							'crawled_at': data.crawled_at.strftime("%Y-%m-%d")
 						}

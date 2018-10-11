@@ -12,7 +12,7 @@ def get_twenty_four_hour_totals():
 
 		for twenty_four_data in twenty_fours_data:
 			obj = {
-					'area_name': twenty_four_data.area_name,
+					'area_name': twenty_four_data.area_name.title(),
 					'twenty_four_hour_total': twenty_four_data.twenty_four_hour_total,
 					'crawled_at': twenty_four_data.crawled_at.strftime("%Y-%m-%d")
 			} 
@@ -30,7 +30,7 @@ def get_area_twenty_four_hour_total(area_twenty_four_hour_totals):
 		area_data = []
 		for data in area_twenty_four_hour_data:
 			area_data_obj = {
-							'area_name': data.area_name,
+							'area_name': data.area_name.title(),
 							'twenty_four_hour_total': data.twenty_four_hour_total,
 							'crawled_at': data.crawled_at.strftime("%Y-%m-%d")
 						}
