@@ -1,7 +1,7 @@
 import React from 'react';
-import ForecastedSnowData from './forecasted_snow_data';
 import BarBaseData from './bar_base_data';
 import BarTwentyFourHourData from './bar_twenty_four_hour_data';
+import DataNotReady from './data_not_ready';
 
 
 
@@ -88,6 +88,9 @@ class App extends React.Component {
               </div>
               <div>
                 {this.state.twentyFourHourData.length  > 0 ? <BarTwentyFourHourData data={this.state.twentyFourHourData} /> : null }
+             </div>
+             <div>
+             {this.state.baseData.length === 0 || this.state.twentyFourHourData.length === 0 ? <DataNotReady /> : null }
              </div>
           </div>
     	);

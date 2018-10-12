@@ -13,7 +13,7 @@ const BarBaseData = props => {
 
     return (
 
-        <div id='baseChart'>
+        <div>
     
 
        <VictoryChart

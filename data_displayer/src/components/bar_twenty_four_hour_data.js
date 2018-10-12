@@ -13,9 +13,8 @@ const BarTwentyFourHourData = props => {
 
     return (
 
-        <div id='baseChart'>
+        <div>
     
-
        <VictoryChart
             scale={{y: "linear"}}
             domain={{y:[0,30] }}
