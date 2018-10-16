@@ -1,7 +1,8 @@
 import React from 'react';
 import BarBaseData from './bar_base_data';
 import BarTwentyFourHourData from './bar_twenty_four_hour_data';
-import DataNotReady from './data_not_ready';
+import BaseDataNotReady from './base_data_not_ready';
+import TwentyFourDataNotReady from './twenty_four_data_not_ready';
 
 
 
@@ -79,18 +80,15 @@ class App extends React.Component {
 
     if (isLoadingBaseData || isLoadingTwentyFourData) {
       return <p id='loadingParagraph'>Loading Utah Snowfall Data....</p>;
-    }
+    } 
 
     	return (
       		<div>
               <div>
-                {this.state.baseData.length > 0 ? <BarBaseData data={this.state.baseData}/> : null }
+                {this.state.baseData.length > 0 ? <BarBaseData data={this.state.baseData}/> : <BaseDataNotReady /> }
               </div>
               <div>
-                {this.state.twentyFourHourData.length  > 0 ? <BarTwentyFourHourData data={this.state.twentyFourHourData} /> : null }
-             </div>
-             <div>
-             {this.state.baseData.length === 0 || this.state.twentyFourHourData.length === 0 ? <DataNotReady /> : null }
+                {this.state.twentyFourHourData.length  > 0 ? <BarTwentyFourHourData data={this.state.twentyFourHourData} /> : <TwentyFourDataNotReady /> }
              </div>
           </div>
     	);

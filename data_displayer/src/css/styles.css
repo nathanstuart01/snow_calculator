@@ -5,7 +5,19 @@ div {
 #loadingParagraph {
 	font: 50px arial, sans-serif;
 	text-align: center;
+	padding: 50px;
 }
 
+#baseDataNotReadyParagraph {
+	font: 50px arial, sans-serif;
+	text-align: center;
+	padding: 50px;
+}
+
+#twentyFourDataNotReadyParagraph {
+	font: 50px arial, sans-serif;
+	text-align: center;
+	padding: 50px;
+}
 
 
