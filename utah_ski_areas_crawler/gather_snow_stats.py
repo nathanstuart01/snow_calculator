@@ -19,7 +19,9 @@ class GatherSnowStats():
 		while i < 14:
 			ski_area = AreasCrawler(area_info[i]['name'], area_info[i]['url'])
 			ski_area_base = ski_area.get_base_total(ski_area.area_url, area_info[i]['base_selector'], area_info[i]['base_selector_index'])
-			base_names.append(ski_area.area_name)	
+			base_names.append(ski_area.area_name)
+			if ski_area_base == None:
+				ski_area_base = 0	
 			base_totals.append(ski_area_base)
 			i = i + 1
 		base_data = dict(zip(base_names, base_totals))
@@ -35,6 +37,8 @@ class GatherSnowStats():
 			ski_area = AreasCrawler(area_info[i]['name'], area_info[i]['url'])
 			ski_area_24_hr_total = ski_area.get_24_hr_total(ski_area.area_url, area_info[i]['twenty_four_hr_selector'], area_info[i]['twenty_four_hr_index'])
 			twenty_four_hr_names.append(ski_area.area_name)
+			if ski_area_24_hr_total == None:
+				ski_area_24_hr_total = 0
 			twenty_four_hr_totals.append(ski_area_24_hr_total)
 			i = i + 1
 		twenty_four_hr_data = dict(zip(twenty_four_hr_names, twenty_four_hr_totals))
