@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  crawler:
+    image: crawler:latest
+  crawler_db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: utahskiareas
+    ports:
+      - 3308:3308
