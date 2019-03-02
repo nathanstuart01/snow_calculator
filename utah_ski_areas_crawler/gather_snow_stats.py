@@ -4,6 +4,7 @@ import csv
 import datetime
 import psycopg2
 import time
+import os
 
 class GatherSnowStats():
 
@@ -64,7 +65,9 @@ class GatherSnowStats():
 			print("No other data type to save yet")	
 
 	def save_data_to_db(self, file):
-		conn = psycopg2.connect("host=localhost dbname=utahskiareas user=postgres")
+		user = os.getenv('DB_USER')
+		password = os.getenv('DB_PASS')
+		conn = psycopg2.connect(f"host=localhost dbname=utahskiareas user={user} password={password}")
 		cur = conn.cursor()
 		with open(file, 'r') as f:
 			if self.stat_type == 'base':

@@ -5,15 +5,15 @@ import os
 class Config(object):
 	"""Parent Configuration Class """
 	DEBUG = False
-	SECRET = os.getenv('SECRET') or 'ilovelewis'
-	SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL') or 'postgresql://localhost/utahskiareas'
+	SECRET = os.getenv('SECRET_KEY')
+	SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 	
 
 
-class DevelopmentConfig(Config):
+class ProductionConfig(Config):
 	"""Configuration for development"""
-	DEBUG = True
+	DEBUG = False
 
 
 
