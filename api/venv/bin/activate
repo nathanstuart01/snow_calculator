@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/jessicastuart/Desktop/nathan-code/python_work/snow_calculator/api/venv"
+VIRTUAL_ENV="/home/crawler/snow_calculator/api/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
