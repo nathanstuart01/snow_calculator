@@ -5,11 +5,20 @@ import datetime
 import psycopg2
 import time
 import os
+<<<<<<< HEAD
+=======
+from dotenv import load_dotenv
+
+load_dotenv()
+>>>>>>> 122ecd0141abeb7e538515fb2e6b5998ba1745f1
 
 class GatherSnowStats():
 
 	def __init__(self, stat_type):
 		self.stat_type = stat_type
+		self.DB_NAME = os.getenv("DB_NAME")
+		self.DB_USER = os.getenv("DB_USER")
+		self.DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 	def crawl_base_data(self):
 		base_names = []	
@@ -20,7 +29,9 @@ class GatherSnowStats():
 		while i < 14:
 			ski_area = AreasCrawler(area_info[i]['name'], area_info[i]['url'])
 			ski_area_base = ski_area.get_base_total(ski_area.area_url, area_info[i]['base_selector'], area_info[i]['base_selector_index'])
-			base_names.append(ski_area.area_name)	
+			base_names.append(ski_area.area_name)
+			if ski_area_base == None:
+				ski_area_base = 0	
 			base_totals.append(ski_area_base)
 			i = i + 1
 		base_data = dict(zip(base_names, base_totals))
@@ -36,6 +47,8 @@ class GatherSnowStats():
 			ski_area = AreasCrawler(area_info[i]['name'], area_info[i]['url'])
 			ski_area_24_hr_total = ski_area.get_24_hr_total(ski_area.area_url, area_info[i]['twenty_four_hr_selector'], area_info[i]['twenty_four_hr_index'])
 			twenty_four_hr_names.append(ski_area.area_name)
+			if ski_area_24_hr_total == None:
+				ski_area_24_hr_total = 0
 			twenty_four_hr_totals.append(ski_area_24_hr_total)
 			i = i + 1
 		twenty_four_hr_data = dict(zip(twenty_four_hr_names, twenty_four_hr_totals))
@@ -65,9 +78,13 @@ class GatherSnowStats():
 			print("No other data type to save yet")	
 
 	def save_data_to_db(self, file):
+<<<<<<< HEAD
 		user = os.getenv('DB_USER')
 		password = os.getenv('DB_PASS')
 		conn = psycopg2.connect(f"host=localhost dbname=utahskiareas user={user} password={password}")
+=======
+		conn = psycopg2.connect(dbname=self.DB_NAME, user=self.DB_USER, password=self.DB_PASSWORD)
+>>>>>>> 122ecd0141abeb7e538515fb2e6b5998ba1745f1
 		cur = conn.cursor()
 		with open(file, 'r') as f:
 			if self.stat_type == 'base':

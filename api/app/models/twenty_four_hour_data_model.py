@@ -1,6 +1,5 @@
 from app import app 
 from app import db
-import psycopg2
 
 class UtahTwentyFourHourTotals(db.Model):
 	"""This class represents the twenty four hour totals table """

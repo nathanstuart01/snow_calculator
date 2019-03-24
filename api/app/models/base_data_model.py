@@ -1,6 +1,5 @@
 from app import app
 from app import db
-import psycopg2
 
 class UtahBaseTotals(db.Model):
 	"""This class represents the base totals table """
@@ -14,4 +13,4 @@ class UtahBaseTotals(db.Model):
 	crawled_at = db.Column(db.DateTime, nullable=False)
 
 	def __repr__(self):
-		return '<UtahBaseTotals (%r, %r, %r)>' % (self.area_name, self.base_total, self.crawled_at)
+		return '<UtahBaseTotals (%r, %r, %r, %r)>' % (self.area_id, self.area_name, self.base_total, self.crawled_at)
