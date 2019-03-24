@@ -5,7 +5,6 @@ import BaseDataNotReady from './base_data_not_ready';
 import TwentyFourDataNotReady from './twenty_four_data_not_ready';
 
 
-
 class App extends React.Component {
 
   state = {
@@ -62,9 +61,9 @@ class App extends React.Component {
 
   componentDidMount() {
 
-      const baseDataUrl = 'http://localhost:5000/api/v1/basedata/';
+      const baseDataUrl = process.env.REACT_APP_BASE_API_URL;
 
-      const twentyFourHourTotalUrl = 'http://127.0.0.1:5000/api/v1/twentyfourhourdata/';
+      const twentyFourHourTotalUrl = process.env.REACT_APP_TWENTY_FOUR_HOUR_API_URL;
 
       this.setState({ isLoadingBaseData: true, isLoadingTwentyFourData: true });
 

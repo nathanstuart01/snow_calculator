@@ -4,11 +4,18 @@ import csv
 import datetime
 import psycopg2
 import time
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class GatherSnowStats():
 
 	def __init__(self, stat_type):
 		self.stat_type = stat_type
+		self.DB_NAME = os.getenv("DB_NAME")
+		self.DB_USER = os.getenv("DB_USER")
+		self.DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 	def crawl_base_data(self):
 		base_names = []	
@@ -68,7 +75,7 @@ class GatherSnowStats():
 			print("No other data type to save yet")	
 
 	def save_data_to_db(self, file):
-		conn = psycopg2.connect("dbname=utahskiareas user=crawler password=crawler")
+		conn = psycopg2.connect(dbname=self.DB_NAME, user=self.DB_USER, password=self.DB_PASSWORD)
 		cur = conn.cursor()
 		with open(file, 'r') as f:
 			if self.stat_type == 'base':
