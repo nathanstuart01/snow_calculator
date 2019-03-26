@@ -78,13 +78,7 @@ class GatherSnowStats():
 			print("No other data type to save yet")	
 
 	def save_data_to_db(self, file):
-<<<<<<< HEAD
-		user = os.getenv('DB_USER')
-		password = os.getenv('DB_PASS')
-		conn = psycopg2.connect(f"host=localhost dbname=utahskiareas user={user} password={password}")
-=======
 		conn = psycopg2.connect(dbname=self.DB_NAME, user=self.DB_USER, password=self.DB_PASSWORD)
->>>>>>> 122ecd0141abeb7e538515fb2e6b5998ba1745f1
 		cur = conn.cursor()
 		with open(file, 'r') as f:
 			if self.stat_type == 'base':
