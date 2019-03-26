@@ -5,12 +5,9 @@ import datetime
 import psycopg2
 import time
 import os
-<<<<<<< HEAD
-=======
 from dotenv import load_dotenv
 
 load_dotenv()
->>>>>>> 122ecd0141abeb7e538515fb2e6b5998ba1745f1
 
 class GatherSnowStats():
 
