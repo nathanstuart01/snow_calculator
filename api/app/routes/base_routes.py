@@ -7,6 +7,9 @@ import datetime
 @app.route('/api/v1/basedata/')
 def get_base_totals():
 	date = datetime.datetime.today().strftime('%Y-%m-%d')
+	key = request.headers.get('API-Key')
+	if key == None:
+		print('no key')
 	if request.method == 'GET':
 		bases_data = UtahBaseTotals.query.filter_by(crawled_at=date).order_by(asc(UtahBaseTotals.area_name)).all()
 		base_totals_data = []
