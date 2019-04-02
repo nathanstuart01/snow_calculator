@@ -13,7 +13,6 @@ def get_base_totals():
 	date = datetime.datetime.today().strftime('%Y-%m-%d')
 	client_key = request.headers.get('API-Key')
 	SERVER_API_KEY = os.getenv('SERVER_API_KEY')
-	print(SERVER_API_KEY)
 	if client_key == SERVER_API_KEY:
 		print('key matches')
 	if request.method == 'GET':

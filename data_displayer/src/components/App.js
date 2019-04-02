@@ -23,7 +23,10 @@ class App extends React.Component {
 
   }
 
-  getBaseData = (urlToLoad) => {
+  getBaseData = (urlToLoad, apiKey) => {
+
+    console.log('base data key')
+    console.log(apiKey)
 
     fetch(urlToLoad)
       .then(res => res.json())
@@ -41,8 +44,11 @@ class App extends React.Component {
       )
     }
 
-    getTwentyFourHourdata = (urlToLoad) => {
-
+    getTwentyFourHourdata = (urlToLoad, apiKey) => {
+    
+    console.log('24 hr key')
+    console.log(apiKey)
+    
     fetch(urlToLoad)
       .then(res => res.json())
       .then(
@@ -65,11 +71,14 @@ class App extends React.Component {
 
       const twentyFourHourTotalUrl = process.env.REACT_APP_TWENTY_FOUR_HOUR_API_URL;
 
+      const clientApiKey = process.env.REACT_APP_API_KEY;
+
       this.setState({ isLoadingBaseData: true, isLoadingTwentyFourData: true });
 
-      this.getBaseData(baseDataUrl);
+      this.getBaseData(baseDataUrl, clientApiKey);
 
-      this.getTwentyFourHourdata(twentyFourHourTotalUrl);
+      this.getTwentyFourHourdata(twentyFourHourTotalUrl, clientApiKey);
+
     }
     
     
