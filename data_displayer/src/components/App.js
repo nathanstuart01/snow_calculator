@@ -25,9 +25,6 @@ class App extends React.Component {
 
   getBaseData = (urlToLoad, apiKey) => {
 
-    console.log('base data key')
-    console.log(apiKey)
-
     fetch(urlToLoad)
       .then(res => res.json())
       .then(
@@ -45,9 +42,6 @@ class App extends React.Component {
     }
 
     getTwentyFourHourdata = (urlToLoad, apiKey) => {
-    
-    console.log('24 hr key')
-    console.log(apiKey)
     
     fetch(urlToLoad)
       .then(res => res.json())
