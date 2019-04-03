@@ -13,9 +13,11 @@ def get_base_totals():
 	date = datetime.datetime.today().strftime('%Y-%m-%d')
 	client_key = request.headers.get('API-Key')
 	SERVER_API_KEY = os.getenv('SERVER_API_KEY')
+	
+	if client_key != SERVER_API_KEY:
+		response.status_code = 401
+	
 	if client_key == SERVER_API_KEY:
-		print('key matches')
-	if request.method == 'GET':
 		bases_data = UtahBaseTotals.query.filter_by(crawled_at=date).order_by(asc(UtahBaseTotals.area_name)).all()
 		base_totals_data = []
 
@@ -31,4 +33,5 @@ def get_base_totals():
 		response = jsonify(base_totals_data)
 		response.headers.add("Access-Control-Allow-Origin", "*")
 		response.status_code = 200
-		return response 
+	
+	return response 
