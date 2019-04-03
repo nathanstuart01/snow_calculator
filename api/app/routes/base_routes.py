@@ -15,6 +15,7 @@ def get_base_totals():
 	SERVER_API_KEY = os.getenv('SERVER_API_KEY')
 	if request.method == 'GET':
 		if client_key != SERVER_API_KEY:
+			response = jsonify('Unauthorized request')
 			response.status_code = 401
 		bases_data = UtahBaseTotals.query.filter_by(crawled_at=date).order_by(asc(UtahBaseTotals.area_name)).all()
 		base_totals_data = []
