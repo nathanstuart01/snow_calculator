@@ -25,7 +25,13 @@ class App extends React.Component {
 
   getBaseData = (urlToLoad, apiKey) => {
 
-    fetch(urlToLoad)
+    fetch(urlToLoad, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "API-Key": apiKey
+      },
+    })
       .then(res => res.json())
       .then(
         (result) => {
@@ -43,7 +49,13 @@ class App extends React.Component {
 
     getTwentyFourHourdata = (urlToLoad, apiKey) => {
     
-    fetch(urlToLoad)
+    fetch(urlToLoad, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "API-Key": apiKey
+      },
+    })
       .then(res => res.json())
       .then(
         (result) => {
