@@ -77,9 +77,9 @@ class App extends React.Component {
 
       this.setState({ isLoadingBaseData: true, isLoadingTwentyFourData: true });
 
-      this.getBaseData(baseDataUrl, clientApiKey);
+      this.getBaseData(baseDataUrl);
 
-      this.getTwentyFourHourdata(twentyFourHourTotalUrl, clientApiKey);
+      this.getTwentyFourHourdata(twentyFourHourTotalUrl);
 
     }
     
