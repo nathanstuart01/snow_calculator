@@ -23,13 +23,12 @@ class App extends React.Component {
 
   }
 
-  getBaseData = (urlToLoad, apiKey) => {
+  getBaseData = (urlToLoad) => {
 
     fetch(urlToLoad, {
       method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-        "API-Key": apiKey
+        "Content-Type": "application/json"
       },
     })
       .then(res => res.json())
@@ -47,13 +46,12 @@ class App extends React.Component {
       )
     }
 
-    getTwentyFourHourdata = (urlToLoad, apiKey) => {
+    getTwentyFourHourdata = (urlToLoad) => {
     
     fetch(urlToLoad, {
       method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-        "API-Key": apiKey
+        "Content-Type": "application/json"
       },
     })
       .then(res => res.json())
@@ -76,8 +74,6 @@ class App extends React.Component {
       const baseDataUrl = process.env.REACT_APP_BASE_API_URL;
 
       const twentyFourHourTotalUrl = process.env.REACT_APP_TWENTY_FOUR_HOUR_API_URL;
-
-      const clientApiKey = process.env.REACT_APP_API_KEY;
 
       this.setState({ isLoadingBaseData: true, isLoadingTwentyFourData: true });
 
