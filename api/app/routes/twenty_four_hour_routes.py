@@ -3,11 +3,21 @@ from app import app
 from app.models.twenty_four_hour_data_model import UtahTwentyFourHourTotals
 from sqlalchemy import asc
 import datetime
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 @app.route('/api/v1/twentyfourhourdata/')
 def get_twenty_four_hour_totals():
 	date = datetime.datetime.today().strftime('%Y-%m-%d')
+	client_key = request.headers.get('API-Key')
+	SERVER_API_KEY = os.getenv('SERVER_API_KEY')
+	if client_key != SERVER_API_KEY:
+		response = jsonify('Unauthorized request')
+		response.status_code = 401
+		return response
 	if request.method == 'GET':
 		twenty_fours_data = UtahTwentyFourHourTotals.query.filter_by(crawled_at=date).order_by(asc(UtahTwentyFourHourTotals.area_name)).all()
 		twenty_four_totals_data = []
