@@ -13,6 +13,8 @@ load_dotenv()
 def get_twenty_four_hour_totals():
 	date = datetime.datetime.today().strftime('%Y-%m-%d')
 	client_key = request.headers.get('API-Key')
+	client_ip = request.headers.get('ip')
+	print(client_ip)
 	SERVER_API_KEY = os.getenv('SERVER_API_KEY')
 	if client_key != SERVER_API_KEY:
 		response = jsonify('Unauthorized request')
