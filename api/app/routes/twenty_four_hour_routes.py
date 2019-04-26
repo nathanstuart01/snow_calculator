@@ -14,7 +14,7 @@ load_dotenv()
 @app.route('/api/v1/twentyfourhourdata/')
 def get_twenty_four_hour_totals():
 	date = datetime.now() - timedelta(hours=7)
-	date = current_time.strftime("%Y-%m-%d")
+	date = date.strftime("%Y-%m-%d")
 	client_key = request.headers.get('API-Key')
 	client_ip = request.headers.get('ip')
 	SERVER_API_KEY = os.getenv('SERVER_API_KEY')

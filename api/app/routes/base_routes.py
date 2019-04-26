@@ -13,7 +13,7 @@ load_dotenv()
 @app.route('/api/v1/basedata/')
 def get_base_totals():
 	date = datetime.now() - timedelta(hours=7)
-	date = current_time.strftime("%Y-%m-%d")
+	date = date.strftime("%Y-%m-%d")
 	client_key = request.headers.get('API-Key')
 	SERVER_API_KEY = os.getenv('SERVER_API_KEY')
 	if client_key != SERVER_API_KEY:
