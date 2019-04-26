@@ -35,5 +35,6 @@ def get_base_totals():
 			
 		response = jsonify(base_totals_data)
 		response.headers.add("Access-Control-Allow-Origin", "*")
+		response.headers.add(("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 		response.status_code = 200
 		return response 
