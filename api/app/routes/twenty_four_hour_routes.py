@@ -5,16 +5,18 @@ from sqlalchemy import asc
 import datetime
 import os
 from dotenv import load_dotenv
+import datetime
+from datetime import datetime,timedelta
 
 load_dotenv()
 
 
 @app.route('/api/v1/twentyfourhourdata/')
 def get_twenty_four_hour_totals():
-	date = datetime.datetime.today().strftime('%Y-%m-%d')
+	date = datetime.now() - timedelta(hours=7)
+	date = current_time.strftime("%Y-%m-%d")
 	client_key = request.headers.get('API-Key')
 	client_ip = request.headers.get('ip')
-	print(client_ip)
 	SERVER_API_KEY = os.getenv('SERVER_API_KEY')
 	if client_key != SERVER_API_KEY:
 		response = jsonify('Unauthorized request')

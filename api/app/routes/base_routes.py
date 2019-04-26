@@ -5,12 +5,15 @@ from sqlalchemy import asc
 import datetime
 import os
 from dotenv import load_dotenv
+import datetime
+from datetime import datetime,timedelta
 
 load_dotenv()
 
 @app.route('/api/v1/basedata/')
 def get_base_totals():
-	date = datetime.datetime.today().strftime('%Y-%m-%d')
+	date = datetime.now() - timedelta(hours=7)
+	date = current_time.strftime("%Y-%m-%d")
 	client_key = request.headers.get('API-Key')
 	SERVER_API_KEY = os.getenv('SERVER_API_KEY')
 	if client_key != SERVER_API_KEY:
