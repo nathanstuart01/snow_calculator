@@ -31,13 +31,8 @@ def get_base_totals():
 					'base_total': base_data.base_total,
 					'crawled_at': base_data.crawled_at.strftime("%Y-%m-%d")
 			}
-			base_totals_data.append(obj) 
-			
-		white_origin= ['https://www.powderinfo.com','https://powderinfo.com']
-		if request.headers['Origin'] in white_origin:
-			response.headers.add['Access-Control-Allow-Origin'] = request.headers['Origin'] 
-			response.headers.add['Access-Control-Allow-Methods'] = 'GET'
-			response.headers.add['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
-			response = jsonify(twenty_four_totals_data)
-			response.status_code = 200
-			return response
+		base_totals_data.append(obj)
+		response = jsonify(twenty_four_totals_data)
+		response.headers.add('Access-Control-Allow-Origin', '*')
+		response.status_code = 200
+		return response
