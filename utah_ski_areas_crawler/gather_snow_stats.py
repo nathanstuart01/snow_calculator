@@ -2,6 +2,7 @@ from areas_crawler import AreasCrawler
 from scraper_lib import ScraperLib
 import csv
 import datetime
+from datetime import datetime,timedelta
 import psycopg2
 import time
 import os
@@ -52,7 +53,8 @@ class GatherSnowStats():
 		return twenty_four_hr_data
 
 	def save_data_to_file(self, data_to_save):
-		current_time = datetime.datetime.now().strftime("%Y-%m-%d")
+		current_time = datetime.now() - timedelta(hours=7)
+		current_time = current_time.strftime("%Y-%m-%d")
 		if data_to_save == 'base':
 			base_data = self.crawl_base_data()
 			base_file = open('bases.csv', 'w+')
