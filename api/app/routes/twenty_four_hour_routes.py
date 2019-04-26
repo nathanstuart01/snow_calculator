@@ -1,5 +1,5 @@
 from flask import jsonify, request
-from app import app
+from app import app, cors
 from app.models.twenty_four_hour_data_model import UtahTwentyFourHourTotals
 from sqlalchemy import asc
 import datetime
