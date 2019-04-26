@@ -33,8 +33,11 @@ def get_base_totals():
 			}
 			base_totals_data.append(obj) 
 			
-		response = jsonify(base_totals_data)
-		response.headers.add("Access-Control-Allow-Origin", "*")
-		response.headers.add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-		response.status_code = 200
-		return response 
+		white_origin= ['https://www.powderinfo.com','https://powderinfo.com']
+		if request.headers['Origin'] in white_origin:
+			response.headers.add['Access-Control-Allow-Origin'] = request.headers['Origin'] 
+			response.headers.add['Access-Control-Allow-Methods'] = 'GET'
+			response.headers.add['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
+			response = jsonify(twenty_four_totals_data)
+			response.status_code = 200
+			return response
