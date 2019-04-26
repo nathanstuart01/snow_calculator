@@ -1,4 +1,5 @@
 from flask import jsonify, request
+from flask_cors import cross_origin
 from app import app
 from app.models.twenty_four_hour_data_model import UtahTwentyFourHourTotals
 from sqlalchemy import asc
@@ -12,6 +13,7 @@ load_dotenv()
 
 
 @app.route('/api/v1/twentyfourhourdata/')
+@cross_origin()
 def get_twenty_four_hour_totals():
 	date = datetime.now() - timedelta(hours=7)
 	date = date.strftime("%Y-%m-%d")
@@ -34,7 +36,6 @@ def get_twenty_four_hour_totals():
 			} 
 			twenty_four_totals_data.append(obj)
 		response = jsonify(twenty_four_totals_data)
-		response.headers.add('Access-Control-Allow-Origin', '*')
 		response.status_code = 200
 		return response
 
