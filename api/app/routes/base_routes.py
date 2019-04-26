@@ -32,7 +32,7 @@ def get_base_totals():
 					'crawled_at': base_data.crawled_at.strftime("%Y-%m-%d")
 			}
 		base_totals_data.append(obj)
-		response = jsonify(twenty_four_totals_data)
+		response = jsonify(base_totals_data)
 		response.headers.add('Access-Control-Allow-Origin', '*')
 		response.status_code = 200
 		return response
