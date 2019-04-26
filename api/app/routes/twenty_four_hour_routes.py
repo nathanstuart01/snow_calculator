@@ -35,15 +35,7 @@ def get_twenty_four_hour_totals():
 			twenty_four_totals_data.append(obj)
 		response = jsonify(twenty_four_totals_data)
 		response.headers.add('Access-Control-Allow-Origin', '*')
-                response.status_code = 200
 		response.status_code = 200
 		return response
 
-@app.after_request
-def after_request(response):
-    white_origin= ['http://www.dom.com:8000','http://localhost']
-    if request.headers['Origin'] in white_origin:
-        response.headers['Access-Control-Allow-Origin'] = request.headers['Origin'] 
-        response.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
-    return response
+
