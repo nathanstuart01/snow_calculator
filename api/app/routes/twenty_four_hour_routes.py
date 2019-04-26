@@ -1,5 +1,5 @@
 from flask import jsonify, request
-from app import app, cors
+from app import app
 from app.models.twenty_four_hour_data_model import UtahTwentyFourHourTotals
 from sqlalchemy import asc
 import datetime
@@ -34,6 +34,7 @@ def get_twenty_four_hour_totals():
 			} 
 			twenty_four_totals_data.append(obj)
 		response = jsonify(twenty_four_totals_data)
+		response.headers.add('Access-Control-Allow-Origin', '*')
 		response.status_code = 200
 		return response
 
