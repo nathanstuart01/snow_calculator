@@ -27,9 +27,6 @@ class App extends React.Component {
 
     fetch(urlToLoad, {
       method: 'GET',
-      headers: {
-        "Content-Type": "application/json"
-      },
     })
       .then(res => res.json())
       .then(
@@ -50,9 +47,6 @@ class App extends React.Component {
     
     fetch(urlToLoad, {
       method: 'GET',
-      headers: {
-        "Content-Type": "application/json"
-      },
     })
       .then(res => res.json())
       .then(
